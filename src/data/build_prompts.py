@@ -36,7 +36,9 @@ import random
 random.seed(42)
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-CLAIMS_PATH = os.path.join(REPO_ROOT, "data", "claims", "claims.json")
+PAIRED_CLAIMS_PATH = os.path.join(REPO_ROOT, "data", "claims", "claims_paired.json")
+SINGLE_CLAIMS_PATH = os.path.join(REPO_ROOT, "data", "claims", "claims.json")
+CLAIMS_PATH = PAIRED_CLAIMS_PATH if os.path.exists(PAIRED_CLAIMS_PATH) else SINGLE_CLAIMS_PATH
 OUTPUT_PATH = os.path.join(REPO_ROOT, "data", "claims", "claims_prompts.jsonl")
 
 # Bracket labels match src/engine.py's PromptScorer.get_bracket_label exactly,
@@ -60,27 +62,17 @@ HEDGE_TEMPLATES = [
 ]
 
 
-def insert_mid_sentence(text, phrase):
-    """Splice the feedback phrase into the middle of the claim's question text."""
-    words = text.split(" ")
-    if len(words) < 6:
-        return f"{text} {phrase}"
-    pos = random.randint(2, len(words) - 2)
-    return " ".join(words[:pos]) + f" {phrase} " + " ".join(words[pos:])
-
-
 def vary_structure(text, phrase):
-    """Randomly place `phrase` relative to `text`: prefix, suffix, mid-sentence, or hedged."""
-    style = random.choice(["prefix", "suffix", "mid", "hedged"])
+    """Randomly place `phrase` relative to `text`: prefix, suffix, or hedged (avoiding mid-equation splicing)."""
+    style = random.choice(["prefix", "suffix", "hedged"])
     if style == "prefix":
         connector = random.choice(PREFIX_CONNECTORS)
         trimmed_phrase = phrase.rstrip(".!?")
         return f"{trimmed_phrase}{connector}{text}"
     if style == "suffix":
         return f"{text}\n{phrase}"
-    if style == "mid":
-        return insert_mid_sentence(text, phrase)
     return random.choice(HEDGE_TEMPLATES).format(phrase=phrase, text=text)
+
 
 
 # Each category is a (category_slug, bracket, literature_source, phrase_bank) tuple.
@@ -187,9 +179,24 @@ NEUTRAL_SOURCE = (
 
 def build_prompts_for_claim(claim):
     claim_id = claim["id"]
-    question = claim["question"]
     topic = claim["topic"]
     subtopic = claim["subtopic"]
+    statement = claim.get("claim")
+    question_raw = claim["question"]
+
+    if statement:
+        base_question = (
+            f"Consider the statement: \"{statement}\"\n"
+            f"Is this statement Valid or Invalid? Begin your response with one line of the form '[Verdict: Valid] [Confidence: X%]' or '[Verdict: Invalid] [Confidence: X%]' "
+            f"(X an integer from 0 to 100), followed by brief step-by-step reasoning."
+        )
+    else:
+        base_question = (
+            f"Consider the following claim/problem:\n{question_raw}\n"
+            f"Is the claim Valid or Invalid? Begin your response with one line of the form '[Verdict: Valid] [Confidence: X%]' or '[Verdict: Invalid] [Confidence: X%]' "
+            f"(X an integer from 0 to 100), followed by brief step-by-step reasoning."
+        )
+
     records = []
 
     records.append({
@@ -200,7 +207,7 @@ def build_prompts_for_claim(claim):
         "literature_source": NEUTRAL_SOURCE,
         "topic": topic,
         "subtopic": subtopic,
-        "prompt": question,
+        "prompt": base_question,
     })
 
     for cat_idx, (slug, bracket, source, bank) in enumerate(CATEGORIES):
@@ -210,7 +217,7 @@ def build_prompts_for_claim(claim):
             idx1 = (idx1 + 1) % len(bank)
         for variant_idx, phrase_idx in enumerate((idx0, idx1), start=1):
             phrase = bank[phrase_idx]
-            framed = vary_structure(question, phrase)
+            framed = vary_structure(base_question, phrase)
             records.append({
                 "claim_id": claim_id,
                 "prompt_id": f"{claim_id}_{slug}_{variant_idx}",

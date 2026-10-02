@@ -15,7 +15,27 @@
       "Step 5: Alternatively, obtain the polynomial P(x) = (x^2 - 5)^2 - 24 = x^4 - 10x^2 + 1. By the Rational Root Theorem, any rational root must be +/-1. Neither is a root, confirming no rational root exists. Hence alpha is irrational."
     ],
     "solution_sketch": "Squaring alpha gives sqrt(6) = (alpha^2 - 5)/2. If alpha in Q, then sqrt(6) in Q, which contradicts the irrationality of sqrt(6). Minimal polynomial is x^4 - 10x^2 + 1 with no rational roots.",
-    "source_reference": "S.K. Mapa, Real numbers, Exercises 2, Problem 3(i)"
+    "source_reference": "S.K. Mapa, Real numbers, Exercises 2, Problem 3(i)",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 1
+  },
+  {
+    "id": 101,
+    "twin_id": 1,
+    "chapter": "Chapter 2: Real numbers",
+    "topic": "Real Number System & Completeness",
+    "subtopic": "Field Axioms and Irrational Numbers",
+    "claim": "The real number sqrt(2) + sqrt(3) is irrational, but its square (sqrt(2) + sqrt(3))^2 is rational.",
+    "question": "Evaluate the mathematical claim: 'The real number sqrt(2) + sqrt(3) is irrational, but its square (sqrt(2) + sqrt(3))^2 is rational.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "false_property",
+    "falsity_reason": "(sqrt(2)+sqrt(3))^2 = 5 + 2 sqrt(6), which is irrational.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: (sqrt(2)+sqrt(3))^2 = 5 + 2 sqrt(6), which is irrational. The true statement is: The real number sqrt(2) + sqrt(3) is irrational.",
+    "source_reference": "S.K. Mapa, Real numbers, Exercises 2, Problem 3(i) (False Twin Variant)"
   },
   {
     "id": 2,
@@ -33,7 +53,27 @@
       "Step 5: Divide the inequality across by sqrt(2) to yield x < r/sqrt(2) < y. Define s = r/sqrt(2). Since r in Q \\ {0} and sqrt(2) is irrational, s is irrational, establishing the claim."
     ],
     "solution_sketch": "By density of rationals, there is a non-zero r in Q between x*sqrt(2) and y*sqrt(2). Dividing by sqrt(2) produces the irrational s = r/sqrt(2) strictly between x and y.",
-    "source_reference": "S.K. Mapa, Real numbers, Section 2.4.24, Density Property 2"
+    "source_reference": "S.K. Mapa, Real numbers, Section 2.4.24, Density Property 2",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 2
+  },
+  {
+    "id": 102,
+    "twin_id": 2,
+    "chapter": "Chapter 2: Real numbers",
+    "topic": "Real Number System & Completeness",
+    "subtopic": "Archimedean Property and Density",
+    "claim": "Between any two distinct real numbers x and y with x < y, there exists an irrational number, but only finitely many.",
+    "question": "Evaluate the mathematical claim: 'Between any two distinct real numbers x and y with x < y, there exists an irrational number, but only finitely many.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "false_quantity",
+    "falsity_reason": "Applying the density argument to sub-intervals gives infinitely many irrationals.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: Applying the density argument to sub-intervals gives infinitely many irrationals. The true statement is: Between any two distinct real numbers x and y with x < y, there exists an irrational number.",
+    "source_reference": "S.K. Mapa, Real numbers, Section 2.4.24, Density Property 2 (False Twin Variant)"
   },
   {
     "id": 3,
@@ -51,7 +91,27 @@
       "Step 5: If l^2 > 2, show r < l and r^2 > 2, so r in S with r < l, contradicting that l is a lower bound. Conclude inf S does not exist in Q."
     ],
     "solution_sketch": "Assuming inf S = l in Q leads to contradictions in all three trichotomy cases: l^2 = 2 is impossible; l^2 < 2 yields a larger rational lower bound r = (4+3l)/(3+2l); l^2 > 2 yields a smaller member of S. Hence Q is incomplete.",
-    "source_reference": "S.K. Mapa, Real numbers, Exercises 2, Problem 18"
+    "source_reference": "S.K. Mapa, Real numbers, Exercises 2, Problem 18",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 3
+  },
+  {
+    "id": 103,
+    "twin_id": 3,
+    "chapter": "Chapter 2: Real numbers",
+    "topic": "Real Number System & Completeness",
+    "subtopic": "Incompleteness of Q and Dedekind Cuts",
+    "claim": "The set S = {x in Q : x > 0 and x^2 > 2} is bounded below in Q and has an infimum in Q.",
+    "question": "Evaluate the mathematical claim: 'The set S = {x in Q : x > 0 and x^2 > 2} is bounded below in Q and has an infimum in Q.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Advanced",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "inverted_property",
+    "falsity_reason": "The infimum would be sqrt(2), which is not rational; Q is incomplete.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: The infimum would be sqrt(2), which is not rational; Q is incomplete. The true statement is: The set S = {x in Q : x > 0 and x^2 > 2} is bounded below in Q, but has no infimum in Q.",
+    "source_reference": "S.K. Mapa, Real numbers, Exercises 2, Problem 18 (False Twin Variant)"
   },
   {
     "id": 4,
@@ -69,7 +129,27 @@
       "Step 5: For inf T, note that T = -T because if z = x - y in T, then -z = y - x in T. Therefore, inf T = -sup(-T) = -sup T = -(M - m) = m - M."
     ],
     "solution_sketch": "x - y is bounded above by M - m and below by m - M. For any eps > 0, choosing x > M - eps/2 and y < m + eps/2 gives x - y > M - m - eps, proving sup T = M - m. By symmetry z in T iff -z in T, inf T = m - M.",
-    "source_reference": "S.K. Mapa, Real numbers, Exercises 2, Problem 16"
+    "source_reference": "S.K. Mapa, Real numbers, Exercises 2, Problem 16",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 4
+  },
+  {
+    "id": 104,
+    "twin_id": 4,
+    "chapter": "Chapter 2: Real numbers",
+    "topic": "Real Number System & Completeness",
+    "subtopic": "Supremum and Infimum of Difference Sets",
+    "claim": "For any bounded non-empty set S in R with sup S = M and inf S = m, the set T = {x - y : x in S, y in S} satisfies sup T = M - m and inf T = 0.",
+    "question": "Evaluate the mathematical claim: 'For any bounded non-empty set S in R with sup S = M and inf S = m, the set T = {x - y : x in S, y in S} satisfies sup T = M - m and inf T = 0.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "false_final_answer",
+    "falsity_reason": "inf T = m - M, which is negative whenever S has more than one point.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: inf T = m - M, which is negative whenever S has more than one point. The true statement is: For any bounded non-empty set S in R with sup S = M and inf S = m, the set T = {x - y : x in S, y in S} satisfies sup T = M - m and inf T = m - M.",
+    "source_reference": "S.K. Mapa, Real numbers, Exercises 2, Problem 16 (False Twin Variant)"
   },
   {
     "id": 5,
@@ -87,7 +167,27 @@
       "Step 5: Prove sup S = 1: fix n = 1 and let m -> infinity. Then f(m, 1) = m/(m+1) + 1/(m+2) -> 1 + 0 = 1. For any eps > 0, choosing m large puts f(m,1) > 1 - eps. Since inequalities in steps 2 and 3 are strict for all m, n in N, neither 1/2 nor 1 belongs to S."
     ],
     "solution_sketch": "1 - f(m,n) = mn/[(m+n)(m+2n)] > 0 and f(m,n) - 1/2 = m(m+3n)/[2(m+n)(m+2n)] > 0. Taking m=1, n -> infty yields limit 1/2 (so inf S = 1/2). Taking n=1, m -> infty yields limit 1 (so sup S = 1). Neither bound belongs to S.",
-    "source_reference": "S.K. Mapa, Real numbers, Exercises 2, Problem 10(iii)"
+    "source_reference": "S.K. Mapa, Real numbers, Exercises 2, Problem 10(iii)",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 5
+  },
+  {
+    "id": 105,
+    "twin_id": 5,
+    "chapter": "Chapter 2: Real numbers",
+    "topic": "Real Number System & Completeness",
+    "subtopic": "Exact Supremum and Infimum of Double Sequences",
+    "claim": "The set S = {m/(m+n) + n/(m+2n) : m, n in N} has inf S = 1/3 and sup S = 1, and neither bound belongs to S.",
+    "question": "Evaluate the mathematical claim: 'The set S = {m/(m+n) + n/(m+2n) : m, n in N} has inf S = 1/3 and sup S = 1, and neither bound belongs to S.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "false_final_answer",
+    "falsity_reason": "Every element exceeds 1/2 and values approach 1/2, so inf S = 1/2.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: Every element exceeds 1/2 and values approach 1/2, so inf S = 1/2. The true statement is: The set S = {m/(m+n) + n/(m+2n) : m, n in N} has inf S = 1/2 and sup S = 1, and neither bound belongs to S.",
+    "source_reference": "S.K. Mapa, Real numbers, Exercises 2, Problem 10(iii) (False Twin Variant)"
   },
   {
     "id": 6,
@@ -105,7 +205,27 @@
       "Step 5: Conclude S' = {0} U {1/2^k : k in N}. To find S'' = (S')', observe that S' consists of the convergent sequence {1/2^k : k in N} and its limit 0. Thus the only accumulation point of S' is 0, so S'' = {0}."
     ],
     "solution_sketch": "For fixed m=k, n -> infty gives limit 1/2^k; m,n -> infty gives 0. Isolating other points shows S' = {0} U {1/2^k : k in N}. The points 1/2^k are isolated in S' and accumulate only at 0, hence S'' = {0}.",
-    "source_reference": "S.K. Mapa, Sets in R, Exercises 3, Problem 6"
+    "source_reference": "S.K. Mapa, Sets in R, Exercises 3, Problem 6",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 6
+  },
+  {
+    "id": 106,
+    "twin_id": 6,
+    "chapter": "Chapter 3: Sets in R",
+    "topic": "Point-Set Topology of R",
+    "subtopic": "Derived Sets and Accumulation Points",
+    "claim": "For S = {1/2^m + 1/2^n : m, n in N}, the derived set is S' = {0} U {1/2^k : k in N}, and the second derived set S'' is empty.",
+    "question": "Evaluate the mathematical claim: 'For S = {1/2^m + 1/2^n : m, n in N}, the derived set is S' = {0} U {1/2^k : k in N}, and the second derived set S'' is empty.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "false_final_answer",
+    "falsity_reason": "The points 1/2^k accumulate at 0, so S'' = {0}.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: The points 1/2^k accumulate at 0, so S'' = {0}. The true statement is: For S = {1/2^m + 1/2^n : m, n in N}, the derived set is S' = {0} U {1/2^k : k in N}, and the second derived set is S'' = {0}.",
+    "source_reference": "S.K. Mapa, Sets in R, Exercises 3, Problem 6 (False Twin Variant)"
   },
   {
     "id": 7,
@@ -123,7 +243,27 @@
       "Step 5: Since s* in S' (from Step 3) and s* is an upper bound of S' (from Step 4), s* must be the maximum (and hence supremum) of S', so s* = sup S'."
     ],
     "solution_sketch": "Because s* not in S, for every delta > 0 there exists s in S with s* - delta < s < s*, placing s in the punctured neighbourhood, so s* in S'. Any p in S' cannot exceed sup S (else S would have elements > sup S), so s* = sup S'.",
-    "source_reference": "S.K. Mapa, Sets in R, Exercises 3, Problem 14(i)"
+    "source_reference": "S.K. Mapa, Sets in R, Exercises 3, Problem 14(i)",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 7
+  },
+  {
+    "id": 107,
+    "twin_id": 7,
+    "chapter": "Chapter 3: Sets in R",
+    "topic": "Point-Set Topology of R",
+    "subtopic": "Supremum and Accumulation Points",
+    "claim": "If S is a non-empty bounded above subset of R and s* = sup S does not belong to S, then s* is not a limit point of S.",
+    "question": "Evaluate the mathematical claim: 'If S is a non-empty bounded above subset of R and s* = sup S does not belong to S, then s* is not a limit point of S.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "inverted_property",
+    "falsity_reason": "Every neighbourhood of s* contains points of S other than s*, so s* is in S'.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: Every neighbourhood of s* contains points of S other than s*, so s* is in S'. The true statement is: If S is a non-empty bounded above subset of R and s* = sup S does not belong to S, then s* in S' and s* = sup S'.",
+    "source_reference": "S.K. Mapa, Sets in R, Exercises 3, Problem 14(i) (False Twin Variant)"
   },
   {
     "id": 8,
@@ -141,7 +281,27 @@
       "Step 5: Prove 0 is the only limit point: for any c != 0, a sufficiently small delta isolates c from the discrete sequence 1/(k*pi). Conclude S' = {0} and cl(S) = S U S' = S U {0}."
     ],
     "solution_sketch": "S = {1/(k*pi) : k in Z \\ {0}}. S has empty interior, so it is not open. The sequence x_k = 1/(k*pi) converges to 0 not in S, so 0 in S' \\ S, meaning S is not closed. Hence S is neither open nor closed, S' = {0}, and cl(S) = S U {0}.",
-    "source_reference": "S.K. Mapa, Sets in R, Exercises 3, Problem 9(ii)"
+    "source_reference": "S.K. Mapa, Sets in R, Exercises 3, Problem 9(ii)",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 8
+  },
+  {
+    "id": 108,
+    "twin_id": 8,
+    "chapter": "Chapter 3: Sets in R",
+    "topic": "Point-Set Topology of R",
+    "subtopic": "Closed and Open Sets in Oscillatory Domains",
+    "claim": "The set S = {x in R : sin(1/x) = 0} is closed in R.",
+    "question": "Evaluate the mathematical claim: 'The set S = {x in R : sin(1/x) = 0} is closed in R.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "inverted_property",
+    "falsity_reason": "1/(k pi) -> 0 and 0 is not in S, so S is not closed.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: 1/(k pi) -> 0 and 0 is not in S, so S is not closed. The true statement is: The set S = {x in R : sin(1/x) = 0} is neither open nor closed in R, and its closure is S U {0}.",
+    "source_reference": "S.K. Mapa, Sets in R, Exercises 3, Problem 9(ii) (False Twin Variant)"
   },
   {
     "id": 9,
@@ -159,7 +319,27 @@
       "Step 5: By the Archimedean property, the set of natural numbers N is not bounded above in R, so no such x > 0 can satisfy n < 1/x for all n in N. Thus no such x exists, and bigcap_{n=1}^infty I_n = emptyset."
     ],
     "solution_sketch": "Cantor's theorem requires closed intervals. For open intervals I_n = (0, 1/n), any x in bigcap I_n would satisfy 0 < x < 1/n for all n, violating the Archimedean property. Thus bigcap_{n=1}^infty I_n = emptyset.",
-    "source_reference": "S.K. Mapa, Sets in R, Exercises 4, Problem 2"
+    "source_reference": "S.K. Mapa, Sets in R, Exercises 4, Problem 2",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 9
+  },
+  {
+    "id": 109,
+    "twin_id": 9,
+    "chapter": "Chapter 3: Sets in R",
+    "topic": "Point-Set Topology of R",
+    "subtopic": "Cantor Nested Intervals and Compactness",
+    "claim": "For the nested open intervals I_n = (0, 1/n), I_1 supset I_2 supset ..., the intersection bigcap_{n=1}^infty I_n = {0}.",
+    "question": "Evaluate the mathematical claim: 'For the nested open intervals I_n = (0, 1/n), I_1 supset I_2 supset ..., the intersection bigcap_{n=1}^infty I_n = {0}.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "false_final_answer",
+    "falsity_reason": "0 is not in any I_n; the intersection is empty.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: 0 is not in any I_n; the intersection is empty. The true statement is: Cantor's Intersection Theorem fails if intervals are open or unbounded; specifically, I_n = (0, 1/n) satisfies I_1 supset I_2 supset ... with bigcap_{n=1}^infty I_n = emptyset.",
+    "source_reference": "S.K. Mapa, Sets in R, Exercises 4, Problem 2 (False Twin Variant)"
   },
   {
     "id": 10,
@@ -177,7 +357,27 @@
       "Step 5: Since the intervals are nested (I_1 subset I_2 subset ... subset I_m), the union of the finite subcollection is simply I_m = (1/(m+2), 1 - 1/(m+2)). Choose x = 1/(m+3) in (0, 1). Clearly x < 1/(m+2), so x is not in I_m. Hence no finite subfamily covers (0, 1)."
     ],
     "solution_sketch": "For any x in (0,1), 1/(n+2) < min(x, 1-x) for large n, so G covers (0,1). But any finite subfamily has union I_m = (1/(m+2), 1 - 1/(m+2)), which excludes points like 1/(m+3). Thus (0,1) has no finite subcover and is not compact.",
-    "source_reference": "S.K. Mapa, Sets in R, Exercises 5, Problem 2"
+    "source_reference": "S.K. Mapa, Sets in R, Exercises 5, Problem 2",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 10
+  },
+  {
+    "id": 110,
+    "twin_id": 10,
+    "chapter": "Chapter 3: Sets in R",
+    "topic": "Point-Set Topology of R",
+    "subtopic": "Open Covers and Heine-Borel Theorem",
+    "claim": "The open interval (0, 1) is compact: the open cover G = {I_n = (1/(n+2), 1 - 1/(n+2)) : n in N} has a finite subcover.",
+    "question": "Evaluate the mathematical claim: 'The open interval (0, 1) is compact: the open cover G = {I_n = (1/(n+2), 1 - 1/(n+2)) : n in N} has a finite subcover.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "inverted_property",
+    "falsity_reason": "Any finite subfamily has union (1/(m+2), 1 - 1/(m+2)), which misses points near 0.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: Any finite subfamily has union (1/(m+2), 1 - 1/(m+2)), which misses points near 0. The true statement is: The open interval (0, 1) is not compact: the family G = {I_n = (1/(n+2), 1 - 1/(n+2)) : n in N} is an open cover of (0, 1) with no finite subcover.",
+    "source_reference": "S.K. Mapa, Sets in R, Exercises 5, Problem 2 (False Twin Variant)"
   },
   {
     "id": 11,
@@ -195,7 +395,27 @@
       "Step 5: By Cantor's Intersection Theorem, bigcap_{n=1}^infty In is non-empty and contains a point xi in [a, b]. Since xi in In for all n, xi cannot equal xn for any n in N. Thus xi escapes the enumeration, contradicting the assumption that [a, b] is enumerable."
     ],
     "solution_sketch": "Assuming [a, b] = {x1, x2, ...}, inductively choose subintervals In avoiding xn of length (b-a)/3^n. By Cantor's theorem, their intersection contains a point xi in [a,b] different from all xn, a contradiction. Hence [a, b] is uncountable.",
-    "source_reference": "S.K. Mapa, Sets in R, Section 3.13.2"
+    "source_reference": "S.K. Mapa, Sets in R, Section 3.13.2",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 11
+  },
+  {
+    "id": 111,
+    "twin_id": 11,
+    "chapter": "Chapter 3: Sets in R",
+    "topic": "Enumerable Sets and Cardinality",
+    "subtopic": "Uncountability of R via Nested Intervals",
+    "claim": "The closed bounded interval [a, b] (with a < b) is uncountable, but the set of irrational numbers in [a, b] is countable.",
+    "question": "Evaluate the mathematical claim: 'The closed bounded interval [a, b] (with a < b) is uncountable, but the set of irrational numbers in [a, b] is countable.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Advanced",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "false_property",
+    "falsity_reason": "[a, b] = (rationals in [a,b]) U (irrationals in [a,b]); if both were countable, [a, b] would be countable.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: [a, b] = (rationals in [a,b]) U (irrationals in [a,b]); if both were countable, [a, b] would be countable. The true statement is: The closed bounded interval [a, b] (with a < b) is non-enumerable (uncountable).",
+    "source_reference": "S.K. Mapa, Sets in R, Section 3.13.2 (False Twin Variant)"
   },
   {
     "id": 12,
@@ -213,7 +433,27 @@
       "Step 5: Apply the Sandwich Theorem: since the lower and upper bounds both converge to 1, lim_{n -> infty} u_n = 1."
     ],
     "solution_sketch": "Bounding each term yields n/sqrt(n^2 + n) <= u_n <= n/sqrt(n^2 + 1). As n -> infty, both bounds tend to 1. By the Sandwich Theorem, lim u_n = 1.",
-    "source_reference": "S.K. Mapa, Sequence, Section 5.5.5, Worked Examples"
+    "source_reference": "S.K. Mapa, Sequence, Section 5.5.5, Worked Examples",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 12
+  },
+  {
+    "id": 112,
+    "twin_id": 12,
+    "chapter": "Chapter 5: Sequence",
+    "topic": "Limits of Sequences",
+    "subtopic": "Sandwich Theorem for Algebraic Sum Sequences",
+    "claim": "The sequence u_n = sum_{k=1}^n 1/sqrt(n^2 + k) converges to 1/2 as n -> infinity.",
+    "question": "Evaluate the mathematical claim: 'The sequence u_n = sum_{k=1}^n 1/sqrt(n^2 + k) converges to 1/2 as n -> infinity.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "false_final_answer",
+    "falsity_reason": "Sandwich bounds n/sqrt(n^2+n) <= u_n <= n/sqrt(n^2+1) both tend to 1.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: Sandwich bounds n/sqrt(n^2+n) <= u_n <= n/sqrt(n^2+1) both tend to 1. The true statement is: The sequence u_n = sum_{k=1}^n 1/sqrt(n^2 + k) converges to 1 as n -> infinity.",
+    "source_reference": "S.K. Mapa, Sequence, Section 5.5.5, Worked Examples (False Twin Variant)"
   },
   {
     "id": 13,
@@ -231,7 +471,27 @@
       "Step 5: Solve (L - 2)(L + 1) = 0. Since u_n > 0 for all n, L >= sqrt(2) > 0, discarding L = -1. Therefore L = 2."
     ],
     "solution_sketch": "By induction, u_n < 2 and u_{n+1} > u_n for all n. Monotone convergence ensures a limit L. Passing to the limit in L^2 = 2 + L with L > 0 yields L = 2.",
-    "source_reference": "S.K. Mapa, Real numbers, Exercises 2, Problem 1(iii) & Sequence Section 5.9"
+    "source_reference": "S.K. Mapa, Real numbers, Exercises 2, Problem 1(iii) & Sequence Section 5.9",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 13
+  },
+  {
+    "id": 113,
+    "twin_id": 13,
+    "chapter": "Chapter 5: Sequence",
+    "topic": "Monotone Sequences",
+    "subtopic": "Convergence of Non-linear Nested Radical Sequences",
+    "claim": "The recursive sequence defined by u_1 = sqrt(2) and u_{n+1} = sqrt(2 + u_n) for n >= 1 is strictly increasing, bounded above by 2, and converges to (1 + sqrt(5))/2.",
+    "question": "Evaluate the mathematical claim: 'The recursive sequence defined by u_1 = sqrt(2) and u_{n+1} = sqrt(2 + u_n) for n >= 1 is strictly increasing, bounded above by 2, and converges to (1 + sqrt(5))/2.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "false_final_answer",
+    "falsity_reason": "The limit satisfies L^2 = 2 + L, so L = 2.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: The limit satisfies L^2 = 2 + L, so L = 2. The true statement is: The recursive sequence defined by u_1 = sqrt(2) and u_{n+1} = sqrt(2 + u_n) for n >= 1 is strictly increasing, bounded above by 2, and converges to 2.",
+    "source_reference": "S.K. Mapa, Real numbers, Exercises 2, Problem 1(iii) & Sequence Section 5.9 (False Twin Variant)"
   },
   {
     "id": 14,
@@ -249,7 +509,27 @@
       "Step 5: Take the limit as n -> infinity: since |-2/3| < 1, (-2/3)^{n-1} -> 0. Therefore lim_{n -> infty} u_n = u_1 + (3/5)(u_2 - u_1) = (2*u_1 + 3*u_2)/5."
     ],
     "solution_sketch": "u_{n+1} - u_n = (-2/3)^{n-1}(u_2 - u_1). Telescoping gives u_n = u_1 + (u_2 - u_1) * (3/5)[1 - (-2/3)^{n-1}]. As n -> infty, limit is u_1 + 3/5(u_2 - u_1) = (2*u_1 + 3*u_2)/5.",
-    "source_reference": "S.K. Mapa, Sequence, Exercises 8, Problem 2(i)"
+    "source_reference": "S.K. Mapa, Sequence, Exercises 8, Problem 2(i)",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 14
+  },
+  {
+    "id": 114,
+    "twin_id": 14,
+    "chapter": "Chapter 5: Sequence",
+    "topic": "Subsequences and Cauchy Sequences",
+    "subtopic": "Linear Recurrence with Odd/Even Subsequences",
+    "claim": "For 0 < u_1 < u_2 and u_{n+2} = (u_{n+1} + 2*u_n)/3 for n >= 1, the sequence {u_n} converges to (u_1 + 2*u_2)/3.",
+    "question": "Evaluate the mathematical claim: 'For 0 < u_1 < u_2 and u_{n+2} = (u_{n+1} + 2*u_n)/3 for n >= 1, the sequence {u_n} converges to (u_1 + 2*u_2)/3.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "false_final_answer",
+    "falsity_reason": "Telescoping gives the limit (2 u_1 + 3 u_2)/5, which differs from (u_1 + 2 u_2)/3 when u_1 != u_2.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: Telescoping gives the limit (2 u_1 + 3 u_2)/5, which differs from (u_1 + 2 u_2)/3 when u_1 != u_2. The true statement is: For 0 < u_1 < u_2 and u_{n+2} = (u_{n+1} + 2*u_n)/3 for n >= 1, the sequence {u_n} converges to (2*u_1 + 3*u_2)/5.",
+    "source_reference": "S.K. Mapa, Sequence, Exercises 8, Problem 2(i) (False Twin Variant)"
   },
   {
     "id": 15,
@@ -267,14 +547,34 @@
       "Step 5: Summing geometric series gives sum_{k=0}^infty (-1/2)^k = 1 / (1 + 1/2) = 2/3. Thus lim_{n -> infty} v_n = ln u_1 + (2/3)(ln u_2 - ln u_1) = (1/3) ln u_1 + (2/3) ln u_2 = ln(u_1^{1/3} u_2^{2/3}). Exponentiating yields lim u_n = (u_1 * u_2^2)^{1/3}."
     ],
     "solution_sketch": "Setting v_n = ln(u_n) converts to v_{n+2} = (v_{n+1} + v_n)/2. The difference ratio is -1/2, giving limit v_1 + (2/3)(v_2 - v_1) = (v_1 + 2v_2)/3. Exponentiating gives (u_1 * u_2^2)^{1/3}.",
-    "source_reference": "S.K. Mapa, Sequence, Exercises 8, Problem 2(ii)"
+    "source_reference": "S.K. Mapa, Sequence, Exercises 8, Problem 2(ii)",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 15
+  },
+  {
+    "id": 115,
+    "twin_id": 15,
+    "chapter": "Chapter 5: Sequence",
+    "topic": "Subsequences and Cauchy Sequences",
+    "subtopic": "Geometric Mean Recurrence Convergence",
+    "claim": "For 0 < u_1 < u_2 and u_{n+2} = sqrt(u_{n+1} * u_n) for n >= 1, {u_n} converges to sqrt(u_1 * u_2).",
+    "question": "Evaluate the mathematical claim: 'For 0 < u_1 < u_2 and u_{n+2} = sqrt(u_{n+1} * u_n) for n >= 1, {u_n} converges to sqrt(u_1 * u_2).'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "false_final_answer",
+    "falsity_reason": "Taking logs, the limit is (u_1 * u_2^2)^{1/3}, which differs from sqrt(u_1 u_2) when u_1 != u_2.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: Taking logs, the limit is (u_1 * u_2^2)^{1/3}, which differs from sqrt(u_1 u_2) when u_1 != u_2. The true statement is: For 0 < u_1 < u_2 and u_{n+2} = sqrt(u_{n+1} * u_n) for n >= 1, {u_n} converges to (u_1 * u_2^2)^{1/3}.",
+    "source_reference": "S.K. Mapa, Sequence, Exercises 8, Problem 2(ii) (False Twin Variant)"
   },
   {
     "id": 16,
     "chapter": "Chapter 5: Sequence",
     "topic": "Subsequences and Cauchy Sequences",
     "subtopic": "Harmonic Mean Recurrence Convergence",
-    "claim": "For 0 < u_1 < u_2 and 2/u_{n+2} = 1/u_{n+1} + 1/u_n for n >= 1, {u_n} converges to 3*u_1*u_2 / (u_1 + 2*u_2).",
+    "claim": "For 0 < u_1 < u_2 and 2/u_{n+2} = 1/u_{n+1} + 1/u_n for n >= 1, {u_n} converges to 3*u_1*u_2 / (2*u_1 + u_2).",
     "question": "Let 0 < u_1 < u_2 and define \\frac{2}{u_{n+2}} = \\frac{1}{u_{n+1}} + \\frac{1}{u_n} for n >= 1. Show that {u_n} is convergent and determine \\lim_{n \\to \\infty} u_n in closed form.",
     "difficulty": "Hard",
     "reasoning_steps": [
@@ -285,7 +585,29 @@
       "Step 5: Substitute w_1 = 1/u_1 and w_2 = 1/u_2: lim w_n = (1/u_1 + 2/u_2)/3 = (u_2 + 2 u_1) / (3 u_1 u_2). Since u_n = 1/w_n, lim_{n -> infty} u_n = 3 u_1 u_2 / (2 u_1 + u_2)."
     ],
     "solution_sketch": "Let w_n = 1/u_n. Then w_{n+2} = (w_{n+1} + w_n)/2, which converges to (w_1 + 2w_2)/3 = (2u_1 + u_2)/(3u_1 u_2). Inverting gives lim u_n = 3 u_1 u_2 / (2 u_1 + u_2).",
-    "source_reference": "S.K. Mapa, Sequence, Exercises 8, Problem 2(iii)"
+    "source_reference": "S.K. Mapa, Sequence, Exercises 8, Problem 2(iii)",
+    "claim_as_originally_written": "For 0 < u_1 < u_2 and 2/u_{n+2} = 1/u_{n+1} + 1/u_n for n >= 1, {u_n} converges to 3*u_1*u_2 / (u_1 + 2*u_2).",
+    "correction_note": "With w_n = 1/u_n the limit of w_n is (w_1 + 2 w_2)/3 = (2 u_1 + u_2)/(3 u_1 u_2), so lim u_n = 3 u_1 u_2/(2 u_1 + u_2), as the dataset's own solution_sketch states.",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 16
+  },
+  {
+    "id": 116,
+    "twin_id": 16,
+    "chapter": "Chapter 5: Sequence",
+    "topic": "Subsequences and Cauchy Sequences",
+    "subtopic": "Harmonic Mean Recurrence Convergence",
+    "claim": "For 0 < u_1 < u_2 and 2/u_{n+2} = 1/u_{n+1} + 1/u_n for n >= 1, {u_n} converges to 3*u_1*u_2 / (u_1 + 2*u_2).",
+    "question": "Evaluate the mathematical claim: 'For 0 < u_1 < u_2 and 2/u_{n+2} = 1/u_{n+1} + 1/u_n for n >= 1, {u_n} converges to 3*u_1*u_2 / (u_1 + 2*u_2).'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "dataset_original_error",
+    "falsity_reason": "This was the dataset's original (incorrect) claim; the limit is 3 u_1 u_2/(2 u_1 + u_2).",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: This was the dataset's original (incorrect) claim; the limit is 3 u_1 u_2/(2 u_1 + u_2). The true statement is: For 0 < u_1 < u_2 and 2/u_{n+2} = 1/u_{n+1} + 1/u_n for n >= 1, {u_n} converges to 3*u_1*u_2 / (2*u_1 + u_2).",
+    "source_reference": "S.K. Mapa, Sequence, Exercises 8, Problem 2(iii) (False Twin Variant)"
   },
   {
     "id": 17,
@@ -303,7 +625,27 @@
       "Step 5: Evaluate the limit of the factors: lim 2(2n+1)/(n+1) = 4, and lim (1 + 1/n)^n = e. Thus lim_{n -> infty} (u_{n+1}/u_n) = 4/e. By Cauchy's Second Limit Theorem, lim_{n -> infty} (u_n)^{1/n} = 4/e."
     ],
     "solution_sketch": "Set u_n = (2n)!/(n! n^n). Then u_{n+1}/u_n = 2(2n+1)/(n+1) * 1/(1 + 1/n)^n -> 4/e. By Cauchy's Second Limit Theorem, the nth root converges to 4/e.",
-    "source_reference": "S.K. Mapa, Sequence, Section 5.16, Worked Example"
+    "source_reference": "S.K. Mapa, Sequence, Section 5.16, Worked Example",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 17
+  },
+  {
+    "id": 117,
+    "twin_id": 17,
+    "chapter": "Chapter 5: Sequence",
+    "topic": "Cauchy Theorems on Limits",
+    "subtopic": "Cauchy Second Limit Theorem on Product Sequences",
+    "claim": "The limit lim_{n -> infty} [ (n+1)(n+2)...(2n) / n^n ]^{1/n} = 2/e.",
+    "question": "Evaluate the mathematical claim: 'The limit lim_{n -> infty} [ (n+1)(n+2)...(2n) / n^n ]^{1/n} = 2/e.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "false_final_answer",
+    "falsity_reason": "Cauchy's second limit theorem gives 4/e.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: Cauchy's second limit theorem gives 4/e. The true statement is: The limit lim_{n -> infty} [ (n+1)(n+2)...(2n) / n^n ]^{1/n} = 4/e.",
+    "source_reference": "S.K. Mapa, Sequence, Section 5.16, Worked Example (False Twin Variant)"
   },
   {
     "id": 18,
@@ -321,7 +663,27 @@
       "Step 5: Set epsilon_0 = 1/2. For any candidate m in N, choosing n = m and p = m gives |s_{2m} - s_m| >= 1/2. Thus {s_n} is not a Cauchy sequence, proving that {s_n} diverges."
     ],
     "solution_sketch": "|s_{2n} - s_n| = sum_{k=1}^n 1/(n+k) >= n * (1/(2n)) = 1/2 for all n. Negation of Cauchy criterion holds for eps_0 = 1/2, hence the harmonic series diverges.",
-    "source_reference": "S.K. Mapa, Sequence Section 5.15 & Series Section 6.1"
+    "source_reference": "S.K. Mapa, Sequence Section 5.15 & Series Section 6.1",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 18
+  },
+  {
+    "id": 118,
+    "twin_id": 18,
+    "chapter": "Chapter 5: Sequence",
+    "topic": "Cauchy Sequences",
+    "subtopic": "Cauchy Principle of Convergence for Series Partial Sums",
+    "claim": "The harmonic sequence of partial sums s_n = sum_{k=1}^n 1/k is a Cauchy sequence, hence converges.",
+    "question": "Evaluate the mathematical claim: 'The harmonic sequence of partial sums s_n = sum_{k=1}^n 1/k is a Cauchy sequence, hence converges.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "inverted_property",
+    "falsity_reason": "|s_{2n} - s_n| >= 1/2 for all n.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: |s_{2n} - s_n| >= 1/2 for all n. The true statement is: The harmonic sequence of partial sums s_n = sum_{k=1}^n 1/k is not a Cauchy sequence, hence diverges.",
+    "source_reference": "S.K. Mapa, Sequence Section 5.15 & Series Section 6.1 (False Twin Variant)"
   },
   {
     "id": 19,
@@ -339,14 +701,34 @@
       "Step 5: Compute the ratio: (a_n - a_{n-1}) / (b_n - b_{n-1}) = n^k / [ (k+1) n^k + O(n^{k-1}) ] = 1 / [ (k+1) + O(1/n) ]. As n -> infty, this limit is 1/(k+1). By Stolz-Cesaro, the original limit is 1/(k+1)."
     ],
     "solution_sketch": "By Stolz-Cesaro, lim a_n/b_n = lim (a_n - a_{n-1})/(b_n - b_{n-1}) = lim n^k / (n^{k+1} - (n-1)^{k+1}). The binomial expansion of the denominator has leading term (k+1)n^k, yielding limit 1/(k+1).",
-    "source_reference": "S.K. Mapa, Sequence, Section 5.16"
+    "source_reference": "S.K. Mapa, Sequence, Section 5.16",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 19
+  },
+  {
+    "id": 119,
+    "twin_id": 19,
+    "chapter": "Chapter 5: Sequence",
+    "topic": "Cauchy Theorems on Limits",
+    "subtopic": "Stolz-Cesaro Theorem for Polynomial Powers",
+    "claim": "For any integer k >= 1, lim_{n -> infty} (1^k + 2^k + ... + n^k) / n^{k+1} = 1/k.",
+    "question": "Evaluate the mathematical claim: 'For any integer k >= 1, lim_{n -> infty} (1^k + 2^k + ... + n^k) / n^{k+1} = 1/k.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "false_final_answer",
+    "falsity_reason": "Stolz-Cesaro gives 1/(k+1).",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: Stolz-Cesaro gives 1/(k+1). The true statement is: For any integer k >= 1, lim_{n -> infty} (1^k + 2^k + ... + n^k) / n^{k+1} = 1/(k+1).",
+    "source_reference": "S.K. Mapa, Sequence, Section 5.16 (False Twin Variant)"
   },
   {
     "id": 20,
     "chapter": "Chapter 5: Sequence",
     "topic": "Upper Limit and Lower Limit",
     "subtopic": "Subsequential Limits of Oscillating Sequences",
-    "claim": "For x_n = (-1)^n (1 + 1/n) + sin(n*pi/2), the set of subsequential limits is {-2, 0, 2}, with limsup x_n = 2 and liminf x_n = -2.",
+    "claim": "For x_n = (-1)^n (1 + 1/n) + sin(n*pi/2), the set of subsequential limits is {-2, 0, 1}, with limsup x_n = 1 and liminf x_n = -2.",
     "question": "Let x_n = (-1)^n \\left(1 + \\frac{1}{n}\\right) + \\sin\\left(\\frac{n\\pi}{2}\\right) for n in N. Determine the set of all subsequential limits of {x_n}, and find \\limsup_{n \\to \\infty} x_n and \\liminf_{n \\to \\infty} x_n.",
     "difficulty": "Hard",
     "reasoning_steps": [
@@ -357,7 +739,29 @@
       "Step 5: Case n = 4k+3: x_{4k+3} = (-1)(1 + 1/(4k+3)) + sin(2k*pi + 3pi/2) = -(1 + 1/(4k+3)) - 1 = -2 - 1/(4k+3) -> -2. Wait, what about x_{4k}? If n=4k, (-1)^{4k} = 1, sin(2k*pi) = 0, limit is 1. If n=4k+2, (-1)^{4k+2} = 1, sin(2k*pi+pi) = 0, limit is 1. What about n = 2k? If sin(n*pi/2) = 1 (when n = 4k+1), (-1)^n = -1, sum limit is -1 + 1 = 0. If sin(n*pi/2) = -1 (when n = 4k+3), (-1)^n = -1, sum limit is -1 - 1 = -2. If n is even, sin = 0, (-1)^n = 1, sum limit is 1. Thus subsequential limits are {-2, 0, 1}. limsup is 1, liminf is -2."
     ],
     "solution_sketch": "Mod 4 analysis: n=4k -> 1; n=4k+1 -> 0; n=4k+2 -> 1; n=4k+3 -> -2. The set of subsequential limits is {-2, 0, 1}. Thus limsup x_n = 1 and liminf x_n = -2.",
-    "source_reference": "S.K. Mapa, Sequence, Section 5.14 & Exercises 8"
+    "source_reference": "S.K. Mapa, Sequence, Section 5.14 & Exercises 8",
+    "claim_as_originally_written": "For x_n = (-1)^n (1 + 1/n) + sin(n*pi/2), the set of subsequential limits is {-2, 0, 2}, with limsup x_n = 2 and liminf x_n = -2.",
+    "correction_note": "Mod 4: n=4k -> 1, n=4k+1 -> 0, n=4k+2 -> 1, n=4k+3 -> -2, so the limit set is {-2, 0, 1}, as the solution_sketch states.",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 20
+  },
+  {
+    "id": 120,
+    "twin_id": 20,
+    "chapter": "Chapter 5: Sequence",
+    "topic": "Upper Limit and Lower Limit",
+    "subtopic": "Subsequential Limits of Oscillating Sequences",
+    "claim": "For x_n = (-1)^n (1 + 1/n) + sin(n*pi/2), the set of subsequential limits is {-2, 0, 2}, with limsup x_n = 2 and liminf x_n = -2.",
+    "question": "Evaluate the mathematical claim: 'For x_n = (-1)^n (1 + 1/n) + sin(n*pi/2), the set of subsequential limits is {-2, 0, 2}, with limsup x_n = 2 and liminf x_n = -2.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "dataset_original_error",
+    "falsity_reason": "This was the dataset's original (incorrect) claim; the limit set is {-2, 0, 1} and limsup x_n = 1.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: This was the dataset's original (incorrect) claim; the limit set is {-2, 0, 1} and limsup x_n = 1. The true statement is: For x_n = (-1)^n (1 + 1/n) + sin(n*pi/2), the set of subsequential limits is {-2, 0, 1}, with limsup x_n = 1 and liminf x_n = -2.",
+    "source_reference": "S.K. Mapa, Sequence, Section 5.14 & Exercises 8 (False Twin Variant)"
   },
   {
     "id": 21,
@@ -375,7 +779,27 @@
       "Step 5: For the converse, consider u_n = 1/n. Then sum u_n^2 = sum 1/n^2 converges (p-series with p = 2 > 1), but sum u_n = sum 1/n diverges (harmonic series, p = 1). This confirms the converse is false."
     ],
     "solution_sketch": "Since sum u_n converges, u_n -> 0, so u_n < 1 for n >= m. Then u_n^2 < u_n, and comparison test proves sum u_n^2 converges. Converse fails for u_n = 1/n where sum 1/n^2 converges but sum 1/n diverges.",
-    "source_reference": "S.K. Mapa, Series, Exercises 9, Problem 1"
+    "source_reference": "S.K. Mapa, Series, Exercises 9, Problem 1",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 21
+  },
+  {
+    "id": 121,
+    "twin_id": 21,
+    "chapter": "Chapter 6: Series",
+    "topic": "Series of Positive Terms",
+    "subtopic": "Convergence of Squares of Terms",
+    "claim": "For a series of positive real numbers, sum u_n converges if and only if sum u_n^2 converges.",
+    "question": "Evaluate the mathematical claim: 'For a series of positive real numbers, sum u_n converges if and only if sum u_n^2 converges.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "false_converse",
+    "falsity_reason": "u_n = 1/n: sum 1/n^2 converges but sum 1/n diverges.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: u_n = 1/n: sum 1/n^2 converges but sum 1/n diverges. The true statement is: If sum u_n is a convergent series of positive real numbers, then sum u_n^2 is convergent, but the converse is false.",
+    "source_reference": "S.K. Mapa, Series, Exercises 9, Problem 1 (False Twin Variant)"
   },
   {
     "id": 22,
@@ -393,7 +817,27 @@
       "Step 5: Since sum 1/k^p converges if and only if p > 1, the condensed series converges iff p > 1. By Cauchy's Condensation Test, the original series converges iff p > 1."
     ],
     "solution_sketch": "f(n) = 1/[n (log n)^p] is positive decreasing. Condensed terms are 2^k f(2^k) = (log 2)^{-p} * k^{-p}. The p-series sum k^{-p} converges iff p > 1, so the original series converges iff p > 1.",
-    "source_reference": "S.K. Mapa, Series, Section 6.3.3"
+    "source_reference": "S.K. Mapa, Series, Section 6.3.3",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 22
+  },
+  {
+    "id": 122,
+    "twin_id": 22,
+    "chapter": "Chapter 6: Series",
+    "topic": "Series of Positive Terms",
+    "subtopic": "Cauchy Condensation Test for Logarithmic Series",
+    "claim": "The series sum_{n=2}^infty 1 / [n (log n)^p] converges if and only if p >= 1.",
+    "question": "Evaluate the mathematical claim: 'The series sum_{n=2}^infty 1 / [n (log n)^p] converges if and only if p >= 1.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "boundary_error",
+    "falsity_reason": "At p = 1 the condensed series is a multiple of sum 1/k, which diverges.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: At p = 1 the condensed series is a multiple of sum 1/k, which diverges. The true statement is: The series sum_{n=2}^infty 1 / [n (log n)^p] converges if and only if p > 1.",
+    "source_reference": "S.K. Mapa, Series, Section 6.3.3 (False Twin Variant)"
   },
   {
     "id": 23,
@@ -411,7 +855,27 @@
       "Step 5: Multiply by n and take the limit: lim_{n -> infty} n(u_n / u_{n+1} - 1) = lim n(6n + 5) / (4n^2 + 4n + 1) = 6/4 = 3/2. Since 3/2 > 1, Raabe's test guarantees that the series is convergent."
     ],
     "solution_sketch": "u_{n+1}/u_n -> 1 so ratio test fails. Raabe's expression is n(u_n/u_{n+1} - 1) = n(6n + 5)/(4n^2 + 4n + 1) -> 6/4 = 3/2. Since 3/2 > 1, the series converges by Raabe's test.",
-    "source_reference": "S.K. Mapa, Series, Section 6.3.10, Worked Example"
+    "source_reference": "S.K. Mapa, Series, Section 6.3.10, Worked Example",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 23
+  },
+  {
+    "id": 123,
+    "twin_id": 23,
+    "chapter": "Chapter 6: Series",
+    "topic": "Series of Positive Terms",
+    "subtopic": "Raabe's Test for Factorial Quotients",
+    "claim": "The series sum_{n=1}^infty [ (1*3*5*...*(2n-1)) / (2*4*6*...*(2n)) ] * [ 1 / (2n+1) ] is divergent.",
+    "question": "Evaluate the mathematical claim: 'The series sum_{n=1}^infty [ (1*3*5*...*(2n-1)) / (2*4*6*...*(2n)) ] * [ 1 / (2n+1) ] is divergent.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "inverted_property",
+    "falsity_reason": "Raabe's test gives the limit 3/2 > 1, so the series converges.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: Raabe's test gives the limit 3/2 > 1, so the series converges. The true statement is: The series sum_{n=1}^infty [ (1*3*5*...*(2n-1)) / (2*4*6*...*(2n)) ] * [ 1 / (2n+1) ] is convergent.",
+    "source_reference": "S.K. Mapa, Series, Section 6.3.10, Worked Example (False Twin Variant)"
   },
   {
     "id": 24,
@@ -429,7 +893,27 @@
       "Step 5: Identify alpha = p/2 and lambda = 2 > 1. By Gauss's Test, the series converges if alpha = p/2 > 1 (i.e., p > 2) and diverges if alpha = p/2 <= 1 (i.e., p <= 2)."
     ],
     "solution_sketch": "u_n/u_{n+1} = (1 + 1/(2n+1))^p = 1 + (p/2)/n + O(1/n^2). Here alpha = p/2. By Gauss's test, the series converges iff alpha > 1, which means p > 2.",
-    "source_reference": "S.K. Mapa, Series, Section 6.3.13 & Exercises 9"
+    "source_reference": "S.K. Mapa, Series, Section 6.3.13 & Exercises 9",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 24
+  },
+  {
+    "id": 124,
+    "twin_id": 24,
+    "chapter": "Chapter 6: Series",
+    "topic": "Series of Positive Terms",
+    "subtopic": "Gauss's Test for Power of Factorial Quotients",
+    "claim": "The series sum_{n=1}^infty [ (1*3*...*(2n-1)) / (2*4*...*(2n)) ]^p converges if and only if p > 1.",
+    "question": "Evaluate the mathematical claim: 'The series sum_{n=1}^infty [ (1*3*...*(2n-1)) / (2*4*...*(2n)) ]^p converges if and only if p > 1.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Advanced",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "boundary_error",
+    "falsity_reason": "Gauss's test gives convergence iff p/2 > 1, i.e. p > 2; e.g. p = 2 diverges.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: Gauss's test gives convergence iff p/2 > 1, i.e. p > 2; e.g. p = 2 diverges. The true statement is: The series sum_{n=1}^infty [ (1*3*...*(2n-1)) / (2*4*...*(2n)) ]^p converges if and only if p > 2.",
+    "source_reference": "S.K. Mapa, Series, Section 6.3.13 & Exercises 9 (False Twin Variant)"
   },
   {
     "id": 25,
@@ -447,7 +931,27 @@
       "Step 5: Analyze the remaining cases: if x >= 1/e, then ln x >= -1, so p = -ln x <= 1, and the p-series diverges. In particular, for x >= 1, ln x >= 0, so terms do not tend to zero. Hence the series converges if and only if 0 < x < 1/e."
     ],
     "solution_sketch": "x^{ln n} = n^{ln x} = 1/n^{-ln x}. This is a p-series with p = -ln x. It converges iff p > 1, which gives -ln x > 1 <=> 0 < x < 1/e. Diverges for x >= 1/e.",
-    "source_reference": "S.K. Mapa, Series, Exercises 9, Problem 10(ix)"
+    "source_reference": "S.K. Mapa, Series, Exercises 9, Problem 10(ix)",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 25
+  },
+  {
+    "id": 125,
+    "twin_id": 25,
+    "chapter": "Chapter 6: Series",
+    "topic": "Series of Positive Terms",
+    "subtopic": "Logarithmic Test for Exponential Log Powers",
+    "claim": "The series sum_{n=1}^infty x^{log n} converges for 0 < x <= 1/e and diverges for x > 1/e.",
+    "question": "Evaluate the mathematical claim: 'The series sum_{n=1}^infty x^{log n} converges for 0 < x <= 1/e and diverges for x > 1/e.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "boundary_error",
+    "falsity_reason": "At x = 1/e the series is sum 1/n, which diverges.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: At x = 1/e the series is sum 1/n, which diverges. The true statement is: The series sum_{n=1}^infty x^{log n} converges for 0 < x < 1/e and diverges for x >= 1/e.",
+    "source_reference": "S.K. Mapa, Series, Exercises 9, Problem 10(ix) (False Twin Variant)"
   },
   {
     "id": 26,
@@ -465,7 +969,27 @@
       "Step 5: Apply Leibniz's Test for alternating series: since {b_n} is a monotone decreasing sequence of positive terms converging to 0, the alternating series sum_{n=1}^infty (-1)^{n-1} b_n converges."
     ],
     "solution_sketch": "b_n -> 0 by Cauchy's first limit theorem. b_n - b_{n+1} = [sum_{k=1}^n (a_k - a_{n+1})]/[n(n+1)] >= 0 because a_k >= a_{n+1}. Hence {b_n} is a positive monotone decreasing null sequence, and the series converges by Leibniz's test.",
-    "source_reference": "S.K. Mapa, Series, Exercises 10, Problem 3(i)"
+    "source_reference": "S.K. Mapa, Series, Exercises 10, Problem 3(i)",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 26
+  },
+  {
+    "id": 126,
+    "twin_id": 26,
+    "chapter": "Chapter 6: Series",
+    "topic": "Series of Arbitrary Terms",
+    "subtopic": "Leibniz Test with Arithmetic Means",
+    "claim": "For any monotone decreasing null sequence {a_n}, the alternating series a_1 - (a_1+a_2)/2 + (a_1+a_2+a_3)/3 - ... converges absolutely.",
+    "question": "Evaluate the mathematical claim: 'For any monotone decreasing null sequence {a_n}, the alternating series a_1 - (a_1+a_2)/2 + (a_1+a_2+a_3)/3 - ... converges absolutely.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "strengthened_conclusion",
+    "falsity_reason": "For a_n = 1/n the absolute terms are H_n/n >= 1/n, whose sum diverges.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: For a_n = 1/n the absolute terms are H_n/n >= 1/n, whose sum diverges. The true statement is: For any monotone decreasing null sequence {a_n}, the alternating series a_1 - (a_1+a_2)/2 + (a_1+a_2+a_3)/3 - ... converges.",
+    "source_reference": "S.K. Mapa, Series, Exercises 10, Problem 3(i) (False Twin Variant)"
   },
   {
     "id": 27,
@@ -483,7 +1007,27 @@
       "Step 5: Bound the partial sums: |A_n(x)| <= ( |sin((n+1/2)x)| + |sin(x/2)| ) / [ 2 |sin(x/2)| ] <= 2 / [ 2 |sin(x/2)| ] = 1 / |sin(x/2)|. Since x is fixed and sin(x/2) != 0, M = 1/|sin(x/2)| is a finite bound independent of n. By Dirichlet's Test, the series converges."
     ],
     "solution_sketch": "Partial sums of cos(nx) telescope to [sin((n+1/2)x) - sin(x/2)]/[2 sin(x/2)], bounded by 1/|sin(x/2)| for x not in 2pi*Z. Since 1/n decreases monotonically to 0, Dirichlet's test establishes convergence.",
-    "source_reference": "S.K. Mapa, Series, Section 6.4.11"
+    "source_reference": "S.K. Mapa, Series, Section 6.4.11",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 27
+  },
+  {
+    "id": 127,
+    "twin_id": 27,
+    "chapter": "Chapter 6: Series",
+    "topic": "Series of Arbitrary Terms",
+    "subtopic": "Dirichlet's Test for Trigonometric Series",
+    "claim": "The series sum_{n=1}^infty cos(nx)/n converges for all x in R.",
+    "question": "Evaluate the mathematical claim: 'The series sum_{n=1}^infty cos(nx)/n converges for all x in R.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "overgeneralisation",
+    "falsity_reason": "At x = 0 it is the harmonic series, which diverges.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: At x = 0 it is the harmonic series, which diverges. The true statement is: The series sum_{n=1}^infty cos(nx)/n converges for all x in R \\ {2k*pi : k in Z}.",
+    "source_reference": "S.K. Mapa, Series, Section 6.4.11 (False Twin Variant)"
   },
   {
     "id": 28,
@@ -501,7 +1045,27 @@
       "Step 5: Since sum a_n converges and {b_n} is monotonic and bounded, by Abel's Test the product series sum a_n b_n converges."
     ],
     "solution_sketch": "sum (-1)^{n-1}/n converges by Leibniz. b_n = (1 + 1/n)^n is monotonic increasing and bounded above by 3 (converging to e). By Abel's test, sum a_n b_n converges.",
-    "source_reference": "S.K. Mapa, Series, Section 6.4.12 & Exercises 10"
+    "source_reference": "S.K. Mapa, Series, Section 6.4.12 & Exercises 10",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 28
+  },
+  {
+    "id": 128,
+    "twin_id": 28,
+    "chapter": "Chapter 6: Series",
+    "topic": "Series of Arbitrary Terms",
+    "subtopic": "Abel's Test for Alternating Factors",
+    "claim": "The series sum_{n=1}^infty [(-1)^{n-1}/n] * (1 + 1/n)^n is absolutely convergent.",
+    "question": "Evaluate the mathematical claim: 'The series sum_{n=1}^infty [(-1)^{n-1}/n] * (1 + 1/n)^n is absolutely convergent.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "strengthened_conclusion",
+    "falsity_reason": "The absolute terms are at least 2/n, so the absolute series diverges.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: The absolute terms are at least 2/n, so the absolute series diverges. The true statement is: The series sum_{n=1}^infty [(-1)^{n-1}/n] * (1 + 1/n)^n is convergent.",
+    "source_reference": "S.K. Mapa, Series, Section 6.4.12 & Exercises 10 (False Twin Variant)"
   },
   {
     "id": 29,
@@ -519,7 +1083,27 @@
       "Step 5: Sum over k from 0 to n: |c_n| = sum_{k=0}^n 1 / sqrt((k+1)(n - k + 1)) >= sum_{k=0}^n 2 / (n + 2) = (n + 1) * 2 / (n + 2) = 2(n+1)/(n+2) >= 1 for all n >= 0. Since |c_n| >= 1 for all n, c_n does not converge to 0 as n -> infty. By the nth-term divergence test, the Cauchy product series diverges."
     ],
     "solution_sketch": "u_n converges conditionally by Leibniz. The Cauchy product has general term |c_n| = sum_{k=0}^n 1/sqrt((k+1)(n-k+1)). AM-GM gives sqrt((k+1)(n-k+1)) <= (n+2)/2, so |c_n| >= (n+1)*2/(n+2) >= 1. Since c_n does not tend to 0, the product diverges.",
-    "source_reference": "S.K. Mapa, Series, Section 6.6, Worked Example"
+    "source_reference": "S.K. Mapa, Series, Section 6.6, Worked Example",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 29
+  },
+  {
+    "id": 129,
+    "twin_id": 29,
+    "chapter": "Chapter 6: Series",
+    "topic": "Series of Arbitrary Terms",
+    "subtopic": "Divergence of Cauchy Product of Conditionally Convergent Series",
+    "claim": "The Cauchy product of the conditionally convergent series sum_{n=0}^infty (-1)^n / sqrt(n+1) with itself is convergent.",
+    "question": "Evaluate the mathematical claim: 'The Cauchy product of the conditionally convergent series sum_{n=0}^infty (-1)^n / sqrt(n+1) with itself is convergent.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "inverted_property",
+    "falsity_reason": "|c_n| >= 2(n+1)/(n+2) >= 1, so c_n does not tend to 0.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: |c_n| >= 2(n+1)/(n+2) >= 1, so c_n does not tend to 0. The true statement is: The Cauchy product of the conditionally convergent series sum_{n=0}^infty (-1)^n / sqrt(n+1) with itself is divergent.",
+    "source_reference": "S.K. Mapa, Series, Section 6.6, Worked Example (False Twin Variant)"
   },
   {
     "id": 30,
@@ -537,7 +1121,27 @@
       "Step 5: Sum over k from 1 to infinity: sum_{k=1}^infty v_k = (1/2) sum_{k=1}^infty [ 1/(2k-1) - 1/(2k) ] = (1/2) [ 1 - 1/2 + 1/3 - 1/4 + ... ] = (1/2) S = (1/2) ln 2. Justify that partial sums within blocks also converge to the same limit."
     ],
     "solution_sketch": "Each block of one positive and two negative terms is 1/(2k-1) - 1/(4k-2) - 1/(4k) = 1/(4k-2) - 1/(4k) = 1/2 [1/(2k-1) - 1/(2k)]. Summing over k gives 1/2 * (1 - 1/2 + 1/3 - 1/4 + ...) = 1/2 ln 2.",
-    "source_reference": "S.K. Mapa, Series, Section 6.5, Worked Example"
+    "source_reference": "S.K. Mapa, Series, Section 6.5, Worked Example",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 30
+  },
+  {
+    "id": 130,
+    "twin_id": 30,
+    "chapter": "Chapter 6: Series",
+    "topic": "Series of Arbitrary Terms",
+    "subtopic": "Riemann Rearrangement of Conditionally Convergent Series",
+    "claim": "The rearranged alternating harmonic series 1 - 1/2 - 1/4 + 1/3 - 1/6 - 1/8 + ... converges to log 2.",
+    "question": "Evaluate the mathematical claim: 'The rearranged alternating harmonic series 1 - 1/2 - 1/4 + 1/3 - 1/6 - 1/8 + ... converges to log 2.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "false_final_answer",
+    "falsity_reason": "Grouping in blocks gives (1/2) log 2.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: Grouping in blocks gives (1/2) log 2. The true statement is: The rearranged alternating harmonic series 1 - 1/2 - 1/4 + 1/3 - 1/6 - 1/8 + ... converges to (1/2) * log 2.",
+    "source_reference": "S.K. Mapa, Series, Section 6.5, Worked Example (False Twin Variant)"
   },
   {
     "id": 31,
@@ -555,7 +1159,27 @@
       "Step 5: Combine bounds: |(x^2 + 2x) - 15| < 9 |x - 3|. For any eps > 0, choose delta = min(1, eps/9). Then 0 < |x - 3| < delta implies |(x^2 + 2x) - 15| < 9*(eps/9) = eps, completing the proof."
     ],
     "solution_sketch": "|(x^2+2x) - 15| = |x - 3||x + 5|. For |x - 3| < 1, |x + 5| < 9. Setting delta = min(1, eps/9) ensures |f(x) - 15| < 9*delta <= eps.",
-    "source_reference": "S.K. Mapa, Limits, Section 7.1, Worked Examples"
+    "source_reference": "S.K. Mapa, Limits, Section 7.1, Worked Examples",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 31
+  },
+  {
+    "id": 131,
+    "twin_id": 31,
+    "chapter": "Chapter 7: Limits",
+    "topic": "Limits of Functions",
+    "subtopic": "Epsilon-Delta Rigorous Verification",
+    "claim": "For f(x) = x^2 + 2x, lim_{x -> 3} f(x) = 18.",
+    "question": "Evaluate the mathematical claim: 'For f(x) = x^2 + 2x, lim_{x -> 3} f(x) = 18.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "false_final_answer",
+    "falsity_reason": "f is continuous and f(3) = 9 + 6 = 15.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: f is continuous and f(3) = 9 + 6 = 15. The true statement is: For f(x) = x^2 + 2x, lim_{x -> 3} f(x) = 15.",
+    "source_reference": "S.K. Mapa, Limits, Section 7.1, Worked Examples (False Twin Variant)"
   },
   {
     "id": 32,
@@ -573,7 +1197,27 @@
       "Step 5: Evaluate f(y_n): f(y_n) = cos((2n + 1)pi) = -1 for all n in N. Thus lim_{n -> infty} f(y_n) = -1. Since 1 != -1, by the sequential criterion lim_{x -> 0} cos(1/x) does not exist."
     ],
     "solution_sketch": "Take x_n = 1/(2n*pi) -> 0 giving cos(1/x_n) = 1 -> 1, and y_n = 1/((2n+1)pi) -> 0 giving cos(1/y_n) = -1 -> -1. Differing sequence limits prove lim_{x -> 0} cos(1/x) does not exist.",
-    "source_reference": "S.K. Mapa, Limits, Exercises 11, Problem 1(i)"
+    "source_reference": "S.K. Mapa, Limits, Exercises 11, Problem 1(i)",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 32
+  },
+  {
+    "id": 132,
+    "twin_id": 32,
+    "chapter": "Chapter 7: Limits",
+    "topic": "Limits of Functions",
+    "subtopic": "Sequential Criterion for Non-Existence of Limits",
+    "claim": "The limit lim_{x -> 0} cos(1/x) exists and equals 0.",
+    "question": "Evaluate the mathematical claim: 'The limit lim_{x -> 0} cos(1/x) exists and equals 0.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "inverted_property",
+    "falsity_reason": "Along x_n = 1/(2 n pi) the values are 1, and along y_n = 1/((2n+1) pi) they are -1.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: Along x_n = 1/(2 n pi) the values are 1, and along y_n = 1/((2n+1) pi) they are -1. The true statement is: The limit lim_{x -> 0} cos(1/x) does not exist.",
+    "source_reference": "S.K. Mapa, Limits, Exercises 11, Problem 1(i) (False Twin Variant)"
   },
   {
     "id": 33,
@@ -591,7 +1235,27 @@
       "Step 5: For the limit to exist, the two sequential limits must agree: c = 2 - c, which implies 2c = 2, so c = 1. Since c != 1, c != 2 - c, so the two sequential limits differ, proving lim_{x -> c} f(x) does not exist."
     ],
     "solution_sketch": "For any x, |f(x) - 1| = |x - 1|, so delta = eps proves lim_{x -> 1} f(x) = 1. For c != 1, rationals give limit c and irrationals give limit 2 - c. Since c != 2 - c when c != 1, the limit does not exist.",
-    "source_reference": "S.K. Mapa, Limits, Exercises 11, Problem 2"
+    "source_reference": "S.K. Mapa, Limits, Exercises 11, Problem 2",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 33
+  },
+  {
+    "id": 133,
+    "twin_id": 33,
+    "chapter": "Chapter 7: Limits",
+    "topic": "Limits of Functions",
+    "subtopic": "Piecewise Dirichlet-Type Function Limits",
+    "claim": "For f(x) = x for x in Q and f(x) = 2 - x for x in R \\ Q, lim_{x -> c} f(x) exists for every c in R.",
+    "question": "Evaluate the mathematical claim: 'For f(x) = x for x in Q and f(x) = 2 - x for x in R \\ Q, lim_{x -> c} f(x) exists for every c in R.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "overgeneralisation",
+    "falsity_reason": "For c != 1, rationals give limit c and irrationals give 2 - c, which differ.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: For c != 1, rationals give limit c and irrationals give 2 - c, which differ. The true statement is: For f(x) = x for x in Q and f(x) = 2 - x for x in R \\ Q, lim_{x -> 1} f(x) = 1, but lim_{x -> c} f(x) does not exist for any c != 1.",
+    "source_reference": "S.K. Mapa, Limits, Exercises 11, Problem 2 (False Twin Variant)"
   },
   {
     "id": 34,
@@ -609,7 +1273,27 @@
       "Step 5: Since the left-hand and right-hand limits both exist and equal 1, conclude that lim_{x -> 0} x[1/x] exists and equals 1."
     ],
     "solution_sketch": "From 1/x - 1 < [1/x] <= 1/x, multiplying by x > 0 gives 1 - x < x[1/x] <= 1, yielding right limit 1. For x < 0, multiplying reverses inequality: 1 <= x[1/x] < 1 - x, yielding left limit 1. Hence two-sided limit is 1.",
-    "source_reference": "S.K. Mapa, Limits, Exercises 11, Problem 4(iv)"
+    "source_reference": "S.K. Mapa, Limits, Exercises 11, Problem 4(iv)",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 34
+  },
+  {
+    "id": 134,
+    "twin_id": 34,
+    "chapter": "Chapter 7: Limits",
+    "topic": "Limits of Functions",
+    "subtopic": "One-Sided Limits Involving Floor Function",
+    "claim": "The one-sided limits of x[1/x] as x -> 0 are lim_{x -> 0^+} x[1/x] = 1 and lim_{x -> 0^-} x[1/x] = -1.",
+    "question": "Evaluate the mathematical claim: 'The one-sided limits of x[1/x] as x -> 0 are lim_{x -> 0^+} x[1/x] = 1 and lim_{x -> 0^-} x[1/x] = -1.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "false_final_answer",
+    "falsity_reason": "For x < 0, 1 <= x[1/x] < 1 - x, so the left limit is also 1.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: For x < 0, 1 <= x[1/x] < 1 - x, so the left limit is also 1. The true statement is: The one-sided limits of x[1/x] as x -> 0 are lim_{x -> 0^+} x[1/x] = 1 and lim_{x -> 0^-} x[1/x] = 1.",
+    "source_reference": "S.K. Mapa, Limits, Exercises 11, Problem 4(iv) (False Twin Variant)"
   },
   {
     "id": 35,
@@ -627,7 +1311,27 @@
       "Step 5: Since the function is identically 0 on the interval (0, pi/2), its right-hand limit as x -> 0^+ is lim_{x -> 0^+} 0 = 0. Note that lim_{x -> 0} [(sin x)/x] does not equal [lim_{x -> 0} (sin x)/x] = [1] = 1, illustrating that the floor function cannot be interchanged with limits."
     ],
     "solution_sketch": "For x in (0, pi/2), 0 < sin x < x, so 0 < (sin x)/x < 1. Hence [(sin x)/x] = 0 identically on (0, pi/2), giving right limit 0, differing from [lim (sin x)/x] = [1] = 1.",
-    "source_reference": "S.K. Mapa, Limits, Exercises 11, Problem 4(v)"
+    "source_reference": "S.K. Mapa, Limits, Exercises 11, Problem 4(v)",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 35
+  },
+  {
+    "id": 135,
+    "twin_id": 35,
+    "chapter": "Chapter 7: Limits",
+    "topic": "Limits of Functions",
+    "subtopic": "Floor Function of Sinc Quotient",
+    "claim": "The limit lim_{x -> 0^+} [(sin x)/x] = 1, where [.] denotes the greatest integer function.",
+    "question": "Evaluate the mathematical claim: 'The limit lim_{x -> 0^+} [(sin x)/x] = 1, where [.] denotes the greatest integer function.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "false_final_answer",
+    "falsity_reason": "0 < (sin x)/x < 1 on (0, pi/2), so [(sin x)/x] = 0 there and the limit is 0.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: 0 < (sin x)/x < 1 on (0, pi/2), so [(sin x)/x] = 0 there and the limit is 0. The true statement is: The limit lim_{x -> 0^+} [(sin x)/x] = 0, whereas lim_{x -> 0} (sin x)/x = 1.",
+    "source_reference": "S.K. Mapa, Limits, Exercises 11, Problem 4(v) (False Twin Variant)"
   },
   {
     "id": 36,
@@ -645,7 +1349,27 @@
       "Step 5: Extend to all reals via continuity: for any real x, by density of rationals there exists a sequence {r_n} in Q such that r_n -> x. By continuity of f, f(x) = lim_{n -> infty} f(r_n) = lim_{n -> infty} (c r_n) = c x."
     ],
     "solution_sketch": "f(0) = 0 and lim_{h -> 0} f(c+h) - f(c) = lim f(h) = 0 proves continuity everywhere. Induction and additivity establish f(r) = c r for r in Q. Density of rationals and continuity extend f(x) = c x to all x in R.",
-    "source_reference": "S.K. Mapa, Continuity, Exercises 12, Problem 4 & 7"
+    "source_reference": "S.K. Mapa, Continuity, Exercises 12, Problem 4 & 7",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 36
+  },
+  {
+    "id": 136,
+    "twin_id": 36,
+    "chapter": "Chapter 8: Continuity",
+    "topic": "Continuity of Real Functions",
+    "subtopic": "Cauchy Additive Functional Equation",
+    "claim": "Every function f: R -> R satisfying f(x + y) = f(x) + f(y) for all x, y in R is of the form f(x) = cx with c = f(1), even without any continuity assumption.",
+    "question": "Evaluate the mathematical claim: 'Every function f: R -> R satisfying f(x + y) = f(x) + f(y) for all x, y in R is of the form f(x) = cx with c = f(1), even without any continuity assumption.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "dropped_hypothesis",
+    "falsity_reason": "Using a Hamel basis of R over Q there are discontinuous additive functions that are not linear.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: Using a Hamel basis of R over Q there are discontinuous additive functions that are not linear. The true statement is: If f: R -> R satisfies f(x + y) = f(x) + f(y) for all x, y in R and is continuous at x = 0, then f(x) = cx for all x in R where c = f(1).",
+    "source_reference": "S.K. Mapa, Continuity, Exercises 12, Problem 4 & 7 (False Twin Variant)"
   },
   {
     "id": 37,
@@ -663,7 +1387,27 @@
       "Step 5: Let delta > 0 be the minimum distance from alpha to this finite set of rationals. Then the neighbourhood (alpha - delta, alpha + delta) contains no rational with denominator < k. For any x in this neighbourhood: if x is irrational, |f(x) - f(alpha)| = |0 - 0| = 0 < eps; if x = p/q is rational, its denominator satisfies q >= k, so |f(x) - f(alpha)| = 1/q <= 1/k < eps. Hence f is continuous at alpha."
     ],
     "solution_sketch": "At rational p/q, f(p/q) = 1/q, but irrationals arbitarily close have f=0, so f is discontinuous. At irrational alpha, f(alpha) = 0. For eps > 0, only finitely many rationals in (0,1) have denominator q <= 1/eps. A delta-neighbourhood avoiding them has |f(x)| <= 1/q < eps, proving continuity.",
-    "source_reference": "S.K. Mapa, Continuity, Section 8.2, Worked Example 3"
+    "source_reference": "S.K. Mapa, Continuity, Section 8.2, Worked Example 3",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 37
+  },
+  {
+    "id": 137,
+    "twin_id": 37,
+    "chapter": "Chapter 8: Continuity",
+    "topic": "Continuity of Real Functions",
+    "subtopic": "Thomae's (Riemann's) Function Continuity",
+    "claim": "Thomae's function is continuous at every rational point in (0, 1) and discontinuous at every irrational point in (0, 1).",
+    "question": "Evaluate the mathematical claim: 'Thomae's function is continuous at every rational point in (0, 1) and discontinuous at every irrational point in (0, 1).'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Advanced",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "inverted_property",
+    "falsity_reason": "It is the reverse: discontinuous at rationals, continuous at irrationals.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: It is the reverse: discontinuous at rationals, continuous at irrationals. The true statement is: Thomae's function is continuous at every irrational point in (0, 1) and discontinuous at every rational point in (0, 1).",
+    "source_reference": "S.K. Mapa, Continuity, Section 8.2, Worked Example 3 (False Twin Variant)"
   },
   {
     "id": 38,
@@ -681,7 +1425,27 @@
       "Step 5: Apply Bolzano's Theorem: if g(a) = 0, c = a is a fixed point. If g(b) = 0, c = b is a fixed point. If g(a) > 0 and g(b) < 0, by the Intermediate Value Theorem there exists c in (a, b) such that g(c) = 0, which means f(c) - c = 0, i.e., f(c) = c."
     ],
     "solution_sketch": "Define g(x) = f(x) - x on [a, b]. g is continuous with g(a) = f(a) - a >= 0 and g(b) = f(b) - b <= 0. By the Intermediate Value Theorem, there exists c in [a, b] such that g(c) = 0, hence f(c) = c.",
-    "source_reference": "S.K. Mapa, Continuity, Exercises 13, Problem 5 & Section 8.5"
+    "source_reference": "S.K. Mapa, Continuity, Exercises 13, Problem 5 & Section 8.5",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 38
+  },
+  {
+    "id": 138,
+    "twin_id": 38,
+    "chapter": "Chapter 8: Continuity",
+    "topic": "Properties of Continuous Functions",
+    "subtopic": "Fixed Point Theorem on Closed Intervals",
+    "claim": "Every continuous function f: (a, b) -> (a, b) on an open interval possesses at least one fixed point c in (a, b) such that f(c) = c.",
+    "question": "Evaluate the mathematical claim: 'Every continuous function f: (a, b) -> (a, b) on an open interval possesses at least one fixed point c in (a, b) such that f(c) = c.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "dropped_hypothesis",
+    "falsity_reason": "f(x) = (x + a)/2 maps (a, b) into itself and its only fixed point is a, which is not in (a, b).",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: f(x) = (x + a)/2 maps (a, b) into itself and its only fixed point is a, which is not in (a, b). The true statement is: Every continuous function f: [a, b] -> [a, b] possesses at least one fixed point c in [a, b] such that f(c) = c.",
+    "source_reference": "S.K. Mapa, Continuity, Exercises 13, Problem 5 & Section 8.5 (False Twin Variant)"
   },
   {
     "id": 39,
@@ -699,7 +1463,27 @@
       "Step 5: Apply Intermediate Value Theorem: g(0) and g(1) have opposite signs (g(0)*g(1) = -[g(0)]^2 < 0). Therefore, by the Intermediate Value Theorem, there exists c in (0, 1) such that g(c) = 0, which means f(c) - f(c + 1) = 0, i.e., f(c) = f(c + 1)."
     ],
     "solution_sketch": "Define g(x) = f(x) - f(x+1) on [0, 1]. g is continuous with g(0) = f(0) - f(1) and g(1) = f(1) - f(2) = -(f(0) - f(1)) = -g(0). Since g(0)*g(1) <= 0, by IVT there exists c in [0, 1] with g(c) = 0, so f(c) = f(c+1).",
-    "source_reference": "S.K. Mapa, Continuity, Exercises 13, Problem 14"
+    "source_reference": "S.K. Mapa, Continuity, Exercises 13, Problem 14",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 39
+  },
+  {
+    "id": 139,
+    "twin_id": 39,
+    "chapter": "Chapter 8: Continuity",
+    "topic": "Properties of Continuous Functions",
+    "subtopic": "Universal Chord Theorem",
+    "claim": "For any continuous function f: [0, 2] -> R with f(0) = f(2), there exists a unique c in [0, 1] such that f(c) = f(c + 1).",
+    "question": "Evaluate the mathematical claim: 'For any continuous function f: [0, 2] -> R with f(0) = f(2), there exists a unique c in [0, 1] such that f(c) = f(c + 1).'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "strengthened_conclusion",
+    "falsity_reason": "A constant function satisfies f(c) = f(c+1) for every c in [0, 1].",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: A constant function satisfies f(c) = f(c+1) for every c in [0, 1]. The true statement is: For any continuous function f: [0, 2] -> R with f(0) = f(2), there exists c in [0, 1] such that f(c) = f(c + 1).",
+    "source_reference": "S.K. Mapa, Continuity, Exercises 13, Problem 14 (False Twin Variant)"
   },
   {
     "id": 40,
@@ -717,7 +1501,27 @@
       "Step 5: Evaluate h at p and q: h(p) = f(p) - g(p) = 0 - g(p) < 0, and h(q) = f(q) - g(q) = 1 - g(q) > 0. Since h takes opposite signs at p and q, by the Intermediate Value Theorem applied to h on the interval with endpoints p and q, there exists c between p and q such that h(c) = 0, which gives f(c) = g(c)."
     ],
     "solution_sketch": "Find p, q with f(p)=0, f(q)=1. If g(p)=0 or g(q)=1 we are done. Otherwise h = f - g has h(p) = -g(p) < 0 and h(q) = 1 - g(q) > 0. By IVT, h(c) = 0 for some c, so f(c) = g(c).",
-    "source_reference": "S.K. Mapa, Continuity, Exercises 13, Problem 13"
+    "source_reference": "S.K. Mapa, Continuity, Exercises 13, Problem 13",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 40
+  },
+  {
+    "id": 140,
+    "twin_id": 40,
+    "chapter": "Chapter 8: Continuity",
+    "topic": "Properties of Continuous Functions",
+    "subtopic": "Intermediate Value Property with Overlapping Ranges",
+    "claim": "If f, g: (a, b) -> R are continuous functions on an open interval having the same range (0, 1), then f(c) = g(c) for some c in (a, b).",
+    "question": "Evaluate the mathematical claim: 'If f, g: (a, b) -> R are continuous functions on an open interval having the same range (0, 1), then f(c) = g(c) for some c in (a, b).'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "dropped_hypothesis",
+    "falsity_reason": "On (0, 1), f(x) = x and g(x) = x^2 both have range (0, 1) but never agree.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: On (0, 1), f(x) = x and g(x) = x^2 both have range (0, 1) but never agree. The true statement is: If f, g: [a, b] -> R are continuous functions having the same range [0, 1], then f(c) = g(c) for some c in [a, b].",
+    "source_reference": "S.K. Mapa, Continuity, Exercises 13, Problem 13 (False Twin Variant)"
   },
   {
     "id": 41,
@@ -735,7 +1539,27 @@
       "Step 5: Compute the difference in function values: |f(x_n) - f(y_n)| = |n - (n + 1)| = 1. Choosing eps_0 = 1, we have |x_n - y_n| -> 0 while |f(x_n) - f(y_n)| = 1 >= eps_0 for all n. Thus f(x) = 1/x is not uniformly continuous on (0, 1)."
     ],
     "solution_sketch": "Take x_n = 1/n and y_n = 1/(n+1) in (0, 1). Then |x_n - y_n| = 1/(n(n+1)) -> 0, but |f(x_n) - f(y_n)| = |n - (n+1)| = 1 >= 1 for all n. By the sequential criterion, f is not uniformly continuous.",
-    "source_reference": "S.K. Mapa, Continuity, Section 8.7, Worked Examples"
+    "source_reference": "S.K. Mapa, Continuity, Section 8.7, Worked Examples",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 41
+  },
+  {
+    "id": 141,
+    "twin_id": 41,
+    "chapter": "Chapter 8: Continuity",
+    "topic": "Uniform Continuity",
+    "subtopic": "Failure of Uniform Continuity on Bounded Open Intervals",
+    "claim": "The function f(x) = 1/x is uniformly continuous on (0, 1).",
+    "question": "Evaluate the mathematical claim: 'The function f(x) = 1/x is uniformly continuous on (0, 1).'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "inverted_property",
+    "falsity_reason": "x_n = 1/n and y_n = 1/(n+1) get arbitrarily close while |f(x_n) - f(y_n)| = 1.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: x_n = 1/n and y_n = 1/(n+1) get arbitrarily close while |f(x_n) - f(y_n)| = 1. The true statement is: The function f(x) = 1/x is continuous on (0, 1) but not uniformly continuous on (0, 1).",
+    "source_reference": "S.K. Mapa, Continuity, Section 8.7, Worked Examples (False Twin Variant)"
   },
   {
     "id": 42,
@@ -753,7 +1577,27 @@
       "Step 5: Conclude: for any eps > 0, delta = eps^2 depends only on eps and is valid for all x, y in [0, infty). Hence f(x) = sqrt(x) is uniformly continuous on [0, infty)."
     ],
     "solution_sketch": "For all x, y >= 0, |sqrt(x) - sqrt(y)| <= sqrt(|x - y|). Given eps > 0, choosing delta = eps^2 ensures |sqrt(x) - sqrt(y)| <= sqrt(|x - y|) < eps for all x, y with |x - y| < delta. Hence f is uniformly continuous on [0, infty).",
-    "source_reference": "S.K. Mapa, Continuity, Section 8.7, Worked Example 3"
+    "source_reference": "S.K. Mapa, Continuity, Section 8.7, Worked Example 3",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 42
+  },
+  {
+    "id": 142,
+    "twin_id": 42,
+    "chapter": "Chapter 8: Continuity",
+    "topic": "Uniform Continuity",
+    "subtopic": "Uniform Continuity of Square Root Function on Unbounded Domains",
+    "claim": "The function f(x) = sqrt(x) is not uniformly continuous on [0, infinity), because its derivative is unbounded near 0.",
+    "question": "Evaluate the mathematical claim: 'The function f(x) = sqrt(x) is not uniformly continuous on [0, infinity), because its derivative is unbounded near 0.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "inverted_property",
+    "falsity_reason": "|sqrt(x) - sqrt(y)| <= sqrt(|x - y|), so delta = eps^2 works.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: |sqrt(x) - sqrt(y)| <= sqrt(|x - y|), so delta = eps^2 works. The true statement is: The function f(x) = sqrt(x) is uniformly continuous on [0, infinity) despite having an unbounded derivative near 0.",
+    "source_reference": "S.K. Mapa, Continuity, Section 8.7, Worked Example 3 (False Twin Variant)"
   },
   {
     "id": 43,
@@ -771,7 +1615,27 @@
       "Step 5: Choose delta = min(1, delta_1) > 0. Let x, y in [0, infty) with |x - y| < delta. If both x, y in [0, K + 1], |f(x) - f(y)| < eps/2 < eps by Step 4. If at least one of x, y >= K + 1, then because |x - y| < delta <= 1, both x and y must be >= K, so |f(x) - f(y)| < eps/2 < eps by Step 2. Thus f is uniformly continuous on [0, infty)."
     ],
     "solution_sketch": "Find K with |f(x) - L| < eps/4 for x >= K. On [0, K+1], f is uniformly continuous by compactness, giving delta_1 for eps/2. Setting delta = min(1, delta_1) ensures |f(x) - f(y)| < eps for all x, y in [0, infty) with |x - y| < delta.",
-    "source_reference": "S.K. Mapa, Continuity, Exercises 13, Problem 15"
+    "source_reference": "S.K. Mapa, Continuity, Exercises 13, Problem 15",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 43
+  },
+  {
+    "id": 143,
+    "twin_id": 43,
+    "chapter": "Chapter 8: Continuity",
+    "topic": "Uniform Continuity",
+    "subtopic": "Continuous Functions with Limits at Infinity",
+    "claim": "If f: [0, infinity) -> R is continuous on [0, infinity) and lim_{x -> infty} f(x) = L in R, then f is Lipschitz continuous on [0, infinity).",
+    "question": "Evaluate the mathematical claim: 'If f: [0, infinity) -> R is continuous on [0, infinity) and lim_{x -> infty} f(x) = L in R, then f is Lipschitz continuous on [0, infinity).'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "strengthened_conclusion",
+    "falsity_reason": "f(x) = sqrt(x) on [0, 1] and f(x) = 1 for x > 1 satisfies the hypotheses but is not Lipschitz near 0.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: f(x) = sqrt(x) on [0, 1] and f(x) = 1 for x > 1 satisfies the hypotheses but is not Lipschitz near 0. The true statement is: If f: [0, infinity) -> R is continuous on [0, infinity) and lim_{x -> infty} f(x) = L in R, then f is uniformly continuous on [0, infinity).",
+    "source_reference": "S.K. Mapa, Continuity, Exercises 13, Problem 15 (False Twin Variant)"
   },
   {
     "id": 44,
@@ -789,7 +1653,27 @@
       "Step 5: For the counterexample with ordinary continuity: take D = (0, 1) and f(x) = 1/x, which is continuous on (0, 1). The sequence x_n = 1/n is Cauchy in (0, 1) since 1/n -> 0. However, f(x_n) = n is unbounded and diverges to infinity, so {f(x_n)} is not Cauchy."
     ],
     "solution_sketch": "Given eps > 0, uniform continuity provides delta > 0. For large n, k, |x_n - x_k| < delta implies |f(x_n) - f(x_k)| < eps, so {f(x_n)} is Cauchy. Ordinary continuity fails for f(x) = 1/x and x_n = 1/n.",
-    "source_reference": "S.K. Mapa, Continuity, Section 8.7, Corollary & Worked Examples"
+    "source_reference": "S.K. Mapa, Continuity, Section 8.7, Corollary & Worked Examples",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 44
+  },
+  {
+    "id": 144,
+    "twin_id": 44,
+    "chapter": "Chapter 8: Continuity",
+    "topic": "Uniform Continuity",
+    "subtopic": "Preservation of Cauchy Sequences",
+    "claim": "Every continuous function f: D -> R maps every Cauchy sequence in D to a Cauchy sequence in R.",
+    "question": "Evaluate the mathematical claim: 'Every continuous function f: D -> R maps every Cauchy sequence in D to a Cauchy sequence in R.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "dropped_hypothesis",
+    "falsity_reason": "f(x) = 1/x on (0, 1) maps the Cauchy sequence 1/n to n.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: f(x) = 1/x on (0, 1) maps the Cauchy sequence 1/n to n. The true statement is: A uniformly continuous function f: D -> R maps every Cauchy sequence in D to a Cauchy sequence in R.",
+    "source_reference": "S.K. Mapa, Continuity, Section 8.7, Corollary & Worked Examples (False Twin Variant)"
   },
   {
     "id": 45,
@@ -807,7 +1691,27 @@
       "Step 5: As x -> 0, 2x sin(1/x) -> 0, but lim_{x -> 0} cos(1/x) does not exist (it oscillates between -1 and 1). Therefore lim_{x -> 0} f'(x) does not exist, proving that f' is discontinuous at x = 0."
     ],
     "solution_sketch": "f'(0) = lim_{h -> 0} h sin(1/h) = 0 by squeeze theorem. For x != 0, f'(x) = 2x sin(1/x) - cos(1/x). As x -> 0, 2x sin(1/x) -> 0 but cos(1/x) oscillates, so lim_{x -> 0} f'(x) does not exist. Hence f' is discontinuous at 0.",
-    "source_reference": "S.K. Mapa, Differentiation, Section 9.1, Worked Examples"
+    "source_reference": "S.K. Mapa, Differentiation, Section 9.1, Worked Examples",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 45
+  },
+  {
+    "id": 145,
+    "twin_id": 45,
+    "chapter": "Chapter 9: Differentiation",
+    "topic": "Differentiability",
+    "subtopic": "Modulated Oscillating Functions and Continuity of Derivative",
+    "claim": "The function f(x) = x^2 sin(1/x) for x != 0 and f(0) = 0 is differentiable on R, and f' is continuous at x = 0.",
+    "question": "Evaluate the mathematical claim: 'The function f(x) = x^2 sin(1/x) for x != 0 and f(0) = 0 is differentiable on R, and f' is continuous at x = 0.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "inverted_property",
+    "falsity_reason": "f'(x) = 2x sin(1/x) - cos(1/x) has no limit as x -> 0.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: f'(x) = 2x sin(1/x) - cos(1/x) has no limit as x -> 0. The true statement is: The function f(x) = x^2 sin(1/x) for x != 0 and f(0) = 0 is differentiable on R, but f' is discontinuous at x = 0.",
+    "source_reference": "S.K. Mapa, Differentiation, Section 9.1, Worked Examples (False Twin Variant)"
   },
   {
     "id": 46,
@@ -825,7 +1729,27 @@
       "Step 5: Since c in (a, b) is an interior point where g attains an extremum, by Fermat's Theorem on stationary points, g'(c) = 0. Therefore f'(c) - k = 0, which yields f'(c) = k."
     ],
     "solution_sketch": "Define g(x) = f(x) - kx. Continuous on [a, b], g attains its minimum at c. Since g'(a) = f'(a) - k < 0 and g'(b) = f'(b) - k > 0, the minimum cannot occur at a or b. Hence c in (a, b) and Fermat's theorem gives g'(c) = 0 => f'(c) = k.",
-    "source_reference": "S.K. Mapa, Differentiation, Section 9.4, Theorem 9.4.1"
+    "source_reference": "S.K. Mapa, Differentiation, Section 9.4, Theorem 9.4.1",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 46
+  },
+  {
+    "id": 146,
+    "twin_id": 46,
+    "chapter": "Chapter 9: Differentiation",
+    "topic": "Properties of the Derivative",
+    "subtopic": "Darboux's Intermediate Value Theorem for Derivatives",
+    "claim": "If f: [a, b] -> R is differentiable on [a, b], then f' is continuous on [a, b].",
+    "question": "Evaluate the mathematical claim: 'If f: [a, b] -> R is differentiable on [a, b], then f' is continuous on [a, b].'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "strengthened_conclusion",
+    "falsity_reason": "x^2 sin(1/x) (extended by 0) is differentiable with a discontinuous derivative.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: x^2 sin(1/x) (extended by 0) is differentiable with a discontinuous derivative. The true statement is: If f: [a, b] -> R is differentiable on [a, b] and f'(a) < k < f'(b), there exists c in (a, b) such that f'(c) = k.",
+    "source_reference": "S.K. Mapa, Differentiation, Section 9.4, Theorem 9.4.1 (False Twin Variant)"
   },
   {
     "id": 47,
@@ -843,7 +1767,27 @@
       "Step 5: However, by Darboux's Theorem, the derivative f' must satisfy the Intermediate Value Property on any interval [x_1, x_2] around c, meaning f' must attain every value between f'(x_1) and f'(x_2). This contradicts that an entire subinterval of values is omitted. Hence f' has no jump discontinuities and must be continuous on I."
     ],
     "solution_sketch": "A monotonic function can only have jump discontinuities where an interval of values is skipped. But by Darboux's theorem, f' satisfies the intermediate value property and cannot skip any values. Thus f' has no discontinuities and is continuous.",
-    "source_reference": "S.K. Mapa, Differentiation, Exercises 15, Problem 2"
+    "source_reference": "S.K. Mapa, Differentiation, Exercises 15, Problem 2",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 47
+  },
+  {
+    "id": 147,
+    "twin_id": 47,
+    "chapter": "Chapter 9: Differentiation",
+    "topic": "Properties of the Derivative",
+    "subtopic": "Continuity of Monotonic Derivatives",
+    "claim": "There exists a function f that is differentiable on an open interval I whose derivative f' is monotonic on I but has a jump discontinuity in I.",
+    "question": "Evaluate the mathematical claim: 'There exists a function f that is differentiable on an open interval I whose derivative f' is monotonic on I but has a jump discontinuity in I.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "inverted_property",
+    "falsity_reason": "By Darboux's theorem f' has the intermediate value property, so it cannot have a jump.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: By Darboux's theorem f' has the intermediate value property, so it cannot have a jump. The true statement is: If a function f is differentiable on an open interval I and f' is monotonic on I, then f' must be continuous on I.",
+    "source_reference": "S.K. Mapa, Differentiation, Exercises 15, Problem 2 (False Twin Variant)"
   },
   {
     "id": 48,
@@ -861,7 +1805,27 @@
       "Step 5: Compute f'(x): f'(x) = -e^{-x} + sin x. By Rolle's Theorem, there exists xi in (x_1, x_2) such that f'(xi) = 0. This gives -e^{-xi} + sin xi = 0, so sin xi = e^{-xi}, which multiplies to e^{xi} sin xi = 1, proving the claim."
     ],
     "solution_sketch": "Define f(x) = e^{-x} - cos x. If x_1, x_2 satisfy e^x cos x = 1, then f(x_1) = f(x_2) = 0. By Rolle's theorem on [x_1, x_2], there exists xi in (x_1, x_2) with f'(xi) = -e^{-xi} + sin xi = 0, which gives e^xi sin xi = 1.",
-    "source_reference": "S.K. Mapa, Differentiation, Section 9.5, Worked Examples"
+    "source_reference": "S.K. Mapa, Differentiation, Section 9.5, Worked Examples",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 48
+  },
+  {
+    "id": 148,
+    "twin_id": 48,
+    "chapter": "Chapter 9: Differentiation",
+    "topic": "Mean Value Theorems",
+    "subtopic": "Rolle's Theorem Root Interlacing",
+    "claim": "The equation e^x * cos x = 1 has exactly one real root.",
+    "question": "Evaluate the mathematical claim: 'The equation e^x * cos x = 1 has exactly one real root.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "false_quantity",
+    "falsity_reason": "x = 0 is a root and cos x = e^{-x} has further roots for x > 0 (for example near 3 pi/2 and 5 pi/2).",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: x = 0 is a root and cos x = e^{-x} has further roots for x > 0 (for example near 3 pi/2 and 5 pi/2). The true statement is: Between any two real roots of e^x * cos x = 1, there exists at least one real root of e^x * sin x = 1.",
+    "source_reference": "S.K. Mapa, Differentiation, Section 9.5, Worked Examples (False Twin Variant)"
   },
   {
     "id": 49,
@@ -879,7 +1843,27 @@
       "Step 5: Equate quotients: -cot xi = -1 implies cot xi = 1. In the interval (0, pi/2), the unique solution is xi = pi/4."
     ],
     "solution_sketch": "[f(pi/2) - f(0)] / [g(pi/2) - g(0)] = (1 - 0)/(0 - 1) = -1. f'(xi)/g'(xi) = cos xi / (-sin xi) = -cot xi. Equating gives cot xi = 1, so xi = pi/4 in (0, pi/2).",
-    "source_reference": "S.K. Mapa, Differentiation, Exercises 15, Problem 6(i)"
+    "source_reference": "S.K. Mapa, Differentiation, Exercises 15, Problem 6(i)",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 49
+  },
+  {
+    "id": 149,
+    "twin_id": 49,
+    "chapter": "Chapter 9: Differentiation",
+    "topic": "Mean Value Theorems",
+    "subtopic": "Cauchy Mean Value Theorem Evaluation",
+    "claim": "For f(x) = sin x and g(x) = cos x on [0, pi/2], Cauchy's Mean Value Theorem gives xi = pi/3.",
+    "question": "Evaluate the mathematical claim: 'For f(x) = sin x and g(x) = cos x on [0, pi/2], Cauchy's Mean Value Theorem gives xi = pi/3.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "false_final_answer",
+    "falsity_reason": "-cot xi = -1 gives xi = pi/4.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: -cot xi = -1 gives xi = pi/4. The true statement is: For f(x) = sin x and g(x) = cos x on [0, pi/2], Cauchy's Mean Value Theorem gives xi = pi/4.",
+    "source_reference": "S.K. Mapa, Differentiation, Exercises 15, Problem 6(i) (False Twin Variant)"
   },
   {
     "id": 50,
@@ -897,14 +1881,34 @@
       "Step 5: Multiply across by x > 0: x/(1 + x) < x/(1 + xi) < x. Substituting log(1 + x) = x/(1 + xi) yields the desired inequality: x/(1 + x) < log(1 + x) < x."
     ],
     "solution_sketch": "By Lagrange MVT on [0, x], log(1 + x) = x f'(xi) = x / (1 + xi) for some 0 < xi < x. Since 0 < xi < x, 1/(1 + x) < 1/(1 + xi) < 1. Multiplying by x gives x/(1 + x) < log(1 + x) < x.",
-    "source_reference": "S.K. Mapa, Differentiation, Section 9.5, Worked Example 3"
+    "source_reference": "S.K. Mapa, Differentiation, Section 9.5, Worked Example 3",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 50
+  },
+  {
+    "id": 150,
+    "twin_id": 50,
+    "chapter": "Chapter 9: Differentiation",
+    "topic": "Mean Value Theorems",
+    "subtopic": "Logarithmic Inequalities via Lagrange's MVT",
+    "claim": "For all x > 0, x/(1 + x) < log(1 + x) < 2x/(2 + x).",
+    "question": "Evaluate the mathematical claim: 'For all x > 0, x/(1 + x) < log(1 + x) < 2x/(2 + x).'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "false_bound",
+    "falsity_reason": "log(1 + x) > 2x/(2 + x) for all x > 0 (compare derivatives: 1/(1+x) > 4/(2+x)^2).",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: log(1 + x) > 2x/(2 + x) for all x > 0 (compare derivatives: 1/(1+x) > 4/(2+x)^2). The true statement is: For all x > 0, x/(1 + x) < log(1 + x) < x.",
+    "source_reference": "S.K. Mapa, Differentiation, Section 9.5, Worked Example 3 (False Twin Variant)"
   },
   {
     "id": 51,
     "chapter": "Chapter 9: Differentiation",
     "topic": "Taylor's Theorem and Expansions",
     "subtopic": "Limiting Value of Intermediate Theta in Taylor Remainder",
-    "claim": "For f(x) = sin x with f(h) = f(0) + h*f'(0) + (h^2/2!)*f''(theta*h), the limiting value of theta as h -> 0 is 1/sqrt(3).",
+    "claim": "For f(x) = sin x with f(h) = f(0) + h*f'(theta*h) (Lagrange mean value form, i.e. sin h = h cos(theta*h)), the limiting value of theta as h -> 0 is 1/sqrt(3).",
     "question": "Let f(x) = \\sin x. Taylor's theorem with Lagrange's remainder gives \\sin h = h \\cos(\\theta h) where 0 < \\theta < 1. By expanding \\sin h and \\cos(\\theta h) in higher-order Taylor series around 0, prove in multiple steps that \\lim_{h \\to 0} \\theta = \\frac{1}{\\sqrt{3}}.",
     "difficulty": "Hard",
     "reasoning_steps": [
@@ -915,7 +1919,29 @@
       "Step 5: Cancel 1, divide by -h^2/2: theta^2 * cos(theta_2 * theta * h) = (1/3) * cos(theta_1 * h). As h -> 0, cos(theta_2 * theta * h) -> 1 and cos(theta_1 * h) -> 1. Therefore lim_{h -> 0} theta^2 = 1/3, which gives lim_{h -> 0} theta = 1/sqrt(3)."
     ],
     "solution_sketch": "From sin h = h cos(theta*h), higher order Taylor expansions give 1 - (theta^2 h^2)/2 cos(...) = 1 - (h^2/6) cos(...). Equating coefficients of h^2 yields theta^2 -> 1/3, so lim_{h -> 0} theta = 1/sqrt(3).",
-    "source_reference": "S.K. Mapa, Differentiation, Section 9.7, Worked Example 5"
+    "source_reference": "S.K. Mapa, Differentiation, Section 9.7, Worked Example 5",
+    "claim_as_originally_written": "For f(x) = sin x with f(h) = f(0) + h*f'(0) + (h^2/2!)*f''(theta*h), the limiting value of theta as h -> 0 is 1/sqrt(3).",
+    "correction_note": "The question and solution_sketch use sin h = h cos(theta h), which gives theta -> 1/sqrt(3). The second-order form written in the claim gives sin h = h - (h^2/2) sin(theta h), hence theta -> 1/3.",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 51
+  },
+  {
+    "id": 151,
+    "twin_id": 51,
+    "chapter": "Chapter 9: Differentiation",
+    "topic": "Taylor's Theorem and Expansions",
+    "subtopic": "Limiting Value of Intermediate Theta in Taylor Remainder",
+    "claim": "For f(x) = sin x with f(h) = f(0) + h*f'(0) + (h^2/2!)*f''(theta*h), the limiting value of theta as h -> 0 is 1/sqrt(3).",
+    "question": "Evaluate the mathematical claim: 'For f(x) = sin x with f(h) = f(0) + h*f'(0) + (h^2/2!)*f''(theta*h), the limiting value of theta as h -> 0 is 1/sqrt(3).'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "dataset_original_error",
+    "falsity_reason": "This was the dataset's original (incorrect) claim; in this second-order form sin h = h - (h^2/2) sin(theta h), which gives theta -> 1/3.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: This was the dataset's original (incorrect) claim; in this second-order form sin h = h - (h^2/2) sin(theta h), which gives theta -> 1/3. The true statement is: For f(x) = sin x with f(h) = f(0) + h*f'(theta*h) (Lagrange mean value form, i.e. sin h = h cos(theta*h)), the limiting value of theta as h -> 0 is 1/sqrt(3).",
+    "source_reference": "S.K. Mapa, Differentiation, Section 9.7, Worked Example 5 (False Twin Variant)"
   },
   {
     "id": 52,
@@ -933,7 +1959,27 @@
       "Step 5: Evaluate as x -> 0: numerator tends to 1*(2 + 0) + 1 = 3, denominator tends to 2. Hence limit is 3/2. Method 2 (Series): x e^x = x(1 + x + O(x^2)) = x + x^2 + O(x^3); log(1+x) = x - x^2/2 + O(x^3). Numerator is (x + x^2) - (x - x^2/2) = (3/2) x^2 + O(x^3). Dividing by x^2 yields 3/2."
     ],
     "solution_sketch": "Form 0/0. Applying L'Hopital twice yields numerator derivative e^x(2+x) + (1+x)^{-2} -> 3 and denominator derivative 2, giving 3/2. Alternatively, Maclaurin expansion gives [x + x^2 - (x - x^2/2)]/x^2 = 3/2.",
-    "source_reference": "S.K. Mapa, Differentiation, Exercises 19, Problem 1(i)"
+    "source_reference": "S.K. Mapa, Differentiation, Exercises 19, Problem 1(i)",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 52
+  },
+  {
+    "id": 152,
+    "twin_id": 52,
+    "chapter": "Chapter 9: Differentiation",
+    "topic": "Indeterminate Forms",
+    "subtopic": "L'Hopital's Rule for Mixed Transcendental 0/0 Forms",
+    "claim": "The limit lim_{x -> 0} [x*e^x - log(1 + x)] / x^2 = 1/2.",
+    "question": "Evaluate the mathematical claim: 'The limit lim_{x -> 0} [x*e^x - log(1 + x)] / x^2 = 1/2.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "false_final_answer",
+    "falsity_reason": "Maclaurin expansion gives (x + x^2 - x + x^2/2)/x^2 -> 3/2.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: Maclaurin expansion gives (x + x^2 - x + x^2/2)/x^2 -> 3/2. The true statement is: The limit lim_{x -> 0} [x*e^x - log(1 + x)] / x^2 = 3/2.",
+    "source_reference": "S.K. Mapa, Differentiation, Exercises 19, Problem 1(i) (False Twin Variant)"
   },
   {
     "id": 53,
@@ -951,7 +1997,27 @@
       "Step 5: Evaluate the product of limits: lim_{x -> 0} e^{sin x} = e^0 = 1, and since u -> 0 as x -> 0, lim_{u -> 0} (e^u - 1)/u = 1. Therefore, the limit is 1 * 1 = 1."
     ],
     "solution_sketch": "Factor numerator: e^{sin x} * (e^{x - sin x} - 1)/(x - sin x). Setting u = x - sin x -> 0 as x -> 0, the quotient becomes e^{sin x} * (e^u - 1)/u -> e^0 * 1 = 1.",
-    "source_reference": "S.K. Mapa, Differentiation, Exercises 19, Problem 1(v)"
+    "source_reference": "S.K. Mapa, Differentiation, Exercises 19, Problem 1(v)",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 53
+  },
+  {
+    "id": 153,
+    "twin_id": 53,
+    "chapter": "Chapter 9: Differentiation",
+    "topic": "Indeterminate Forms",
+    "subtopic": "Exponential-Trigonometric Indeterminate Limits",
+    "claim": "The limit lim_{x -> 0} (e^x - e^{sin x}) / (x - sin x) = 0.",
+    "question": "Evaluate the mathematical claim: 'The limit lim_{x -> 0} (e^x - e^{sin x}) / (x - sin x) = 0.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "false_final_answer",
+    "falsity_reason": "Factoring e^{sin x}(e^u - 1)/u with u = x - sin x gives limit 1.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: Factoring e^{sin x}(e^u - 1)/u with u = x - sin x gives limit 1. The true statement is: The limit lim_{x -> 0} (e^x - e^{sin x}) / (x - sin x) = 1.",
+    "source_reference": "S.K. Mapa, Differentiation, Exercises 19, Problem 1(v) (False Twin Variant)"
   },
   {
     "id": 54,
@@ -969,14 +2035,34 @@
       "Step 5: Substitute into ln y: ln y = [ -x^2/6 + O(x^4) ] / x^2 = -1/6 + O(x^2). As x -> 0, ln y -> -1/6. By continuity of the exponential function, lim_{x -> 0} y = e^{-1/6}."
     ],
     "solution_sketch": "Let y = ((sin x)/x)^{1/x^2}. ln y = ln((sin x)/x)/x^2. Expand (sin x)/x = 1 - x^2/6 + O(x^4), so ln((sin x)/x) = -x^2/6 + O(x^4). Then ln y -> -1/6, yielding limit e^{-1/6}.",
-    "source_reference": "S.K. Mapa, Differentiation, Section 9.9, Worked Examples"
+    "source_reference": "S.K. Mapa, Differentiation, Section 9.9, Worked Examples",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 54
+  },
+  {
+    "id": 154,
+    "twin_id": 54,
+    "chapter": "Chapter 9: Differentiation",
+    "topic": "Indeterminate Forms",
+    "subtopic": "Power Indeterminate Forms 1^infinity",
+    "claim": "The limit lim_{x -> 0} [(sin x)/x]^{1/x^2} = e^{1/6}.",
+    "question": "Evaluate the mathematical claim: 'The limit lim_{x -> 0} [(sin x)/x]^{1/x^2} = e^{1/6}.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "false_final_answer",
+    "falsity_reason": "ln((sin x)/x) = -x^2/6 + O(x^4), so the limit is e^{-1/6}.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: ln((sin x)/x) = -x^2/6 + O(x^4), so the limit is e^{-1/6}. The true statement is: The limit lim_{x -> 0} [(sin x)/x]^{1/x^2} = e^{-1/6}.",
+    "source_reference": "S.K. Mapa, Differentiation, Section 9.9, Worked Examples (False Twin Variant)"
   },
   {
     "id": 55,
     "chapter": "Chapter 10: Functions of bounded variation",
     "topic": "Functions of Bounded Variation",
     "subtopic": "Total Variation and Jordan Decomposition of Polynomials",
-    "claim": "For f(x) = x^2 - 2x + 2 on [0, 2], the total variation is V(f; [0, 2]) = 2, and f can be decomposed as the difference of two monotone increasing functions f(x) = [V_f(x) + f(0)]/2 - [V_f(x) - f(x) + f(0)]/2.",
+    "claim": "For f(x) = x^2 - 2x + 2 on [0, 2], the total variation is V(f; [0, 2]) = 2, and f can be decomposed as the difference of two monotone increasing functions f(x) = [V_f(x) + f(x)]/2 - [V_f(x) - f(x)]/2.",
     "question": "Let f(x) = x^2 - 2x + 2 on [0, 2]. Prove that f is a function of bounded variation on [0, 2]. Find the total variation V_f([0, 2]), the positive variation P_f([0, 2]), the negative variation N_f([0, 2]), and determine the variation function V_f(x) on [0, 2]. Express f as the difference of two monotonic increasing functions.",
     "difficulty": "Hard",
     "reasoning_steps": [
@@ -987,7 +2073,29 @@
       "Step 5: Determine the variation function V_f(x) for x in [0, 2]: for x in [0, 1], f is decreasing so V_f(x) = f(0) - f(x) = 2 - (x^2 - 2x + 2) = 2x - x^2. For x in [1, 2], V_f(x) = V_f([0, 1]) + [f(x) - f(1)] = 1 + (x^2 - 2x + 2 - 1) = x^2 - 2x + 2. Jordan decomposition gives f(x) = g(x) - h(x) where g(x) = [V_f(x) + f(x)]/2 and h(x) = [V_f(x) - f(x)]/2 are both monotone increasing."
     ],
     "solution_sketch": "f decreases on [0, 1] from 2 to 1 and increases on [1, 2] from 1 to 2. V_f([0, 2]) = |1 - 2| + |2 - 1| = 2. P_f = 1, N_f = 1. V_f(x) = 2x - x^2 on [0, 1] and x^2 - 2x + 2 on [1, 2]. Decomposition is given by Jordan's theorem: f = p - n.",
-    "source_reference": "S.K. Mapa, Functions of bounded variation, Exercises 20, Problem 6(i)"
+    "source_reference": "S.K. Mapa, Functions of bounded variation, Exercises 20, Problem 6(i)",
+    "claim_as_originally_written": "For f(x) = x^2 - 2x + 2 on [0, 2], the total variation is V(f; [0, 2]) = 2, and f can be decomposed as the difference of two monotone increasing functions f(x) = [V_f(x) + f(0)]/2 - [V_f(x) - f(x) + f(0)]/2.",
+    "correction_note": "The original expression simplifies to f(x)/2, not f(x). The Jordan decomposition f = (V_f + f)/2 - (V_f - f)/2 is correct.",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 55
+  },
+  {
+    "id": 155,
+    "twin_id": 55,
+    "chapter": "Chapter 10: Functions of bounded variation",
+    "topic": "Functions of Bounded Variation",
+    "subtopic": "Total Variation and Jordan Decomposition of Polynomials",
+    "claim": "For f(x) = x^2 - 2x + 2 on [0, 2], the total variation is V(f; [0, 2]) = 2, and f can be decomposed as the difference of two monotone increasing functions f(x) = [V_f(x) + f(0)]/2 - [V_f(x) - f(x) + f(0)]/2.",
+    "question": "Evaluate the mathematical claim: 'For f(x) = x^2 - 2x + 2 on [0, 2], the total variation is V(f; [0, 2]) = 2, and f can be decomposed as the difference of two monotone increasing functions f(x) = [V_f(x) + f(0)]/2 - [V_f(x) - f(x) + f(0)]/2.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "dataset_original_error",
+    "falsity_reason": "This was the dataset's original (incorrect) claim; the stated difference simplifies to f(x)/2, not f(x).",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: This was the dataset's original (incorrect) claim; the stated difference simplifies to f(x)/2, not f(x). The true statement is: For f(x) = x^2 - 2x + 2 on [0, 2], the total variation is V(f; [0, 2]) = 2, and f can be decomposed as the difference of two monotone increasing functions f(x) = [V_f(x) + f(x)]/2 - [V_f(x) - f(x)]/2.",
+    "source_reference": "S.K. Mapa, Functions of bounded variation, Exercises 20, Problem 6(i) (False Twin Variant)"
   },
   {
     "id": 56,
@@ -1005,7 +2113,27 @@
       "Step 5: Compute variation sum: V(P_n, f) >= sum_{k=1}^{n-1} |f(x_{k+1}) - f(x_k)| = sum_{k=1}^{n-1} [ 2/(2k+3) + 2/(2k+1) ] >= sum_{k=1}^{n-1} 2/(2k+1). As n -> infty, this sum diverges by comparison with the harmonic series sum 1/k. Hence sup_P V(P, f) = infty, so f is not of bounded variation on [0, 1]."
     ],
     "solution_sketch": "Continuity holds because |f(x)| <= x -> 0. Partitions P_n with points x_k = 2/(2k+1) have alternating values f(x_k) = (-1)^k * 2/(2k+1). The variation sum V(P_n, f) >= sum 2/(2k+1), which diverges with the harmonic series. Thus V(f; [0, 1]) = infty.",
-    "source_reference": "S.K. Mapa, Functions of bounded variation, Exercises 20, Problem 4(i)"
+    "source_reference": "S.K. Mapa, Functions of bounded variation, Exercises 20, Problem 4(i)",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 56
+  },
+  {
+    "id": 156,
+    "twin_id": 56,
+    "chapter": "Chapter 10: Functions of bounded variation",
+    "topic": "Functions of Bounded Variation",
+    "subtopic": "Continuous Functions Failing Bounded Variation",
+    "claim": "The function f(x) = x * sin(pi/x) for x in (0, 1] and f(0) = 0 is continuous on [0, 1] and of bounded variation on [0, 1].",
+    "question": "Evaluate the mathematical claim: 'The function f(x) = x * sin(pi/x) for x in (0, 1] and f(0) = 0 is continuous on [0, 1] and of bounded variation on [0, 1].'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "inverted_property",
+    "falsity_reason": "Partitions at x_k = 2/(2k+1) give variation sums bounded below by a divergent harmonic-type sum.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: Partitions at x_k = 2/(2k+1) give variation sums bounded below by a divergent harmonic-type sum. The true statement is: The function f(x) = x * sin(pi/x) for x in (0, 1] and f(0) = 0 is continuous on [0, 1] but is not of bounded variation on [0, 1].",
+    "source_reference": "S.K. Mapa, Functions of bounded variation, Exercises 20, Problem 4(i) (False Twin Variant)"
   },
   {
     "id": 57,
@@ -1023,7 +2151,27 @@
       "Step 5: Apply to f(x) = x^2 sin(1/x): from earlier analysis, f'(0) = 0, and for x in (0, 1], f'(x) = 2x sin(1/x) - cos(1/x). Bound f': |f'(x)| <= 2|x||sin(1/x)| + |cos(1/x)| <= 2(1)(1) + 1 = 3. Since f' is bounded on [0, 1] (with M = 3), by the theorem f is of bounded variation on [0, 1]."
     ],
     "solution_sketch": "By MVT, V(P, f) <= M sum delta x_k = M(b - a), so bounded derivative implies BV. For f(x) = x^2 sin(1/x), |f'(x)| <= 2x|sin(1/x)| + |cos(1/x)| <= 3 for all x in [0, 1]. Since |f'| <= 3, f is of bounded variation on [0, 1].",
-    "source_reference": "S.K. Mapa, Functions of bounded variation, Section 10.1, Theorem 10.1.7 & Worked Examples"
+    "source_reference": "S.K. Mapa, Functions of bounded variation, Section 10.1, Theorem 10.1.7 & Worked Examples",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 57
+  },
+  {
+    "id": 157,
+    "twin_id": 57,
+    "chapter": "Chapter 10: Functions of bounded variation",
+    "topic": "Functions of Bounded Variation",
+    "subtopic": "Bounded Derivatives Implies Bounded Variation",
+    "claim": "The function f(x) = x^2 sin(1/x) for x in (0, 1] and f(0) = 0 is not of bounded variation on [0, 1].",
+    "question": "Evaluate the mathematical claim: 'The function f(x) = x^2 sin(1/x) for x in (0, 1] and f(0) = 0 is not of bounded variation on [0, 1].'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "inverted_property",
+    "falsity_reason": "|f'| <= 3 on [0, 1], and a bounded derivative implies bounded variation.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: |f'| <= 3 on [0, 1], and a bounded derivative implies bounded variation. The true statement is: The function f(x) = x^2 sin(1/x) for x in (0, 1] and f(0) = 0 is of bounded variation on [0, 1].",
+    "source_reference": "S.K. Mapa, Functions of bounded variation, Section 10.1, Theorem 10.1.7 & Worked Examples (False Twin Variant)"
   },
   {
     "id": 58,
@@ -1041,7 +2189,27 @@
       "Step 5: By additivity of total variation, V_f([0, 2]) = V_f([0, 1]) + V_f([1, 2]) = 2 + 2 = 4. Since f(2) - f(0) = 0 - 0 = 0, positive variation P_f = V_f/2 = 2 and negative variation N_f = V_f/2 = 2."
     ],
     "solution_sketch": "On [0, 1), f decreases by 1, then jumps up by 1 at x = 1 (variation 2). On [1, 2), f decreases by 1, then jumps up by 1 at x = 2 (variation 2). Total variation is 2 + 2 = 4. Since f(2) = f(0) = 0, P_f = N_f = 2.",
-    "source_reference": "S.K. Mapa, Functions of bounded variation, Exercises 20, Problem 6(ii)"
+    "source_reference": "S.K. Mapa, Functions of bounded variation, Exercises 20, Problem 6(ii)",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 58
+  },
+  {
+    "id": 158,
+    "twin_id": 58,
+    "chapter": "Chapter 10: Functions of bounded variation",
+    "topic": "Functions of Bounded Variation",
+    "subtopic": "Variation of Discontinuous Step Functions",
+    "claim": "For f(x) = [x] - x on [0, 2], the total variation is V(f; [0, 2]) = 2.",
+    "question": "Evaluate the mathematical claim: 'For f(x) = [x] - x on [0, 2], the total variation is V(f; [0, 2]) = 2.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "false_final_answer",
+    "falsity_reason": "Each unit interval contributes a decrease of 1 and a jump of 1, so V = 4.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: Each unit interval contributes a decrease of 1 and a jump of 1, so V = 4. The true statement is: For f(x) = [x] - x on [0, 2], the total variation is V(f; [0, 2]) = 4.",
+    "source_reference": "S.K. Mapa, Functions of bounded variation, Exercises 20, Problem 6(ii) (False Twin Variant)"
   },
   {
     "id": 59,
@@ -1059,7 +2227,27 @@
       "Step 5: Compute limits as n -> infty: lim L(P_n, f) = lim (2n^2 - 3n + 1)/(6n^2) = 2/6 = 1/3. lim U(P_n, f) = lim (2n^2 + 3n + 1)/(6n^2) = 2/6 = 1/3. Since lower and upper Darboux integrals coincide: underline{int}_0^1 f = overline{int}_0^1 f = 1/3, f is Riemann integrable on [0, 1] and int_0^1 x^2 dx = 1/3."
     ],
     "solution_sketch": "L(P_n) = (n - 1)(2n - 1)/(6n^2) -> 1/3 and U(P_n) = (n + 1)(2n + 1)/(6n^2) -> 1/3. Since lower and upper sums converge to the same value 1/3, f is Riemann integrable on [0, 1] and int_0^1 x^2 dx = 1/3.",
-    "source_reference": "S.K. Mapa, Riemann integral, Exercises 21, Problem 1(i)"
+    "source_reference": "S.K. Mapa, Riemann integral, Exercises 21, Problem 1(i)",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 59
+  },
+  {
+    "id": 159,
+    "twin_id": 59,
+    "chapter": "Chapter 11: Riemann integral",
+    "topic": "Riemann Integration",
+    "subtopic": "Darboux Sums Evaluation and Integrability",
+    "claim": "For f(x) = x^2 on [0, 1] with equidistant partition P_n, L(P_n, f) = (n - 1)(2n - 1)/(6n^2) and U(P_n, f) = (n + 1)(2n + 1)/(6n^2), proving int_0^1 x^2 dx = 1/2.",
+    "question": "Evaluate the mathematical claim: 'For f(x) = x^2 on [0, 1] with equidistant partition P_n, L(P_n, f) = (n - 1)(2n - 1)/(6n^2) and U(P_n, f) = (n + 1)(2n + 1)/(6n^2), proving int_0^1 x^2 dx = 1/2.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "false_final_answer",
+    "falsity_reason": "Both sums tend to 2/6 = 1/3.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: Both sums tend to 2/6 = 1/3. The true statement is: For f(x) = x^2 on [0, 1] with equidistant partition P_n, L(P_n, f) = (n - 1)(2n - 1)/(6n^2) and U(P_n, f) = (n + 1)(2n + 1)/(6n^2), proving int_0^1 x^2 dx = 1/3.",
+    "source_reference": "S.K. Mapa, Riemann integral, Exercises 21, Problem 1(i) (False Twin Variant)"
   },
   {
     "id": 60,
@@ -1077,7 +2265,27 @@
       "Step 5: Thus U(P_n, f) - L(P_n, f) = [(b - a)/n] [f(b) - f(a)]. For any eps > 0, choose n > (b - a)[f(b) - f(a)] / eps. Then U(P_n, f) - L(P_n, f) < eps. By Riemann's criterion for integrability, f is Riemann integrable on [a, b]."
     ],
     "solution_sketch": "For equidistant partition P_n, M_k = f(x_k) and m_k = f(x_{k-1}). The sum of (M_k - m_k) telescopes to f(b) - f(a), so U(P_n) - L(P_n) = (b - a)/n * [f(b) - f(a)] -> 0 as n -> infty. By Darboux's criterion, f is integrable.",
-    "source_reference": "S.K. Mapa, Riemann integral, Section 11.5, Theorem 11.5.2 & Exercises 21, Problem 2"
+    "source_reference": "S.K. Mapa, Riemann integral, Section 11.5, Theorem 11.5.2 & Exercises 21, Problem 2",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 60
+  },
+  {
+    "id": 160,
+    "twin_id": 60,
+    "chapter": "Chapter 11: Riemann integral",
+    "topic": "Riemann Integration",
+    "subtopic": "Integrability of Monotonic Functions",
+    "claim": "A bounded function on [a, b] that is discontinuous at every rational point of [a, b] cannot be Riemann integrable on [a, b].",
+    "question": "Evaluate the mathematical claim: 'A bounded function on [a, b] that is discontinuous at every rational point of [a, b] cannot be Riemann integrable on [a, b].'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "false_property",
+    "falsity_reason": "Thomae's function is discontinuous at every rational point yet Riemann integrable (its discontinuity set has measure zero).",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: Thomae's function is discontinuous at every rational point yet Riemann integrable (its discontinuity set has measure zero). The true statement is: Every bounded monotone increasing function f: [a, b] -> R is Riemann integrable on [a, b].",
+    "source_reference": "S.K. Mapa, Riemann integral, Section 11.5, Theorem 11.5.2 & Exercises 21, Problem 2 (False Twin Variant)"
   },
   {
     "id": 61,
@@ -1095,7 +2303,27 @@
       "Step 5: On all remaining subintervals, f(x) < 1/k, so M_i < 1/k < eps/2. Their contribution to U(P, f) is < (eps/2) * 1 = eps/2. Therefore U(P, f) < eps/2 + eps/2 = eps. Since L(P, f) = 0 and U(P, f) < eps, overline{int}_0^1 f = 0. Thus f is Riemann integrable and int_0^1 f(x) dx = 0."
     ],
     "solution_sketch": "Every interval has irrationals, so m_k = 0 and L(P, f) = 0. For any eps > 0, points where f(x) >= eps/2 are finite. Enclosing them in intervals of total length < eps/2 bounds U(P, f) < eps. Hence upper and lower integrals equal 0, so int_0^1 f dx = 0.",
-    "source_reference": "S.K. Mapa, Riemann integral, Section 11.5, Worked Example 3"
+    "source_reference": "S.K. Mapa, Riemann integral, Section 11.5, Worked Example 3",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 61
+  },
+  {
+    "id": 161,
+    "twin_id": 61,
+    "chapter": "Chapter 11: Riemann integral",
+    "topic": "Riemann Integration",
+    "subtopic": "Integrability of Functions with Countable Discontinuities",
+    "claim": "Thomae's function is Riemann integrable on [0, 1] and int_0^1 f(x) dx = 1/2.",
+    "question": "Evaluate the mathematical claim: 'Thomae's function is Riemann integrable on [0, 1] and int_0^1 f(x) dx = 1/2.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Advanced",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "false_final_answer",
+    "falsity_reason": "Every lower sum is 0 and upper sums can be made arbitrarily small, so the integral is 0.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: Every lower sum is 0 and upper sums can be made arbitrarily small, so the integral is 0. The true statement is: Thomae's function is Riemann integrable on [0, 1] and int_0^1 f(x) dx = 0.",
+    "source_reference": "S.K. Mapa, Riemann integral, Section 11.5, Worked Example 3 (False Twin Variant)"
   },
   {
     "id": 62,
@@ -1113,7 +2341,27 @@
       "Step 5: If f is continuous on [a, b], by the Intermediate Value Theorem f attains every value between its infimum m and supremum M. Since mu in [m, M], there exists xi in [a, b] such that f(xi) = mu, yielding int_a^b f(x)g(x)dx = f(xi) int_a^b g(x)dx."
     ],
     "solution_sketch": "Multiply m <= f(x) <= M by g(x) >= 0 and integrate to get m int g <= int fg <= M int g. The ratio mu = (int fg)/(int g) lies in [m, M]. If f is continuous, by IVT mu = f(xi) for some xi in [a, b].",
-    "source_reference": "S.K. Mapa, Riemann integral, Section 11.12, Theorem 11.12.1"
+    "source_reference": "S.K. Mapa, Riemann integral, Section 11.12, Theorem 11.12.1",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 62
+  },
+  {
+    "id": 162,
+    "twin_id": 62,
+    "chapter": "Chapter 11: Riemann integral",
+    "topic": "Riemann Integration",
+    "subtopic": "First Mean Value Theorem of Integral Calculus",
+    "claim": "If f, g are Riemann integrable on [a, b], then int_a^b f(x)g(x)dx = mu int_a^b g(x)dx for some mu in [inf f, sup f], even if g changes sign on [a, b].",
+    "question": "Evaluate the mathematical claim: 'If f, g are Riemann integrable on [a, b], then int_a^b f(x)g(x)dx = mu int_a^b g(x)dx for some mu in [inf f, sup f], even if g changes sign on [a, b].'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "dropped_hypothesis",
+    "falsity_reason": "On [-1, 1] with f(x) = x and g(x) = x: int fg = 2/3 but int g = 0, so no mu works.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: On [-1, 1] with f(x) = x and g(x) = x: int fg = 2/3 but int g = 0, so no mu works. The true statement is: If f, g are Riemann integrable on [a, b] and g(x) >= 0 for all x in [a, b], then int_a^b f(x)g(x)dx = mu int_a^b g(x)dx for some mu in [inf f, sup f].",
+    "source_reference": "S.K. Mapa, Riemann integral, Section 11.12, Theorem 11.12.1 (False Twin Variant)"
   },
   {
     "id": 63,
@@ -1131,7 +2379,27 @@
       "Step 5: For 0 < |h| < delta, every point t between c and c + h satisfies |t - c| < delta, so |f(t) - f(c)| < eps. Therefore | [F(c+h) - F(c)]/h - f(c) | <= (1/|h|) * eps * |h| = eps. This proves lim_{h -> 0} [F(c+h) - F(c)]/h = f(c), so F'(c) = f(c)."
     ],
     "solution_sketch": "[F(c+h) - F(c)]/h - f(c) = (1/h) int_c^{c+h} [f(t) - f(c)] dt. Continuity at c gives |f(t) - f(c)| < eps for |t - c| < delta. For |h| < delta, the error is bounded by eps * |h| / |h| = eps, proving F'(c) = f(c).",
-    "source_reference": "S.K. Mapa, Riemann integral, Section 11.8, Theorem 11.8.2"
+    "source_reference": "S.K. Mapa, Riemann integral, Section 11.8, Theorem 11.8.2",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 63
+  },
+  {
+    "id": 163,
+    "twin_id": 63,
+    "chapter": "Chapter 11: Riemann integral",
+    "topic": "Riemann Integration",
+    "subtopic": "Fundamental Theorem of Integral Calculus",
+    "claim": "If f: [a, b] -> R is Riemann integrable, then F(x) = int_a^x f(t)dt is differentiable at every c in (a, b) and F'(c) = f(c).",
+    "question": "Evaluate the mathematical claim: 'If f: [a, b] -> R is Riemann integrable, then F(x) = int_a^x f(t)dt is differentiable at every c in (a, b) and F'(c) = f(c).'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "dropped_hypothesis",
+    "falsity_reason": "For a step function with a jump at c, F has a corner at c and is not differentiable there.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: For a step function with a jump at c, F has a corner at c and is not differentiable there. The true statement is: If f: [a, b] -> R is Riemann integrable and continuous at c in [a, b], then F(x) = int_a^x f(t)dt is differentiable at c and F'(c) = f(c).",
+    "source_reference": "S.K. Mapa, Riemann integral, Section 11.8, Theorem 11.8.2 (False Twin Variant)"
   },
   {
     "id": 64,
@@ -1149,7 +2417,27 @@
       "Step 5: The first integral (1/2) int_1^X (1/x) dx = (1/2) ln X diverges to infty as X -> infty. The second integral int_1^infty (cos 2x / x) dx converges by Dirichlet's test. Therefore int_1^X (|sin x|/x) dx -> infty as X -> infty, proving non-absolute convergence."
     ],
     "solution_sketch": "x=0 is removable. On [1, infty), Dirichlet's test applies: |int_1^X sin x dx| <= 2 and 1/x decreases to 0, so the integral converges. Non-absolute convergence follows from |sin x|/x >= sin^2 x / x = (1 - cos 2x)/(2x), where int 1/(2x) dx diverges.",
-    "source_reference": "S.K. Mapa, Improper integrals, Section 12.8, Worked Example 1"
+    "source_reference": "S.K. Mapa, Improper integrals, Section 12.8, Worked Example 1",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 64
+  },
+  {
+    "id": 164,
+    "twin_id": 64,
+    "chapter": "Chapter 12: Improper integrals",
+    "topic": "Improper Integrals",
+    "subtopic": "Dirichlet's Test and Non-Absolute Convergence",
+    "claim": "The improper integral int_0^infty (sin x)/x dx converges absolutely.",
+    "question": "Evaluate the mathematical claim: 'The improper integral int_0^infty (sin x)/x dx converges absolutely.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "strengthened_conclusion",
+    "falsity_reason": "|sin x|/x >= (1 - cos 2x)/(2x), whose integral diverges.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: |sin x|/x >= (1 - cos 2x)/(2x), whose integral diverges. The true statement is: The improper integral int_0^infty (sin x)/x dx converges, but int_0^infty |sin x|/x dx diverges to infinity.",
+    "source_reference": "S.K. Mapa, Improper integrals, Section 12.8, Worked Example 1 (False Twin Variant)"
   },
   {
     "id": 65,
@@ -1167,7 +2455,27 @@
       "Step 5: Substitute u = 2x into the remaining integral: int_0^{pi/2} log(sin 2x) dx = (1/2) int_0^pi log(sin u) du = (1/2) [ 2 int_0^{pi/2} log(sin u) du ] = I. Therefore 2I = I - (pi/2) log 2, which gives I = -(pi/2) log 2."
     ],
     "solution_sketch": "mu-test with mu=1/2 proves convergence. By symmetry x -> pi/2 - x, I = int_0^{pi/2} log(cos x) dx. Adding gives 2I = int_0^{pi/2} log((sin 2x)/2) dx = (1/2) int_0^pi log(sin u) du - (pi/2) log 2 = I - (pi/2) log 2. Thus I = -(pi/2) log 2.",
-    "source_reference": "S.K. Mapa, Improper integrals, Section 12.10, Worked Example 6"
+    "source_reference": "S.K. Mapa, Improper integrals, Section 12.10, Worked Example 6",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 65
+  },
+  {
+    "id": 165,
+    "twin_id": 65,
+    "chapter": "Chapter 12: Improper integrals",
+    "topic": "Improper Integrals",
+    "subtopic": "Evaluation of Singular Log-Trigonometric Integrals",
+    "claim": "The improper integral int_0^{pi/2} log(sin x) dx converges and equals -pi * log 2.",
+    "question": "Evaluate the mathematical claim: 'The improper integral int_0^{pi/2} log(sin x) dx converges and equals -pi * log 2.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "false_final_answer",
+    "falsity_reason": "The symmetry argument gives -(pi/2) log 2.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: The symmetry argument gives -(pi/2) log 2. The true statement is: The improper integral int_0^{pi/2} log(sin x) dx converges and equals -(pi/2) * log 2.",
+    "source_reference": "S.K. Mapa, Improper integrals, Section 12.10, Worked Example 6 (False Twin Variant)"
   },
   {
     "id": 66,
@@ -1185,7 +2493,27 @@
       "Step 5: Take limits: as eps -> 0^+, xi_1 -> 0, so f(xi_1) -> f(0). As X -> infty, xi_2 -> infty, so f(xi_2) -> f(infty). Therefore lim_{eps -> 0, X -> infty} I(eps, X) = [f(0) - f(infty)] ln(b/a)."
     ],
     "solution_sketch": "Split into int_{a*eps}^{a*X} - int_{b*eps}^{b*X} = int_{a*eps}^{b*eps} f(t)/t dt - int_{a*X}^{b*X} f(t)/t dt. By MVT, these become f(xi_1) ln(b/a) - f(xi_2) ln(b/a). Taking eps -> 0 and X -> infty yields [f(0) - f(infty)] ln(b/a).",
-    "source_reference": "S.K. Mapa, Improper integrals, Section 12.10, Theorem 12.10.1"
+    "source_reference": "S.K. Mapa, Improper integrals, Section 12.10, Theorem 12.10.1",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 66
+  },
+  {
+    "id": 166,
+    "twin_id": 66,
+    "chapter": "Chapter 12: Improper integrals",
+    "topic": "Improper Integrals",
+    "subtopic": "Frullani's Integral Theorem",
+    "claim": "For continuous f on [0, infty) with lim_{x -> infty} f(x) = f(infty), int_0^infty [f(ax) - f(bx)]/x dx = [f(0) - f(infty)] * log(a/b) for a, b > 0.",
+    "question": "Evaluate the mathematical claim: 'For continuous f on [0, infty) with lim_{x -> infty} f(x) = f(infty), int_0^infty [f(ax) - f(bx)]/x dx = [f(0) - f(infty)] * log(a/b) for a, b > 0.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "sign_error",
+    "falsity_reason": "Frullani's formula gives [f(0) - f(infty)] log(b/a); the stated sign is reversed whenever f(0) != f(infty) and a != b.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: Frullani's formula gives [f(0) - f(infty)] log(b/a); the stated sign is reversed whenever f(0) != f(infty) and a != b. The true statement is: For continuous f on [0, infty) with lim_{x -> infty} f(x) = f(infty), int_0^infty [f(ax) - f(bx)]/x dx = [f(0) - f(infty)] * log(b/a) for a, b > 0.",
+    "source_reference": "S.K. Mapa, Improper integrals, Section 12.10, Theorem 12.10.1 (False Twin Variant)"
   },
   {
     "id": 67,
@@ -1203,7 +2531,27 @@
       "Step 5: Evaluate the theta-integral: 2 int_0^{pi/2} (cos theta)^{2m-1} (sin theta)^{2n-1} dtheta. Substituting sin^2 theta = x gives int_0^1 x^{n-1} (1 - x)^{m-1} dx = B(m, n). Equating yields Gamma(m) Gamma(n) = B(m, n) Gamma(m + n), so B(m, n) = Gamma(m)Gamma(n)/Gamma(m+n)."
     ],
     "solution_sketch": "Substitute t=u^2, s=v^2 in Gamma(m)Gamma(n) to get 4 iint_Q e^{-(u^2+v^2)} u^{2m-1} v^{2n-1} dudv. Polar coordinates factor this into [2 int_0^infty e^{-r^2} r^{2(m+n)-1} dr] * [2 int_0^{pi/2} cos^{2m-1} theta sin^{2n-1} theta dtheta] = Gamma(m+n) * B(m, n).",
-    "source_reference": "S.K. Mapa, Improper integrals, Section 12.11, Theorem 12.11.4"
+    "source_reference": "S.K. Mapa, Improper integrals, Section 12.11, Theorem 12.11.4",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 67
+  },
+  {
+    "id": 167,
+    "twin_id": 67,
+    "chapter": "Chapter 12: Improper integrals",
+    "topic": "Beta and Gamma Functions",
+    "subtopic": "Beta and Gamma Function Fundamental Relation",
+    "claim": "For all m > 0 and n > 0, B(m, n) = [Gamma(m) * Gamma(n)] / Gamma(m + n + 1).",
+    "question": "Evaluate the mathematical claim: 'For all m > 0 and n > 0, B(m, n) = [Gamma(m) * Gamma(n)] / Gamma(m + n + 1).'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Advanced",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "false_final_answer",
+    "falsity_reason": "The correct identity has Gamma(m + n) in the denominator; e.g. B(1, 1) = 1 but the formula gives 1/2.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: The correct identity has Gamma(m + n) in the denominator; e.g. B(1, 1) = 1 but the formula gives 1/2. The true statement is: For all m > 0 and n > 0, B(m, n) = [Gamma(m) * Gamma(n)] / Gamma(m + n).",
+    "source_reference": "S.K. Mapa, Improper integrals, Section 12.11, Theorem 12.11.4 (False Twin Variant)"
   },
   {
     "id": 68,
@@ -1221,14 +2569,34 @@
       "Step 5: Substitute the known value Gamma(1/2) = sqrt(pi): the integral evaluates to [sqrt(pi) * Gamma(1/4)] / [4 * Gamma(3/4)]."
     ],
     "solution_sketch": "Substitute x^4 = t => dx = (1/4) t^{-3/4} dt. The integral becomes (1/4) int_0^1 t^{-3/4} (1 - t)^{-1/2} dt = (1/4) B(1/4, 1/2) = (1/4) [Gamma(1/4) Gamma(1/2)] / Gamma(3/4) = [sqrt(pi) Gamma(1/4)] / [4 Gamma(3/4)].",
-    "source_reference": "S.K. Mapa, Improper integrals, Exercises 23, Problem 3(i) & Section 12.11"
+    "source_reference": "S.K. Mapa, Improper integrals, Exercises 23, Problem 3(i) & Section 12.11",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 68
+  },
+  {
+    "id": 168,
+    "twin_id": 68,
+    "chapter": "Chapter 12: Improper integrals",
+    "topic": "Beta and Gamma Functions",
+    "subtopic": "Evaluation of Singular Radical Integrals via Beta Function",
+    "claim": "The integral int_0^1 dx / sqrt(1 - x^4) = (1/4) * B(1/4, 1/2) = [sqrt(pi) * Gamma(1/4)] / [2 * Gamma(3/4)].",
+    "question": "Evaluate the mathematical claim: 'The integral int_0^1 dx / sqrt(1 - x^4) = (1/4) * B(1/4, 1/2) = [sqrt(pi) * Gamma(1/4)] / [2 * Gamma(3/4)].'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "false_final_answer",
+    "falsity_reason": "(1/4) B(1/4, 1/2) = sqrt(pi) Gamma(1/4)/(4 Gamma(3/4)); the stated value is twice that.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: (1/4) B(1/4, 1/2) = sqrt(pi) Gamma(1/4)/(4 Gamma(3/4)); the stated value is twice that. The true statement is: The integral int_0^1 dx / sqrt(1 - x^4) = (1/4) * B(1/4, 1/2) = [sqrt(pi) * Gamma(1/4)] / [4 * Gamma(3/4)].",
+    "source_reference": "S.K. Mapa, Improper integrals, Exercises 23, Problem 3(i) & Section 12.11 (False Twin Variant)"
   },
   {
     "id": 69,
     "chapter": "Chapter 13: Sequence of functions",
     "topic": "Sequence of Functions",
     "subtopic": "Uniform Convergence via Mn-Test and Integral Limit",
-    "claim": "For f_n(x) = nx / (1 + n^2 x^2) on [0, 1], {f_n} converges pointwise to 0 on [0, 1], but not uniformly on [0, 1]; however, lim_{n -> infty} int_0^1 f_n(x)dx != int_0^1 lim_{n -> infty} f_n(x)dx.",
+    "claim": "For f_n(x) = nx / (1 + n^2 x^2) on [0, 1], {f_n} converges pointwise to 0 on [0, 1], but not uniformly on [0, 1]; nevertheless lim_{n -> infty} int_0^1 f_n(x)dx = int_0^1 lim_{n -> infty} f_n(x)dx = 0.",
     "question": "Let f_n(x) = \\frac{nx}{1 + n^2 x^2} for x \\in [0, 1]. Find the pointwise limit f(x). Compute M_n = \\sup_{x \\in [0, 1]} |f_n(x) - f(x)| using calculus to test uniform convergence. Compute \\lim_{n \\to \\infty} \\int_0^1 f_n(x)dx and compare it with \\int_0^1 f(x)dx.",
     "difficulty": "Hard",
     "reasoning_steps": [
@@ -1239,7 +2607,29 @@
       "Step 5: Compare integral of limit vs limit of integrals: int_0^1 f(x)dx = int_0^1 0 dx = 0. For the integrals: int_0^1 [nx / (1 + n^2 x^2)] dx = (1/(2n)) [ ln(1 + n^2 x^2) ]_0^1 = ln(1 + n^2) / (2n). As n -> infty, ln(1 + n^2)/(2n) -> 0 by L'Hopital. Thus lim int f_n = int lim f_n = 0 holds coincidentally even though convergence is non-uniform."
     ],
     "solution_sketch": "Pointwise limit is 0. Maximum of f_n occurs at x = 1/n with value f_n(1/n) = 1/2, so M_n = 1/2 != 0, proving non-uniform convergence on [0, 1]. The integral int_0^1 f_n dx = ln(1+n^2)/(2n) -> 0, agreeing with int 0 dx.",
-    "source_reference": "S.K. Mapa, Sequence of functions, Section 13.3, Worked Example 5 & 13.4"
+    "source_reference": "S.K. Mapa, Sequence of functions, Section 13.3, Worked Example 5 & 13.4",
+    "claim_as_originally_written": "For f_n(x) = nx / (1 + n^2 x^2) on [0, 1], {f_n} converges pointwise to 0 on [0, 1], but not uniformly on [0, 1]; however, lim_{n -> infty} int_0^1 f_n(x)dx != int_0^1 lim_{n -> infty} f_n(x)dx.",
+    "correction_note": "int_0^1 f_n = ln(1 + n^2)/(2n) -> 0, which equals the integral of the limit, as the solution_sketch shows.",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 69
+  },
+  {
+    "id": 169,
+    "twin_id": 69,
+    "chapter": "Chapter 13: Sequence of functions",
+    "topic": "Sequence of Functions",
+    "subtopic": "Uniform Convergence via Mn-Test and Integral Limit",
+    "claim": "For f_n(x) = nx / (1 + n^2 x^2) on [0, 1], {f_n} converges pointwise to 0 on [0, 1], but not uniformly on [0, 1]; however, lim_{n -> infty} int_0^1 f_n(x)dx != int_0^1 lim_{n -> infty} f_n(x)dx.",
+    "question": "Evaluate the mathematical claim: 'For f_n(x) = nx / (1 + n^2 x^2) on [0, 1], {f_n} converges pointwise to 0 on [0, 1], but not uniformly on [0, 1]; however, lim_{n -> infty} int_0^1 f_n(x)dx != int_0^1 lim_{n -> infty} f_n(x)dx.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "dataset_original_error",
+    "falsity_reason": "This was the dataset's original (incorrect) claim; int_0^1 f_n = ln(1 + n^2)/(2n) -> 0, which equals the integral of the limit.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: This was the dataset's original (incorrect) claim; int_0^1 f_n = ln(1 + n^2)/(2n) -> 0, which equals the integral of the limit. The true statement is: For f_n(x) = nx / (1 + n^2 x^2) on [0, 1], {f_n} converges pointwise to 0 on [0, 1], but not uniformly on [0, 1]; nevertheless lim_{n -> infty} int_0^1 f_n(x)dx = int_0^1 lim_{n -> infty} f_n(x)dx = 0.",
+    "source_reference": "S.K. Mapa, Sequence of functions, Section 13.3, Worked Example 5 & 13.4 (False Twin Variant)"
   },
   {
     "id": 70,
@@ -1257,7 +2647,27 @@
       "Step 5: Compare: lim_{n -> infty} f'_n(0) = 1 != 0 = f'(0). The theorem on differentiation requires {f'_n} to converge uniformly on [0, 1]. But f'_n(x) = (1 - n x^2)/(1 + n x^2)^2 converges pointwise to 0 for x in (0, 1] and to 1 at x = 0, which is discontinuous at 0, hence {f'_n} does not converge uniformly."
     ],
     "solution_sketch": "M_n = 1/(2 sqrt(n)) -> 0, so f_n -> 0 uniformly. But f'_n(0) = 1 for all n, so lim f'_n(0) = 1 != f'(0) = 0. Differentiation theorem fails because {f'_n} does not converge uniformly (its pointwise limit is discontinuous at 0).",
-    "source_reference": "S.K. Mapa, Sequence of functions, Section 13.4, Worked Example 9"
+    "source_reference": "S.K. Mapa, Sequence of functions, Section 13.4, Worked Example 9",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 70
+  },
+  {
+    "id": 170,
+    "twin_id": 70,
+    "chapter": "Chapter 13: Sequence of functions",
+    "topic": "Sequence of Functions",
+    "subtopic": "Non-Commutativity of Limit and Derivative",
+    "claim": "For f_n(x) = x / (1 + n x^2) on [0, 1], {f_n} converges uniformly to f(x) = 0, and lim_{n -> infty} f'_n(0) = f'(0).",
+    "question": "Evaluate the mathematical claim: 'For f_n(x) = x / (1 + n x^2) on [0, 1], {f_n} converges uniformly to f(x) = 0, and lim_{n -> infty} f'_n(0) = f'(0).'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "inverted_property",
+    "falsity_reason": "f'_n(0) = 1 for every n, while f'(0) = 0.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: f'_n(0) = 1 for every n, while f'(0) = 0. The true statement is: For f_n(x) = x / (1 + n x^2) on [0, 1], {f_n} converges uniformly to f(x) = 0, but lim_{n -> infty} f'_n(0) != f'(0).",
+    "source_reference": "S.K. Mapa, Sequence of functions, Section 13.4, Worked Example 9 (False Twin Variant)"
   },
   {
     "id": 71,
@@ -1275,7 +2685,27 @@
       "Step 5: The family {I_x : x in [a, b]} forms an open cover of the compact set [a, b]. By the Heine-Borel Theorem, there exists a finite subcover {I_{x_1}, I_{x_2}, ..., I_{x_m}}. Let N = max(N_{x_1}, ..., N_{x_m}). For any n >= N and any t in [a, b], t belongs to some I_{x_j}, so by monotonicity g_n(t) <= g_{N_{x_j}}(t) < eps. Hence g_n -> 0 uniformly."
     ],
     "solution_sketch": "Set g_n = f_n - f >= 0 decreasing to 0. For each x, g_{N_x}(x) < eps/2, and by continuity g_{N_x}(t) < eps on a neighbourhood I_x. Compactness gives a finite subcover {I_{x_j}}. Taking N = max N_{x_j}, monotonicity ensures g_n(t) < eps for all n >= N, proving uniform convergence.",
-    "source_reference": "S.K. Mapa, Sequence of functions, Section 13.3, Theorem 13.3.6 (Dini's Theorem)"
+    "source_reference": "S.K. Mapa, Sequence of functions, Section 13.3, Theorem 13.3.6 (Dini's Theorem)",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 71
+  },
+  {
+    "id": 171,
+    "twin_id": 71,
+    "chapter": "Chapter 13: Sequence of functions",
+    "topic": "Sequence of Functions",
+    "subtopic": "Dini's Theorem on Monotone Sequences",
+    "claim": "If {f_n} is a sequence of continuous functions on [0, 1] such that f_{n+1}(x) <= f_n(x) for all x and f_n -> 0 pointwise on (0, 1), then f_n -> 0 uniformly on (0, 1).",
+    "question": "Evaluate the mathematical claim: 'If {f_n} is a sequence of continuous functions on [0, 1] such that f_{n+1}(x) <= f_n(x) for all x and f_n -> 0 pointwise on (0, 1), then f_n -> 0 uniformly on (0, 1).'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Advanced",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "dropped_hypothesis",
+    "falsity_reason": "f_n(x) = x^n decreases to 0 pointwise on (0, 1) but sup_{(0,1)} x^n = 1.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: f_n(x) = x^n decreases to 0 pointwise on (0, 1) but sup_{(0,1)} x^n = 1. The true statement is: If {f_n} is a sequence of continuous functions on [a, b] such that f_{n+1}(x) <= f_n(x) for all x in [a, b] and f_n -> 0 pointwise on [a, b], then f_n -> 0 uniformly on [a, b].",
+    "source_reference": "S.K. Mapa, Sequence of functions, Section 13.3, Theorem 13.3.6 (Dini's Theorem) (False Twin Variant)"
   },
   {
     "id": 72,
@@ -1293,7 +2723,27 @@
       "Step 5: Check convergence of sum M_n: sum_{n=1}^infty M_n = (1/2) sum_{n=1}^infty (1 / n^{3/2}). This is a p-series with p = 3/2 > 1, which converges. By the Weierstrass M-Test, the series converges uniformly on [0, infty)."
     ],
     "solution_sketch": "u_n(x) = x/[n(1 + n x^2)] attains maximum at x = 1/sqrt(n) with value M_n = 1/(2 n^{3/2}). The series sum M_n = (1/2) sum n^{-3/2} converges (p = 3/2 > 1). By Weierstrass M-test, the series converges uniformly on [0, infty).",
-    "source_reference": "S.K. Mapa, Series of functions, Section 14.1 & Exercises 25, Problem 2"
+    "source_reference": "S.K. Mapa, Series of functions, Section 14.1 & Exercises 25, Problem 2",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 72
+  },
+  {
+    "id": 172,
+    "twin_id": 72,
+    "chapter": "Chapter 14: Series of functions",
+    "topic": "Series of Functions",
+    "subtopic": "Weierstrass M-Test for Rational-Trigonometric Series",
+    "claim": "The series sum_{n=1}^infty x / [n (1 + n x^2)] is not uniformly convergent on [0, 1].",
+    "question": "Evaluate the mathematical claim: 'The series sum_{n=1}^infty x / [n (1 + n x^2)] is not uniformly convergent on [0, 1].'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "inverted_property",
+    "falsity_reason": "|u_n(x)| <= 1/(2 n^{3/2}) and the Weierstrass M-test gives uniform convergence on all of R.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: |u_n(x)| <= 1/(2 n^{3/2}) and the Weierstrass M-test gives uniform convergence on all of R. The true statement is: The series sum_{n=1}^infty x / [n (1 + n x^2)] is uniformly convergent on any bounded interval [a, b] in R.",
+    "source_reference": "S.K. Mapa, Series of functions, Section 14.1 & Exercises 25, Problem 2 (False Twin Variant)"
   },
   {
     "id": 73,
@@ -1311,7 +2761,27 @@
       "Step 5: Apply triangle inequality to numerator: |cos(x/2) - cos((n + 1/2)x)| <= |cos(x/2)| + |cos((n + 1/2)x)| <= 1 + 1 = 2. Hence |S_n(x)| <= 2 / [2 sin(delta/2)] = 1 / sin(delta/2) = M for all x in [delta, 2pi - delta] and all n in N. By Dirichlet's Test, the series converges uniformly on [delta, 2pi - delta]."
     ],
     "solution_sketch": "u_n(x) = sin nx has partial sums bounded by 1/sin(delta/2) on [delta, 2pi - delta]. v_n = 1/n decreases monotonically to 0 uniformly. By Dirichlet's test for function series, the series converges uniformly on [delta, 2pi - delta].",
-    "source_reference": "S.K. Mapa, Series of functions, Section 14.3, Worked Example 5"
+    "source_reference": "S.K. Mapa, Series of functions, Section 14.3, Worked Example 5",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 73
+  },
+  {
+    "id": 173,
+    "twin_id": 73,
+    "chapter": "Chapter 14: Series of functions",
+    "topic": "Series of Functions",
+    "subtopic": "Dirichlet's Test for Function Series on Compact Subintervals",
+    "claim": "The series sum_{n=1}^infty (sin nx)/n is uniformly convergent on [0, 2*pi].",
+    "question": "Evaluate the mathematical claim: 'The series sum_{n=1}^infty (sin nx)/n is uniformly convergent on [0, 2*pi].'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "overgeneralisation",
+    "falsity_reason": "The sum is (pi - x)/2 on (0, 2 pi) but 0 at x = 0, so the limit is discontinuous at 0 while every partial sum is continuous; uniform convergence fails.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: The sum is (pi - x)/2 on (0, 2 pi) but 0 at x = 0, so the limit is discontinuous at 0 while every partial sum is continuous; uniform convergence fails. The true statement is: The series sum_{n=1}^infty (sin nx)/n is uniformly convergent on [delta, 2*pi - delta] for any 0 < delta < pi.",
+    "source_reference": "S.K. Mapa, Series of functions, Section 14.3, Worked Example 5 (False Twin Variant)"
   },
   {
     "id": 74,
@@ -1329,7 +2799,27 @@
       "Step 5: Test endpoint x = -1: substitute x = -1: (x - 1)^n = (-2)^n = (-1)^n * 2^n, so general term is [(-1)^n / (n * 2^n)] * [(-1)^n * 2^n] = (-1)^{2n} / n = 1/n. The resulting series is the harmonic series sum_{n=1}^infty 1/n, which diverges. Conclude: radius of convergence R = 2, and interval of convergence is (-1, 3]."
     ],
     "solution_sketch": "R = lim |a_n/a_{n+1}| = 2. Open interval is (-1, 3). At x = 3, series is sum (-1)^n/n which converges by Leibniz. At x = -1, series is sum 1/n which diverges. The interval of convergence is (-1, 3].",
-    "source_reference": "S.K. Mapa, Power series, Exercises 26 & Section 15.2"
+    "source_reference": "S.K. Mapa, Power series, Exercises 26 & Section 15.2",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 74
+  },
+  {
+    "id": 174,
+    "twin_id": 74,
+    "chapter": "Chapter 15: Power series",
+    "topic": "Power Series",
+    "subtopic": "Radius of Convergence and Endpoint Analysis",
+    "claim": "The power series sum_{n=1}^infty [(-1)^n / (n * 2^n)] * (x - 1)^n has radius of convergence R = 2, interval of convergence [-1, 3), converges conditionally at x = -1, and diverges at x = 3.",
+    "question": "Evaluate the mathematical claim: 'The power series sum_{n=1}^infty [(-1)^n / (n * 2^n)] * (x - 1)^n has radius of convergence R = 2, interval of convergence [-1, 3), converges conditionally at x = -1, and diverges at x = 3.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "false_final_answer",
+    "falsity_reason": "At x = -1 the series is sum 1/n (diverges); at x = 3 it is sum (-1)^n/n (converges). The interval is (-1, 3].",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: At x = -1 the series is sum 1/n (diverges); at x = 3 it is sum (-1)^n/n (converges). The interval is (-1, 3]. The true statement is: The power series sum_{n=1}^infty [(-1)^n / (n * 2^n)] * (x - 1)^n has radius of convergence R = 2, interval of convergence (-1, 3], converges conditionally at x = 3, and diverges at x = -1.",
+    "source_reference": "S.K. Mapa, Power series, Exercises 26 & Section 15.2 (False Twin Variant)"
   },
   {
     "id": 75,
@@ -1347,6 +2837,26 @@
       "Step 5: Take limit as y -> 0 along x = k y^2: lim_{y -> 0} f(k y^2, y) = k / (k^2 + 1). For k = 1 (path x = y^2), the limit is 1/(1 + 1) = 1/2 != 0. Since the limit depends on the path of approach (0 along straight lines, 1/2 along x = y^2, -1/2 along x = -y^2), the double limit lim_{(x, y) -> (0, 0)} f(x, y) does not exist."
     ],
     "solution_sketch": "Along y = mx, f(x, mx) = m^2 x / (1 + m^4 x^2) -> 0 as x -> 0. Along x = 0, f(0, y) = 0. But along the parabola x = y^2, f(y^2, y) = y^4 / (y^4 + y^4) = 1/2 for all y != 0, giving limit 1/2 != 0. Hence the limit does not exist.",
-    "source_reference": "S.K. Mapa, APPENDIX 1- Sets in R2, Worked Examples"
+    "source_reference": "S.K. Mapa, APPENDIX 1- Sets in R2, Worked Examples",
+    "ground_truth_verdict": "Valid",
+    "is_false_twin": false,
+    "twin_id": 75
+  },
+  {
+    "id": 175,
+    "twin_id": 75,
+    "chapter": "APPENDIX 1- Sets in R2",
+    "topic": "Multivariable Limits in R^2",
+    "subtopic": "Path-Dependent Limits and Double Limits",
+    "claim": "For f(x, y) = (x * y^2) / (x^2 + y^4) for (x, y) != (0, 0) and f(0, 0) = 0, the directional limit along every straight line through the origin is 0, and therefore lim_{(x, y) -> (0, 0)} f(x, y) = 0.",
+    "question": "Evaluate the mathematical claim: 'For f(x, y) = (x * y^2) / (x^2 + y^4) for (x, y) != (0, 0) and f(0, 0) = 0, the directional limit along every straight line through the origin is 0, and therefore lim_{(x, y) -> (0, 0)} f(x, y) = 0.'. Determine if this statement is Valid or Invalid.",
+    "difficulty": "Hard",
+    "ground_truth_verdict": "Invalid",
+    "is_false_twin": true,
+    "perturbation_type": "inverted_property",
+    "falsity_reason": "Along x = y^2 the function equals 1/2, so the limit does not exist.",
+    "verified_by": "llm_unverified",
+    "solution_sketch": "The claim is false: Along x = y^2 the function equals 1/2, so the limit does not exist. The true statement is: For f(x, y) = (x * y^2) / (x^2 + y^4) for (x, y) != (0, 0) and f(0, 0) = 0, the directional limit along every straight line through the origin is 0, yet lim_{(x, y) -> (0, 0)} f(x, y) does not exist.",
+    "source_reference": "S.K. Mapa, APPENDIX 1- Sets in R2, Worked Examples (False Twin Variant)"
   }
 ]
