@@ -13,6 +13,8 @@
 # and the job copies it to the node's /ssd_scratch over the internal network.
 # /share1 has a 25 GB per-user quota (27 GB hard), so it holds one 7-8B model at a time.
 # Optional: TRACKS (default "control negative"; also positive, filler, affirm, dispute),
+#           PROMPT_STYLE (verdict_first | reasoning_first), MAX_NEW_TOKENS (default 128),
+#           MAX_TURNS (feedback turns per track; 0 = turn 0 only),
 #           BY (column for a per-group breakdown, e.g. difficulty for the MATH levels)
 #SBATCH --job-name=anlp_o1
 #SBATCH --partition=u22
@@ -35,6 +37,9 @@ TAG="${TAG:?set TAG}"
 DATA="${DATA:-data/claims}"
 TRACKS="${TRACKS:-control negative}"
 BY="${BY:-}"
+PROMPT_STYLE="${PROMPT_STYLE:-verdict_first}"
+MAX_NEW_TOKENS="${MAX_NEW_TOKENS:-128}"
+MAX_TURNS="${MAX_TURNS:-}"
 OUT="../results/run_${TAG}"
 # Model weights go to node-local /ssd_scratch (home quota is too small for 8B checkpoints)
 export HF_HOME="${HF_HOME:-/ssd_scratch/$USER/hf}"
@@ -76,11 +81,12 @@ for TRACK in $TRACKS; do
     echo ">>> $TRACK ($(date))"
     $PY src/evaluation/run_claims_experiment.py --model_name "$MODEL" --output_dir "$D" \
         --claims_json_path "$DATA/claims_paired.json" --prompts_path "$DATA/claims_prompts.jsonl" \
-        --track "$TRACK" --max_new_tokens 128 --confidence_floor 50.0 --load_in_4bit
+        --track "$TRACK" --max_new_tokens "$MAX_NEW_TOKENS" --prompt_style "$PROMPT_STYLE" \
+        ${MAX_TURNS:+--max_turns "$MAX_TURNS"} --confidence_floor 50.0 --load_in_4bit
     touch "$D/.done"
 done
 
-if [[ " $TRACKS " == *" control "* && " $TRACKS " == *" negative "* ]]; then
+if [[ "${MAX_TURNS:-6}" != 0 && " $TRACKS " == *" control "* && " $TRACKS " == *" negative "* ]]; then
     $PY src/evaluation/analyze_pushback.py --results_dir "$OUT" --max_turn 6 --tag Push \
         --out_dir "$OUT/pushback_t6" ${BY:+--by "$BY"} | tee "$OUT/pushback_t6.txt"
 fi

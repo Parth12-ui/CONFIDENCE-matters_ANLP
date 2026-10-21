@@ -324,6 +324,7 @@ def run_experiment(
     settled_turns_k: int = 2,
     stalled_turns_m: int = 3,
     prompt_style: str = "verdict_first",
+    max_turns: Optional[int] = None,
 ):
     os.makedirs(output_dir, exist_ok=True)
     reasoning_first = prompt_style == "reasoning_first"
@@ -469,6 +470,9 @@ def run_experiment(
             tracks = track_map[track]
 
             for track_name, track_prompts in tracks:
+                if max_turns is not None:
+                    # 0 runs only the neutral turn-0 question (e.g. a baseline pilot)
+                    track_prompts = track_prompts[:max_turns]
                 messages = [{"role": "system", "content": system_prompt}]
                 running_score = 0.0
 
@@ -683,6 +687,12 @@ if __name__ == "__main__":
               "full = all six"),
     )
     parser.add_argument(
+        "--max_turns",
+        type=int,
+        default=None,
+        help="Feedback turns per track (default: all six; 0 = turn 0 only)",
+    )
+    parser.add_argument(
         "--prompt_style",
         choices=["verdict_first", "reasoning_first"],
         default="verdict_first",
@@ -748,4 +758,5 @@ if __name__ == "__main__":
         settled_turns_k=args.settled_turns_k,
         stalled_turns_m=args.stalled_turns_m,
         prompt_style=args.prompt_style,
+        max_turns=args.max_turns,
     )
