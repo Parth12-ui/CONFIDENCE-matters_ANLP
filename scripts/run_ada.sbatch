@@ -42,6 +42,18 @@ if [[ "$MODEL" == meta-llama/* ]] && [ -z "${HF_TOKEN:-}" ]; then
 fi
 nvidia-smi -L
 echo "Model $MODEL, data $DATA, tracks [$TRACKS] -> $OUT"
+# Download the weights first, with a stall timeout and retries (a hung download once
+# stalled a job for 30 minutes); huggingface_hub resumes partial files.
+export HF_HUB_DOWNLOAD_TIMEOUT="${HF_HUB_DOWNLOAD_TIMEOUT:-60}"
+# MODEL may also be a local folder (compute-node downloads can be very slow; fetch the
+# weights on the login node into a home directory instead).
+if [ ! -d "$MODEL" ]; then
+    for ATTEMPT in 1 2 3 4 5; do
+        timeout 3h "$(dirname "$PY")/huggingface-cli" download "$MODEL" --exclude "*.pth" "original/*" > /dev/null && break
+        echo "!!! download attempt $ATTEMPT failed or stalled; retrying"
+        sleep 30
+    done
+fi
 
 for TRACK in $TRACKS; do
     D="$OUT/$TRACK"
