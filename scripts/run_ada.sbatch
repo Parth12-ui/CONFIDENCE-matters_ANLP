@@ -11,6 +11,7 @@
 # scripts/fetch_model.sh, either into a home directory (pass that folder as MODEL) or into
 # /share1, which compute nodes cannot see: then set MODEL_ON_LOGIN=/share1/$USER/models/NAME
 # and the job copies it to the node's /ssd_scratch over the internal network.
+# /share1 has a 25 GB per-user quota (27 GB hard), so it holds one 7-8B model at a time.
 # Optional: TRACKS (default "control negative"; also positive, filler, affirm, dispute),
 #           BY (column for a per-group breakdown, e.g. difficulty for the MATH levels)
 #SBATCH --job-name=anlp_o1
