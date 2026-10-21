@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # O1 tracks on any single-GPU machine (e.g. a Jarvislabs instance), one process per track
-# in parallel, then the pushback analysis. Results go to <repo>/results/run_${TAG}/.
+# in parallel, then the pushback analysis. Results go to <repo>/results/v4_final/run_${TAG}/.
 #
-# Run from new_code/:
+# Run from code/v4_final/:
 #   bash scripts/run_o1.sh MODEL TAG [DATA] [QUANT]
 #     DATA   data/claims (default) or data/claims_math
 #     QUANT  bf16 (default; ~16 GB per 7-8B process, fits three on a 48-80 GB card) or 4bit
@@ -16,7 +16,7 @@ DATA="${3:-data/claims}"
 QUANT="${4:-bf16}"
 TRACKS="${TRACKS:-control negative}"
 BY="${BY:-}"
-OUT="../results/run_${TAG}"
+OUT="../../results/v4_final/run_${TAG}"
 QUANT_FLAG=""
 [ "$QUANT" = "4bit" ] && QUANT_FLAG="--load_in_4bit"
 mkdir -p "$OUT"

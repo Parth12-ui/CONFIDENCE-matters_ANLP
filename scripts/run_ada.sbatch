@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # O1 tracks for one model and one dataset on Ada, one GPU (the 'low' QoS allows one per
 # user), then the pushback analysis. Each track is skipped if it already finished, so a
-# resubmitted job resumes. Results go to <repo>/results/run_${TAG}/.
+# resubmitted job resumes. Results go to <repo>/results/v4_final/run_${TAG}/.
 #
-# Submit from new_code/:
+# Submit from code/v4_final/:
 #   MODEL=Qwen/Qwen2.5-7B-Instruct TAG=qwen25_7b_math DATA=data/claims_math sbatch scripts/ada_run.sbatch
 #   MODEL=meta-llama/Meta-Llama-3.1-8B-Instruct TAG=llama31_8b sbatch scripts/ada_run.sbatch
 #     (Llama is gated: save a Hugging Face token in ~/.cache/huggingface/token on Ada first)
@@ -26,7 +26,7 @@
 #SBATCH --output=logs/o1_%x_%j.out
 
 set -euo pipefail
-cd "${SLURM_SUBMIT_DIR:-$HOME/anlp_project/new_code}"
+cd "${SLURM_SUBMIT_DIR:-$HOME/anlp_project/code/v4_final}"
 PY="${PY:-$HOME/anlp_venv/bin/python}"
 MODEL_ON_LOGIN="${MODEL_ON_LOGIN:-}"
 if [ -n "$MODEL_ON_LOGIN" ]; then
@@ -40,7 +40,7 @@ BY="${BY:-}"
 PROMPT_STYLE="${PROMPT_STYLE:-verdict_first}"
 MAX_NEW_TOKENS="${MAX_NEW_TOKENS:-128}"
 MAX_TURNS="${MAX_TURNS:-}"
-OUT="../results/run_${TAG}"
+OUT="../../results/v4_final/run_${TAG}"
 # Model weights go to node-local /ssd_scratch (home quota is too small for 8B checkpoints)
 export HF_HOME="${HF_HOME:-/ssd_scratch/$USER/hf}"
 export PYTHONUNBUFFERED=1

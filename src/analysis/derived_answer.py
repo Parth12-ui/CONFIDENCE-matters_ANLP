@@ -18,8 +18,8 @@ Unlike the probes, this needs no extra forward pass and cannot replay the verdic
 distribution: the derivation is generated text the verdict can contradict.
 
 Usage:
-  python src/evaluation/analyze_derived_answer.py --results_dir ../results/run_qwen25_7b_math_rf \
-      --claims data/claims_math/claims_paired.json --out_dir ../results/run_qwen25_7b_math_rf/derived
+  python src/evaluation/analyze_derived_answer.py --results_dir ../../results/v4_final/run_qwen25_7b_math_rf \
+      --claims data/claims_math/claims_paired.json --out_dir ../../results/v4_final/run_qwen25_7b_math_rf/derived
 """
 
 import argparse

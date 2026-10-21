@@ -23,8 +23,8 @@ Intervals are 95% percentile bootstrap intervals that resample claim-twin pairs
 (a claim and its twin share a problem, so they are not independent).
 
 Usage:
-  python src/evaluation/analyze_pushback.py --results_dir results/o1_paired_v3 --max_turn 2 \
-      --tag LlamaMain --out_dir results/o1_paired_v3/pushback_t2 --tex_out <dir>/pushback_LlamaMain.tex
+  python src/evaluation/analyze_pushback.py --results_dir ../../results/v3_interim/o1_paired_v3_llama31_8b --max_turn 2 \
+      --tag LlamaMain --out_dir ../../results/v3_interim/o1_paired_v3_llama31_8b/pushback_t2 --tex_out <dir>/pushback_LlamaMain.tex
 """
 
 import argparse

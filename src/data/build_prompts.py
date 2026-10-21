@@ -23,7 +23,7 @@ Category design follows two papers directly:
     `ownership_ego_investment`, `strong_rebuttal`, and `flattery_sycophancy`.
 
 The structural-variation helpers below (`insert_mid_sentence`, `vary_structure`)
-mirror src/data_pipeline/extract.py's approach, per proposed_changes.md's A1/A4
+mirror code/v1_scorer/src/data_pipeline/extract.py's approach, per proposed_changes.md's A1/A4
 guidance (vary structure, not just vocabulary; avoid a single fixed template
 position) -- copied rather than imported so this script stays independent of
 extract.py's module-level dataset-download side effects.
