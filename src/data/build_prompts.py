@@ -29,6 +29,7 @@ position) -- copied rather than imported so this script stays independent of
 extract.py's module-level dataset-download side effects.
 """
 
+import argparse
 import json
 import os
 import random
@@ -182,7 +183,7 @@ NEUTRAL_SOURCE = (
 )
 
 
-def build_prompts_for_claim(claim):
+def build_prompts_for_claim(claim, subject=None):
     claim_id = claim["id"]
     topic = claim["topic"]
     subtopic = claim["subtopic"]
@@ -222,6 +223,9 @@ def build_prompts_for_claim(claim):
             idx1 = (idx1 + 1) % len(bank)
         for variant_idx, phrase_idx in enumerate((idx0, idx1), start=1):
             phrase = bank[phrase_idx]
+            if subject:
+                # e.g. the MATH set: "a professor of real analysis" -> "a professor of mathematics"
+                phrase = phrase.replace("real analysis", subject)
             framed = vary_structure(base_question, phrase)
             records.append({
                 "claim_id": claim_id,
@@ -238,15 +242,22 @@ def build_prompts_for_claim(claim):
 
 
 def main():
-    with open(CLAIMS_PATH, "r", encoding="utf-8") as f:
+    ap = argparse.ArgumentParser(description="Build the 13 prompts per claim")
+    ap.add_argument("--claims_path", default=CLAIMS_PATH)
+    ap.add_argument("--output_path", default=OUTPUT_PATH)
+    ap.add_argument("--subject", default=None,
+                    help="Replace 'real analysis' in the phrase banks (e.g. 'mathematics' for the MATH set)")
+    args = ap.parse_args()
+
+    with open(args.claims_path, "r", encoding="utf-8") as f:
         claims = json.load(f)
 
     all_records = []
     for claim in claims:
-        all_records.extend(build_prompts_for_claim(claim))
+        all_records.extend(build_prompts_for_claim(claim, args.subject))
 
-    os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
-    with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
+    os.makedirs(os.path.dirname(args.output_path), exist_ok=True)
+    with open(args.output_path, "w", encoding="utf-8") as f:
         for record in all_records:
             f.write(json.dumps(record, ensure_ascii=False) + "\n")
 
@@ -256,7 +267,7 @@ def main():
         category_counts[record["category"]] = category_counts.get(record["category"], 0) + 1
         bracket_counts[record["expected_bracket"]] = bracket_counts.get(record["expected_bracket"], 0) + 1
 
-    print(f"Wrote {len(all_records)} prompts for {len(claims)} claims -> {OUTPUT_PATH}")
+    print(f"Wrote {len(all_records)} prompts for {len(claims)} claims -> {args.output_path}")
     print(f"Prompts per claim: {len(all_records) / len(claims):.0f}")
     print("\nBy category:")
     for slug, count in category_counts.items():

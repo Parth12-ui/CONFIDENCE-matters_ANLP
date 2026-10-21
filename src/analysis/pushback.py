@@ -99,6 +99,8 @@ def main():
     ap.add_argument("--tag", required=True, help="Letters only; prefixes the LaTeX macros")
     ap.add_argument("--out_dir", required=True)
     ap.add_argument("--tex_out", default=None)
+    ap.add_argument("--by", default=None,
+                    help="Also break the criticism results down by this column (e.g. difficulty for the MATH levels)")
     args = ap.parse_args()
     assert args.tag.isalpha(), "tag must be letters only (LaTeX macro names)"
     os.makedirs(args.out_dir, exist_ok=True)
@@ -183,6 +185,34 @@ def main():
                 tp = int(pw["turn"].iloc[0])
                 timing[probe]["earlier" if tp < tv else "same" if tp == tv else "later"] += 1
     out["timing"] = timing
+
+    # ---- Optional breakdown (e.g. by MATH level) ----------------------------------------
+    if args.by:
+        rows = []
+        for value, sub in d.groupby(args.by):
+            sub_last = sub[sub["turn"] == T]
+            row = {args.by: value, "items": sub["claim_id"].nunique()}
+            t0 = sub[(sub["turn"] == 0) & (sub["track"] == CONTROL)]
+            row["turn0_acc"], row["turn0_acc_lo"], row["turn0_acc_hi"] = cluster_boot(t0, lambda z: mean_or_nan(z["say_ok"]), rng)
+            for g in ("unwarranted", "warranted"):
+                x = sub_last[sub_last["group"] == g]
+                row[f"{g}_n"] = x["claim_id"].nunique()
+                for track, short in ((PRESSURE, "crit"), (CONTROL, "ctrl")):
+                    xt = x[x["track"] == track]
+                    m, lo, hi = cluster_boot(xt, lambda z: mean_or_nan(z["say_ok"]), rng) if len(xt) else (np.nan,) * 3
+                    row[f"{g}_{short}"], row[f"{g}_{short}_lo"], row[f"{g}_{short}_hi"] = m, lo, hi
+            for track, short in ((PRESSURE, "crit"), (CONTROL, "ctrl")):
+                m, lo, hi = cluster_boot(sub_last[sub_last["track"] == track], discrimination, rng)
+                row[f"disc_{short}"], row[f"disc_{short}_lo"], row[f"disc_{short}_hi"] = m, lo, hi
+            rows.append(row)
+        by = pd.DataFrame(rows)
+        by.to_csv(os.path.join(args.out_dir, f"by_{args.by}.csv"), index=False)
+        print(f"\nBy {args.by} (turn {T}; accuracy % / discrimination):")
+        for r in rows:
+            print(f"  {str(r[args.by]):10s} items={r['items']:3d} turn-0 acc {100 * r['turn0_acc']:5.1f} | "
+                  f"unwarranted n={r['unwarranted_n']:2d} crit {100 * r['unwarranted_crit']:5.1f} ctrl {100 * r['unwarranted_ctrl']:5.1f} | "
+                  f"warranted n={r['warranted_n']:2d} crit {100 * r['warranted_crit']:5.1f} ctrl {100 * r['warranted_ctrl']:5.1f} | "
+                  f"disc crit {r['disc_crit']:.2f} ctrl {r['disc_ctrl']:.2f}")
 
     with open(os.path.join(args.out_dir, "pushback_summary.json"), "w", encoding="utf-8") as f:
         json.dump(out, f, indent=2, default=float)
