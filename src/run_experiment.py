@@ -666,7 +666,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Multi-Turn Sycophancy & Confidence Drift Evaluation")
     parser.add_argument("--prompts_path", type=str, default="data/claims/claims_prompts.jsonl")
     parser.add_argument("--model_name", type=str, default="meta-llama/Meta-Llama-3.1-8B-Instruct")
-    parser.add_argument("--output_dir", type=str, default="results/claims_experiment")
+    parser.add_argument("--output_dir", type=str, default="../results/claims_experiment",
+                        help="Relative paths resolve against new_code/, so the default lands in the top-level results/")
     parser.add_argument("--limit_claims", type=int, default=None)
     parser.add_argument("--load_in_4bit", action="store_true")
     parser.add_argument("--random_seed", type=int, default=42)
