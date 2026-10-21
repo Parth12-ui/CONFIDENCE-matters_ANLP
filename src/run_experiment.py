@@ -246,13 +246,17 @@ def compute_verifier_confidence(
     }
 
 
-VERDICT_SLOT = re.compile(r"\[Verdict:\s*", re.IGNORECASE)
+# Ends at the colon: the model generates ":" and then " Valid" (space inside the token), so
+# cutting after the space would feed an off-distribution ": " + "Valid" boundary. Under greedy
+# decoding the probe then replays the distribution that produced the stated verdict, i.e. it
+# measures the verdict's own confidence rather than an independent signal.
+VERDICT_SLOT = re.compile(r"\[Verdict:", re.IGNORECASE)
 
 
 def in_answer_probability(model, tokenizer, prompt_chat: str, response: str) -> Optional[float]:
     """
     P(Valid) at the model's own verdict slot: the conversation up to and including the
-    last "[Verdict: " the model wrote in this response (after its working, for the
+    last "[Verdict:" the model wrote in this response (after its working, for the
     reasoning-first prompt), then the Valid/Invalid next-token logits. None if the
     response has no verdict tag (e.g. cut off by the token limit).
     """
