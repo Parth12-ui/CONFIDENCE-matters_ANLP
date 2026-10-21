@@ -157,6 +157,20 @@ def extract_verdict(text: str, last: bool = False) -> Optional[str]:
     return None
 
 
+def _last_logits(model, inputs):
+    """
+    Next-token logits at the last position only. Asking for all positions materialises a
+    (sequence x vocabulary) tensor (over 1 GB for a 6-turn reasoning-first conversation with
+    Qwen's 152k vocabulary), which ran out of memory on an 11 GB GPU. Values are identical.
+    """
+    for kwarg in ("logits_to_keep", "num_logits_to_keep"):
+        try:
+            return model(**inputs, **{kwarg: 1}).logits[0, -1, :]
+        except TypeError:
+            continue
+    return model(**inputs).logits[0, -1, :]
+
+
 def _first_content_token(tokenizer, text: str) -> Optional[int]:
     """First token id of `text`, or None if that token is whitespace only (e.g. a lone leading space)."""
     ids = tokenizer.encode(text, add_special_tokens=False)
@@ -190,7 +204,7 @@ def compute_target_token_probability(
 
     inputs = tokenizer(prompt_text, return_tensors="pt", add_special_tokens=False).to(model.device)
     with torch.inference_mode():
-        logits = model(**inputs).logits[0, -1, :]
+        logits = _last_logits(model, inputs)
         pos_logit = max(logits[pid].item() for pid in pos_cand) if pos_cand else 0.0
         neg_logit = max(logits[nid].item() for nid in neg_cand) if neg_cand else 0.0
     probs = F.softmax(torch.tensor([pos_logit, neg_logit], dtype=torch.float32), dim=0)
@@ -225,7 +239,7 @@ def compute_verifier_confidence(
 
     inputs = tokenizer(probe_text, return_tensors="pt", add_special_tokens=False).to(model.device)
     with torch.inference_mode():
-        logits = model(**inputs).logits[0, -1, :]
+        logits = _last_logits(model, inputs)
         pos_logit = float(max(logits[pid].item() for pid in pos_cand))
         neg_logit = float(max(logits[nid].item() for nid in neg_cand))
 

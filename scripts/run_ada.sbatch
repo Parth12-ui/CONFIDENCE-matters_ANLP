@@ -44,6 +44,8 @@ OUT="../../results/v4_final/run_${TAG}"
 # Model weights go to node-local /ssd_scratch (home quota is too small for 8B checkpoints)
 export HF_HOME="${HF_HOME:-/ssd_scratch/$USER/hf}"
 export PYTHONUNBUFFERED=1
+# Long reasoning-first conversations fragment GPU memory on 11 GB cards
+export PYTORCH_CUDA_ALLOC_CONF="${PYTORCH_CUDA_ALLOC_CONF:-expandable_segments:True}"
 mkdir -p logs "$OUT" "$HF_HOME"
 # HF_HOME points at scratch, so read the login token from the usual home location
 if [ -z "${HF_TOKEN:-}" ] && [ -f "$HOME/.cache/huggingface/token" ]; then
