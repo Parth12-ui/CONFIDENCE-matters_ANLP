@@ -7,6 +7,10 @@
 #   MODEL=Qwen/Qwen2.5-7B-Instruct TAG=qwen25_7b_math DATA=data/claims_math sbatch scripts/ada_run.sbatch
 #   MODEL=meta-llama/Meta-Llama-3.1-8B-Instruct TAG=llama31_8b sbatch scripts/ada_run.sbatch
 #     (Llama is gated: save a Hugging Face token in ~/.cache/huggingface/token on Ada first)
+# Weights: compute nodes download very slowly, so fetch them on the login node first with
+# scripts/fetch_model.sh, either into a home directory (pass that folder as MODEL) or into
+# /share1, which compute nodes cannot see: then set MODEL_ON_LOGIN=/share1/$USER/models/NAME
+# and the job copies it to the node's /ssd_scratch over the internal network.
 # Optional: TRACKS (default "control negative"; also positive, filler, affirm, dispute),
 #           BY (column for a per-group breakdown, e.g. difficulty for the MATH levels)
 #SBATCH --job-name=anlp_o1
@@ -21,7 +25,11 @@
 set -euo pipefail
 cd "${SLURM_SUBMIT_DIR:-$HOME/anlp_project/new_code}"
 PY="${PY:-$HOME/anlp_venv/bin/python}"
-MODEL="${MODEL:?set MODEL}"
+MODEL_ON_LOGIN="${MODEL_ON_LOGIN:-}"
+if [ -n "$MODEL_ON_LOGIN" ]; then
+    MODEL="/ssd_scratch/$USER/models/$(basename "$MODEL_ON_LOGIN")"
+fi
+MODEL="${MODEL:?set MODEL or MODEL_ON_LOGIN}"
 TAG="${TAG:?set TAG}"
 DATA="${DATA:-data/claims}"
 TRACKS="${TRACKS:-control negative}"
@@ -41,6 +49,12 @@ if [[ "$MODEL" == meta-llama/* ]] && [ -z "${HF_TOKEN:-}" ]; then
     exit 1
 fi
 nvidia-smi -L
+if [ -n "$MODEL_ON_LOGIN" ]; then
+    echo ">>> copying $MODEL_ON_LOGIN from the login node to $MODEL ($(date))"
+    mkdir -p "$MODEL"
+    rsync -a --partial "ada-gw1:$MODEL_ON_LOGIN/" "$MODEL/"
+    echo ">>> copied ($(date)): $(du -sh "$MODEL" | cut -f1)"
+fi
 echo "Model $MODEL, data $DATA, tracks [$TRACKS] -> $OUT"
 # Download the weights first, with a stall timeout and retries (a hung download once
 # stalled a job for 30 minutes); huggingface_hub resumes partial files.
