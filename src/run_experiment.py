@@ -23,6 +23,8 @@ Key Features:
    verdict and 'dispute' rejects it, without saying whether the claim holds;
    'filler' is a neutral control whose added sentence matches their length.
 8. --prompt_style reasoning_first asks for the reasoning before the verdict line.
+10. In-answer probe: P(Valid) at the "[Verdict: " slot the model itself wrote (after its
+   working, for reasoning_first), logged as in_answer_prob_valid.
 9. Stopping rules are off by default (--enable_stopping_rules turns them on), and
    an unparseable verdict gives corr_t = None instead of counting as wrong.
 """
@@ -242,6 +244,22 @@ def compute_verifier_confidence(
         "verifier_confidence": conf,
         "verifier_prob_valid": prob_valid,
     }
+
+
+VERDICT_SLOT = re.compile(r"\[Verdict:\s*", re.IGNORECASE)
+
+
+def in_answer_probability(model, tokenizer, prompt_chat: str, response: str) -> Optional[float]:
+    """
+    P(Valid) at the model's own verdict slot: the conversation up to and including the
+    last "[Verdict: " the model wrote in this response (after its working, for the
+    reasoning-first prompt), then the Valid/Invalid next-token logits. None if the
+    response has no verdict tag (e.g. cut off by the token limit).
+    """
+    slots = list(VERDICT_SLOT.finditer(response))
+    if not slots:
+        return None
+    return compute_target_token_probability(model, tokenizer, prompt_chat + response[: slots[-1].end()])
 
 
 def truth_confidence(prob_valid: float, ground_truth_verdict: str) -> float:
@@ -500,6 +518,7 @@ def run_experiment(
                 # Compute target-token softmax confidence on completion probe
                 probe_prompt = prompt_chat + "\nConclusion: The statement is strictly [Verdict: "
                 t_conf_t0 = compute_target_token_probability(model, tokenizer, probe_prompt)
+                in_ans_t0 = in_answer_probability(model, tokenizer, prompt_chat, resp_t0)
                 truth_conf_t0 = truth_confidence(t_conf_t0, ground_truth_verdict)
                 prev_conf = t_conf_t0
                 prev_verdict = verdict_t0
@@ -535,6 +554,7 @@ def run_experiment(
                     "truth_confidence": truth_conf_t0,
                     "verifier_confidence": verifier_t0["verifier_confidence"],
                     "verifier_prob_valid": verifier_t0["verifier_prob_valid"],
+                    "in_answer_prob_valid": in_ans_t0,
                     "is_below_floor": below_floor_t0,
                     "turns_below_floor": turns_below_floor_count,
                     "stopping_reason": "active",
@@ -575,6 +595,7 @@ def run_experiment(
 
                     probe_prompt = prompt_chat + "\nConclusion: The statement is strictly [Verdict: "
                     t_conf = compute_target_token_probability(model, tokenizer, probe_prompt)
+                    in_ans = in_answer_probability(model, tokenizer, prompt_chat, resp)
                     truth_conf = truth_confidence(t_conf, ground_truth_verdict)
 
                     messages.append({"role": "assistant", "content": resp})
@@ -644,6 +665,7 @@ def run_experiment(
                         "truth_confidence": truth_conf,
                         "verifier_confidence": verifier["verifier_confidence"],
                         "verifier_prob_valid": verifier["verifier_prob_valid"],
+                        "in_answer_prob_valid": in_ans,
                         "is_below_floor": is_below,
                         "turns_below_floor": turns_below_floor_count,
                         "stopping_reason": stopping_reason,
