@@ -27,6 +27,12 @@ Key Features:
    working, for reasoning_first), logged as in_answer_prob_valid.
 9. Stopping rules are off by default (--enable_stopping_rules turns them on), and
    an unparseable verdict gives corr_t = None instead of counting as wrong.
+11. --force_verdict (reasoning_first): an answer that ends without a parseable verdict
+   (usually cut off by the token limit, often inside a repetition loop) has its loop cut
+   back to one copy, then "[Verdict:" is appended and the model completes that line, a
+   two-stage answer extraction as in Kojima et al. (2022). The completed answer is what
+   later turns see. Logged per turn: response_tokens, hit_token_limit, loop_trimmed,
+   verdict_forced, so analyses can include or exclude forced verdicts.
 """
 
 import argparse
@@ -279,6 +285,64 @@ def compute_verifier_confidence(
     }
 
 
+SENTENCE_SPLIT = re.compile(r"(?<=[.!?:])\s+|\n+")
+
+
+def trim_loop(text: str, min_repeats: int = 3, min_chars: int = 20) -> tuple:
+    """
+    Cuts a repetition loop: if some sentence (at least min_chars long) occurs min_repeats
+    or more times, the text is cut just before its second occurrence, keeping one copy.
+    Returns (text, trimmed).
+    """
+    parts = [m for m in re.finditer(r"[^\n.!?:]+[.!?:]?", text)]
+    norm = [re.sub(r"\s+", " ", m.group(0)).strip().lower() for m in parts]
+    counts = defaultdict(int)
+    for n in norm:
+        if len(n) >= min_chars:
+            counts[n] += 1
+    seen = set()
+    for m, n in zip(parts, norm):
+        if counts.get(n, 0) >= min_repeats:
+            if n in seen:
+                return text[: m.start()].rstrip(), True
+            seen.add(n)
+    return text, False
+
+
+def generate_answer(model, tokenizer, prompt_chat: str, max_new_tokens: int,
+                    reasoning_first: bool, force_verdict: bool) -> tuple:
+    """Greedy answer to the chat so far, plus the forced-verdict fallback (see note 11)."""
+    inputs = tokenizer(prompt_chat, return_tensors="pt", add_special_tokens=False).to(model.device)
+    prompt_len = inputs.input_ids.shape[1]
+    with torch.inference_mode():
+        out_ids = model.generate(
+            **inputs,
+            max_new_tokens=max_new_tokens,
+            do_sample=False,  # Greedy decoding for deterministic repeatability
+            use_cache=True,
+            pad_token_id=tokenizer.eos_token_id,
+        )
+    new_ids = out_ids[0][prompt_len:]
+    n_tokens = int(new_ids.shape[0])
+    hit_limit = n_tokens >= max_new_tokens and int(new_ids[-1]) != tokenizer.eos_token_id
+    resp = tokenizer.decode(new_ids, skip_special_tokens=True).strip()
+    del inputs, out_ids
+    info = {"response_tokens": n_tokens, "hit_token_limit": hit_limit, "loop_trimmed": False, "verdict_forced": False}
+    if not (force_verdict and reasoning_first) or extract_verdict(resp, last=True) is not None:
+        return resp, info
+
+    resp, info["loop_trimmed"] = trim_loop(resp)
+    stub = resp.rstrip() + "\n\n[Verdict:"
+    inputs = tokenizer(prompt_chat + stub, return_tensors="pt", add_special_tokens=False).to(model.device)
+    with torch.inference_mode():
+        out_ids = model.generate(**inputs, max_new_tokens=16, do_sample=False, use_cache=True,
+                                 pad_token_id=tokenizer.eos_token_id)
+    tail = tokenizer.decode(out_ids[0][inputs.input_ids.shape[1]:], skip_special_tokens=True)
+    resp = stub + tail.split("\n")[0].rstrip()
+    info["verdict_forced"] = True
+    return resp, info
+
+
 # Ends at the colon: the model generates ":" and then " Valid" (space inside the token), so
 # cutting after the space would feed an off-distribution ": " + "Valid" boundary. Under greedy
 # decoding the probe then replays the distribution that produced the stated verdict, i.e. it
@@ -380,6 +444,7 @@ def run_experiment(
     stalled_turns_m: int = 3,
     prompt_style: str = "verdict_first",
     max_turns: Optional[int] = None,
+    force_verdict: bool = False,
 ):
     os.makedirs(output_dir, exist_ok=True)
     reasoning_first = prompt_style == "reasoning_first"
@@ -543,19 +608,8 @@ def run_experiment(
                 # --- Turn 0: Neutral Baseline ---
                 messages.append({"role": "user", "content": styled(neutral_prompt["prompt"])})
                 prompt_chat = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
-                inputs = tokenizer(prompt_chat, return_tensors="pt", add_special_tokens=False).to(model.device)
-                prompt_len = inputs.input_ids.shape[1]
-
-                with torch.inference_mode():
-                    out_ids = model.generate(
-                        **inputs,
-                        max_new_tokens=max_new_tokens,
-                        do_sample=False,  # Greedy decoding for deterministic repeatability
-                        use_cache=True,
-                        pad_token_id=tokenizer.eos_token_id,
-                    )
-
-                resp_t0 = tokenizer.decode(out_ids[0][prompt_len:], skip_special_tokens=True).strip()
+                resp_t0, gen_t0 = generate_answer(model, tokenizer, prompt_chat, max_new_tokens,
+                                                  reasoning_first, force_verdict)
                 v_conf_t0 = extract_verbalized_confidence(resp_t0, last=reasoning_first)
                 verdict_t0 = extract_verdict(resp_t0, last=reasoning_first)
                 # An unparseable verdict is missing, not wrong
@@ -606,6 +660,7 @@ def run_experiment(
                     "stopping_reason": "active",
                     "prompt": styled(neutral_prompt["prompt"]),
                     "response": resp_t0,
+                    **gen_t0,
                     "prompt_style": prompt_style,
                     "gpu_peak_gb": _gpu_peak_and_reset(),
                 }
@@ -623,20 +678,9 @@ def run_experiment(
                     running_score += p["score"]
 
                     prompt_chat = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
-                    inputs = tokenizer(prompt_chat, return_tensors="pt", add_special_tokens=False).to(model.device)
-                    prompt_len = inputs.input_ids.shape[1]
-                    _mem(f"t{turn_idx} start ({prompt_len} tok)")
-
-                    with torch.inference_mode():
-                        out_ids = model.generate(
-                            **inputs,
-                            max_new_tokens=max_new_tokens,
-                            do_sample=False,
-                            use_cache=True,
-                            pad_token_id=tokenizer.eos_token_id,
-                        )
-
-                    resp = tokenizer.decode(out_ids[0][prompt_len:], skip_special_tokens=True).strip()
+                    _mem(f"t{turn_idx} start")
+                    resp, gen = generate_answer(model, tokenizer, prompt_chat, max_new_tokens,
+                                                reasoning_first, force_verdict)
                     _mem(f"t{turn_idx} after generate")
                     v_conf = extract_verbalized_confidence(resp, last=reasoning_first)
                     verdict = extract_verdict(resp, last=reasoning_first)
@@ -723,6 +767,7 @@ def run_experiment(
                         "stopping_reason": stopping_reason,
                         "prompt": styled(p["prompt"]),
                         "response": resp,
+                        **gen,
                         "prompt_style": prompt_style,
                         "gpu_peak_gb": _gpu_peak_and_reset(),
                     }
@@ -772,6 +817,11 @@ if __name__ == "__main__":
         choices=["verdict_first", "reasoning_first"],
         default="verdict_first",
         help="verdict_first (O1 v3 format) or reasoning_first (verdict line at the end; raise --max_new_tokens)",
+    )
+    parser.add_argument(
+        "--force_verdict",
+        action="store_true",
+        help="reasoning_first only: trim repetition loops and complete a missing verdict line (see note 11)",
     )
     parser.add_argument(
         "--claims_json_path",
@@ -834,4 +884,5 @@ if __name__ == "__main__":
         stalled_turns_m=args.stalled_turns_m,
         prompt_style=args.prompt_style,
         max_turns=args.max_turns,
+        force_verdict=args.force_verdict,
     )

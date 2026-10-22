@@ -46,7 +46,7 @@ GROUPS = {
 }
 
 
-def load(results_dir: str, max_turn: int) -> pd.DataFrame:
+def load(results_dir: str, max_turn: int, drop_forced: bool = False) -> pd.DataFrame:
     paths = sorted(glob.glob(os.path.join(results_dir, "**", "claims_drift_results.jsonl"), recursive=True))
     if not paths:
         raise FileNotFoundError(f"No claims_drift_results.jsonl under {results_dir}")
@@ -58,6 +58,9 @@ def load(results_dir: str, max_turn: int) -> pd.DataFrame:
     keep = reach.index[(reach == max_turn).all(axis=1)]
     d = d[d["claim_id"].isin(keep)].copy()
 
+    if drop_forced and "verdict_forced" in d:
+        # verdicts completed by the runner's --force_verdict fallback count as missing
+        d.loc[d["verdict_forced"].fillna(False).astype(bool), "verdict"] = None
     truth_valid = d["ground_truth_verdict"].eq("Valid")
     d["parsed"] = d["verdict"].isin(["Valid", "Invalid"])
     d["say_valid"] = d["verdict"].eq("Valid")
@@ -104,6 +107,8 @@ def main():
     ap.add_argument("--tag", required=True, help="Letters only; prefixes the LaTeX macros")
     ap.add_argument("--out_dir", required=True)
     ap.add_argument("--tex_out", default=None)
+    ap.add_argument("--drop_forced", action="store_true",
+                    help="treat verdicts completed by the runner's --force_verdict fallback as missing")
     ap.add_argument("--by", default=None,
                     help="Also break the criticism results down by this column (e.g. difficulty for the MATH levels)")
     args = ap.parse_args()
@@ -112,7 +117,7 @@ def main():
     rng = np.random.default_rng(SEED)
     T = args.max_turn
 
-    d = load(args.results_dir, T)
+    d = load(args.results_dir, T, args.drop_forced)
     n_items = d["claim_id"].nunique()
     print(f"{n_items} items observed through turn {T} on both tracks")
     last = d[d["turn"] == T]
