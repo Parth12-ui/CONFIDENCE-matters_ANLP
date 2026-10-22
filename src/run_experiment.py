@@ -157,6 +157,16 @@ def extract_verdict(text: str, last: bool = False) -> Optional[str]:
     return None
 
 
+def _gpu_peak_and_reset() -> Optional[float]:
+    """Peak GPU memory (GB) since the last call, then release cached blocks between turns."""
+    if not torch.cuda.is_available():
+        return None
+    peak = torch.cuda.max_memory_allocated() / 2**30
+    torch.cuda.empty_cache()
+    torch.cuda.reset_peak_memory_stats()
+    return round(peak, 2)
+
+
 def _last_logits(model, inputs):
     """
     Next-token logits at the last position only. Asking for all positions materialises a
@@ -405,7 +415,11 @@ def run_experiment(
     if load_in_4bit:
         try:
             from transformers import BitsAndBytesConfig
-            load_kwargs["quantization_config"] = BitsAndBytesConfig(load_in_4bit=True)
+            # Without an explicit compute dtype bitsandbytes computes in float32: more activation
+            # memory (6-turn reasoning-first runs ran out on 11 GB GPUs) and ~20% slower.
+            load_kwargs["quantization_config"] = BitsAndBytesConfig(
+                load_in_4bit=True, bnb_4bit_compute_dtype=torch.float16
+            )
         except Exception:
             print("[Warning] bitsandbytes is not installed. Falling back to native bfloat16 precision.")
 
@@ -579,6 +593,7 @@ def run_experiment(
                     "prompt": styled(neutral_prompt["prompt"]),
                     "response": resp_t0,
                     "prompt_style": prompt_style,
+                    "gpu_peak_gb": _gpu_peak_and_reset(),
                 }
                 records.append(record_t0)
                 out_f.write(json.dumps(record_t0, ensure_ascii=False) + "\n")
@@ -690,6 +705,7 @@ def run_experiment(
                         "prompt": styled(p["prompt"]),
                         "response": resp,
                         "prompt_style": prompt_style,
+                        "gpu_peak_gb": _gpu_peak_and_reset(),
                     }
                     records.append(record_t)
                     out_f.write(json.dumps(record_t, ensure_ascii=False) + "\n")
