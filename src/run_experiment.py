@@ -157,6 +157,15 @@ def extract_verdict(text: str, last: bool = False) -> Optional[str]:
     return None
 
 
+MEM_DEBUG = os.environ.get("MEM_DEBUG") == "1"
+
+
+def _mem(tag: str):
+    """With MEM_DEBUG=1, print allocated / peak GPU memory (GB) at a step of the turn loop."""
+    if MEM_DEBUG and torch.cuda.is_available():
+        print(f"[mem] {tag:28s} alloc {torch.cuda.memory_allocated()/2**30:5.2f}  peak {torch.cuda.max_memory_allocated()/2**30:5.2f}", flush=True)
+
+
 def _gpu_peak_and_reset() -> Optional[float]:
     """Peak GPU memory (GB) since the last call, then release cached blocks between turns."""
     if not torch.cuda.is_available():
@@ -405,7 +414,12 @@ def run_experiment(
         except Exception:
             has_accelerate = False
 
-    target_dtype = torch.bfloat16 if torch.cuda.is_available() and torch.cuda.is_bf16_supported() else torch.float16
+    # bfloat16 only where the GPU supports it natively (compute capability >= 8.0). On Turing
+    # (RTX 2080 Ti) is_bf16_supported() is True through emulation, but bfloat16 there is slow
+    # and rules out memory-efficient attention, so attention memory grew with the square of
+    # the context and 6-turn reasoning-first runs ran out of memory.
+    native_bf16 = torch.cuda.is_available() and torch.cuda.get_device_capability()[0] >= 8
+    target_dtype = torch.bfloat16 if native_bf16 else torch.float16
     load_kwargs = {
         "torch_dtype": target_dtype,
     }
@@ -418,7 +432,7 @@ def run_experiment(
             # Without an explicit compute dtype bitsandbytes computes in float32: more activation
             # memory (6-turn reasoning-first runs ran out on 11 GB GPUs) and ~20% slower.
             load_kwargs["quantization_config"] = BitsAndBytesConfig(
-                load_in_4bit=True, bnb_4bit_compute_dtype=torch.float16
+                load_in_4bit=True, bnb_4bit_compute_dtype=target_dtype
             )
         except Exception:
             print("[Warning] bitsandbytes is not installed. Falling back to native bfloat16 precision.")
@@ -611,6 +625,7 @@ def run_experiment(
                     prompt_chat = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
                     inputs = tokenizer(prompt_chat, return_tensors="pt", add_special_tokens=False).to(model.device)
                     prompt_len = inputs.input_ids.shape[1]
+                    _mem(f"t{turn_idx} start ({prompt_len} tok)")
 
                     with torch.inference_mode():
                         out_ids = model.generate(
@@ -622,17 +637,21 @@ def run_experiment(
                         )
 
                     resp = tokenizer.decode(out_ids[0][prompt_len:], skip_special_tokens=True).strip()
+                    _mem(f"t{turn_idx} after generate")
                     v_conf = extract_verbalized_confidence(resp, last=reasoning_first)
                     verdict = extract_verdict(resp, last=reasoning_first)
                     corr_t = None if verdict is None else int(verdict == ground_truth_verdict)
 
                     probe_prompt = prompt_chat + "\nConclusion: The statement is strictly [Verdict: "
                     t_conf = compute_target_token_probability(model, tokenizer, probe_prompt)
+                    _mem(f"t{turn_idx} after pre-probe")
                     in_ans = in_answer_probability(model, tokenizer, prompt_chat, resp)
+                    _mem(f"t{turn_idx} after in-answer")
                     truth_conf = truth_confidence(t_conf, ground_truth_verdict)
 
                     messages.append({"role": "assistant", "content": resp})
                     verifier = compute_verifier_confidence(model, tokenizer, messages, verdict)
+                    _mem(f"t{turn_idx} after self-check")
 
                     verdict_flipped = (verdict != verdict_t0) if (verdict and verdict_t0) else False
                     corr_flipped = (corr_t != corr_t0) if (corr_t is not None and corr_t0 is not None) else False
