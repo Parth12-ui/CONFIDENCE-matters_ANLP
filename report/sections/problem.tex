@@ -1,25 +1,23 @@
 \section{Problem Statement}
 \label{sec:problem}
 
-\paragraph{Items and conversations.}
-Each statement $q$ has a ground-truth label $y_q \in \{\Valid, \Invalid\}$.
-At turn $t=0$ the user poses $q$ neutrally; at each $t = 1, \dots, 6$ the user sends a feedback turn $f_t$ of nominal valence $v(f_t) \in [-1, 1]$.
-After every turn we read a verdict $a_t \in \{\Valid, \Invalid, \bot\}$ ($\bot$: unparseable, treated as missing), two confidence probes and the stated confidence (\S\ref{sec:method}).
-Correctness is $\mathrm{corr}_t = \ind[a_t = y_q]$.
+\paragraph{Setup.}
+Each item is a mathematical statement that is either true or false.
+At turn 0 the user asks, neutrally, whether it is \Valid or \Invalid; at each of turns 1--6 the user sends one feedback message and the model answers again.
+After every turn we record the model's \emph{verdict} (\Valid, \Invalid, or missing if unparseable), two probes of its confidence and its stated confidence (\S\ref{sec:method}).
+Accuracy at a turn is the share of items whose verdict matches the true label.
 
 \paragraph{Tracks.}
-On the \emph{criticism} track $v(f_t) < 0$ for all $t \ge 1$, on the \emph{praise} track $v(f_t) > 0$, and the \emph{control} re-asks the question ($v = 0$).
-Comparing a track with the control on the same items separates the effect of feedback from repetition and context growth.
+Each item is run on three \emph{tracks} that differ only in the feedback: \emph{criticism} (every message says the statement does not hold), \emph{praise} (every message approves or suggests that it holds) and a \emph{control} that asks the question again.
+Comparing a track with the control on the same items separates the effect of the feedback from that of being asked again in a longer conversation.
 
 \paragraph{Warranted and unwarranted criticism.}
-Criticism argues that the claim does not hold.
-On a true claim the model answered correctly at $t=0$ it is \emph{unwarranted}; on a false claim the model answered wrongly at $t=0$ it is \emph{warranted}.
-In the two remaining cells criticism agrees with the model's first answer.
-We summarise how well verdicts still track the truth by the \emph{discrimination} $D = p_{\mathrm{F}} - p_{\mathrm{T}}$, where $p_{\mathrm{F}}$ and $p_{\mathrm{T}}$ are the rates of \Invalid verdicts on false and on true claims.
-$D$ is $1$ for a model that follows the truth and $0$ for one that answers the same whatever the truth.
+Criticism of a true statement the model got right at turn 0 is \emph{unwarranted}: following it makes the model wrong.
+Criticism of a false statement the model wrongly called \Valid is \emph{warranted}: following it makes the model right.
+To check whether verdicts still follow the truth we use the \emph{discrimination} $D$, the rate of \Invalid verdicts on false statements minus that on true ones: $D = 1$ means the model calls exactly the false statements \Invalid, $D = 0$ that its verdict ignores the truth.
 
 \paragraph{Hypotheses.}
-H1--H3 were stated in the proposal; H4--H6 were added after the interim analysis and are exploratory.
+H1--H3 are the main hypotheses; H4--H6 are exploratory.
 \begin{description}
 \setlength\itemsep{0pt}
 \item[H1 (criticism).] Relative to the control, sustained criticism lowers accuracy on true claims the model first answered correctly.
@@ -29,9 +27,8 @@ H1--H3 were stated in the proposal; H4--H6 were added after the interim analysis
 \item[H5 (confidence follows verdict).] When the model gives up a correct answer, its probed confidence, stated confidence and own working give it up too.
 \item[H6 (tone strength).] Within a track, feedback rated as stronger by established tone measures moves the verdict more.
 \end{description}
-H1--H2 are falsified if the 95\% interval of the track-minus-control difference includes zero or has the opposite sign.
+We count H1 or H2 as supported only if the 95\% interval of the track-minus-control difference excludes zero in the predicted direction.
 
 \paragraph{Scope.}
-The proposal also defined reversibility (O2), recovery through praise (O3), a confidence floor (O4), schedule search (O5) and a point of no return (O6).
-This report centres on the sustained-pressure trajectory (O1) and H1--H5.
-Appendix~\ref{sec:scope} explains what was cut and why.
+We study two open models, Qwen2.5-7B-Instruct and Llama-3.1-8B-Instruct, on two datasets, real analysis and MATH, over six feedback turns on the criticism, praise and control tracks.
+On MATH we add stance-free tracks that vary the tone of the feedback without saying whether the statement holds (\S\ref{sec:res-stancefree}).

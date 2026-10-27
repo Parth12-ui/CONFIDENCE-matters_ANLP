@@ -41,8 +41,7 @@ On real analysis Qwen reaches \QwenRAAccZero\% but Llama only \LlamaRAAccZero\%,
 \paragraph{Unwarranted criticism (H1).}
 On true claims the model first answered correctly, six turns of criticism lower accuracy against the control in all four settings (Table~\ref{tab:pushback}, Figure~\ref{fig:pushback}).
 For Qwen the drop is \QwenMathUnwDiff{} points on MATH and \QwenRAUnwDiff{} on real analysis; for Llama it is \LlamaMathUnwDiff{} and \LlamaRAUnwDiff.
-Most of it happens on the first criticism turn.
-H1 is supported for both models on both datasets, including with Llama's forced verdicts treated as missing.
+H1 is supported for both models on both datasets, with or without Llama's forced verdicts.
 
 \paragraph{Warranted criticism and discrimination (H4).}
 The same criticism repairs wrong answers: on false claims the model first called \Valid, it raises accuracy by \QwenMathWarDiff{} points for Qwen on MATH and \LlamaMathWarDiff{} for Llama.
@@ -176,4 +175,4 @@ For Llama the working still reaches the correct answer on \LlamaMathWorkOk\% of 
 
 \paragraph{Summary.}
 When Qwen gives in on MATH it often changes only its stated verdict, while its working and often its stated confidence keep the correct answer; when Llama gives in, everything we measure moves together.
-H5 holds for Llama and fails for Qwen on MATH; as the probes and derived answer are readouts of text, this says nothing about hidden states.
+H5 holds for Llama and fails for Qwen on MATH.

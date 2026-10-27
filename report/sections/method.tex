@@ -4,14 +4,14 @@
 \paragraph{Models and decoding.}
 We evaluate Qwen2.5-7B-Instruct \citep{qwen2025qwen25} and Llama-3.1-8B-Instruct \citep{grattafiori2024llama3}, both 4-bit quantised, with greedy decoding.
 The model reasons first and ends with its verdict and stated confidence.
-In an earlier version the verdict came first; on MATH the models then often contradicted their own working, so the verdict was close to a first guess.
+The order matters: in a pilot with the verdict first, the models often contradicted their own working on MATH, so the verdict was close to a first guess.
 Qwen generates up to 768 new tokens per response and Llama up to 1{,}024.
 
 \paragraph{Verdict recovery.}
-Llama often fell into repetition loops (``However, I must correct my previous response \dots'') that ran into the token limit without a verdict; in a first run \LlamaMathOldMissing\% of its MATH turns had none, rising with the turn as looping answers filled the context.
+Llama often fell into repetition loops (``However, I must correct my previous response \dots'') that ran into the token limit without a verdict; in a MATH run without a fallback \LlamaMathOldMissing\% of its turns had none, rising with the turn as looping answers filled the context.
 For Llama we therefore apply a fallback: if a response has no parseable verdict, a sentence repeated three or more times is cut back to one copy, then ``\texttt{[Verdict:}'' is appended and the model completes the line, a two-stage answer extraction in the style of \citet{kojima2022large}.
 Later turns see the completed answer.
-On the hardest MATH items, verdicts the model wrote itself agreed with the first run on all 22 turns where both had one.
+On the hardest MATH items, verdicts the model wrote itself agreed with the run without the fallback on all 22 turns where both had one.
 Forced verdicts make up \LlamaMathForcedCtrl--\LlamaMathForcedCrit\% of Llama's MATH turns and \LlamaRAForcedCrit--\LlamaRAForcedCtrl\% of its real-analysis turns, so every Llama result is also reported with them treated as missing.
 Qwen ran without the fallback; \QwenMathMissing\% of its MATH turns and \QwenRAMissing\% of its real-analysis turns have no verdict and are treated as missing.
 
@@ -23,18 +23,17 @@ Every item is followed for all six turns on all three tracks.
 After each turn we record:
 \begin{enumerate}
 \setlength\itemsep{0pt}
-\item the \emph{verdict} $a_t$, parsed from the last verdict line;
+\item the \emph{verdict}, parsed from the last verdict line;
 \item the \emph{pre-answer probe}: a verdict slot (``\texttt{Conclusion: The statement is strictly [Verdict: }'') is appended to the conversation before the turn-$t$ response, and the next-token probabilities of ``Valid'' and ``Invalid'' are normalised over the two;
 \item the \emph{self-check} in the style of P(True) \citep{kadavath2022language}: after the response, a further user turn asks whether the statement is (A) \Valid or (B) \Invalid, and we compare the next-token probabilities of \texttt{A} and \texttt{B};
 \item the \emph{stated confidence}, the verbalised percentage \citep{tian-etal-2023-just, xiong2023express};
 \item on MATH, the \emph{derived answer}: the integer the model's working reaches (the last boxed or stated result), with sentences that restate the claim removed.
 \end{enumerate}
 Each probe is read as favouring \Valid when its probability exceeds 0.5.
-Both probes are next-token readouts of the same conversation, so they measure the model's \emph{probed} confidence, not a hidden-state representation of its knowledge.
 
 \paragraph{Tone severity.}
 The nominal valences in Table~\ref{tab:categories} are our own.
-We score each of the \ToneWrappers{} feedback wordings, with the claim removed, using established resources:
+We score each of the \ToneWrappers{} feedback wordings, with the claim removed, using established resources rather than a learned scorer (Appendix~\ref{app:scorer}):
 mean valence and arousal of its words from the NRC VAD lexicon \citep{mohammad-2018-obtaining};
 the probability that it is polite, from a logistic regression on ConvoKit politeness strategies trained on the Wikipedia requests of the Stanford Politeness Corpus \citep{danescu-niculescu-mizil-etal-2013-computational};
 and the probabilities of negative (disapproval, annoyance, anger, disappointment) or positive (admiration, approval, pride, optimism) emotions from a classifier fine-tuned on GoEmotions \citep{demszky-etal-2020-goemotions}.
