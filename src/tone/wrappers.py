@@ -6,9 +6,9 @@ question ("I mean, maybe I'm wrong, but This proof attempt is garbage ... <CLAIM
 Tone is a property of the wrapper, so severity is scored on the wrapper with the claim
 removed, once per distinct wrapper, and joined back to result rows through prompt_id.
 
-Usage (from code/v4_final/):
-  python src/tone/wrappers.py --prompts data/claims_math/claims_prompts.jsonl data/claims/claims_prompts.jsonl \
-      --out ../../results/v4_final/tone_severity/wrappers.csv
+Usage (from the repository root):
+  python src/tone/wrappers.py --prompts data/math/prompts.jsonl data/real_analysis/prompts.jsonl \
+      --out results/tone/wrappers.csv
 """
 
 import argparse

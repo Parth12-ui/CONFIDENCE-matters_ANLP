@@ -1,0 +1,5 @@
+track,rows,verdict_parsed,answer_parsed,verdict_ok,computed_ok,consistent,knew_said_other,wrong_verdicts,wrong_but_computed_ok
+control,612,100.0,100.0,61.3,58.7,79.7,8.8,237,22.8
+dispute,612,100.0,99.7,50.7,54.1,66.5,18.3,302,37.1
+negative,612,100.0,99.8,22.2,43.0,65.4,27.6,476,35.5
+positive,612,100.0,99.5,79.6,65.4,77.6,4.1,125,20.0

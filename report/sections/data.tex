@@ -1,0 +1,52 @@
+\section{Benchmark}
+\label{sec:data}
+
+\input{sections/fig_overview}
+
+\paragraph{Real-analysis claims.}
+The item pool contains 75 statements drawn from S.\,K.\ Mapa's \emph{Introduction to Real Analysis} \citep{mapa2019real}.
+They cover 14 chapters, from the real number system, sequences and series to the Riemann integral, improper integrals and uniform convergence; 68 are labelled \emph{Hard} and 7 \emph{Advanced}.
+Each record stores the statement, a proof-style question, reasoning steps and a solution sketch.
+Every statement was checked against its own solution sketch.
+
+\paragraph{False twins.}
+With only true items, a model that always answers \Valid would be perfectly accurate, and praise could only push the model towards the truth.
+Following BrokenMath \citep{petrov2025brokenmath}, we pair every claim with a \emph{false twin}: a false but plausible, well-posed variant of the same statement.
+Each twin changes one mathematical fact and stores the reason it is false: a false final answer (25 twins), an inverted property (18), a dropped hypothesis (7), a strengthened conclusion (6), the five original wordings (5), or a boundary, sign, converse or quantity error (14).
+Appendix~\ref{app:twins} gives examples.
+The paired set has 150 items, 75 \Valid and 75 \Invalid.
+Two of us checked each twin against its stated reason for falsity. % TODO(authors): confirm once the twin verification is done; otherwise say the twins are LLM-drafted and spot-checked.
+
+\paragraph{MATH set.}
+Turn-0 accuracy on proof-level real analysis is low for 7--8B models, so a flip there often abandons a guess rather than knowledge, and difficulty cannot be varied.
+We therefore add answer claims from MATH-500 \citep{lightman2023lets}, a subset of the MATH test set \citep{hendrycks2021math}: 30 problems per difficulty level 1--5, each with an integer reference answer and no figure, drawn with a fixed seed.
+The true claim states ``The answer to the following problem is $a$'' with the reference answer; its twin states a perturbed answer (off by one or two, doubled or halved), which is false by construction.
+This gives 300 items, 60 per level.
+Because the answer is a number, the answer the model's own working reaches can be parsed and compared with its verdict (\S\ref{sec:method}).
+
+\paragraph{Feedback prompts.}
+Each item has 13 prompts: one neutral question and two phrasings for each of six feedback categories (Table~\ref{tab:categories}).
+The neutral question shows the claim and asks the model to reason briefly, then end with a line of the form \texttt{[Verdict:~Valid] [Confidence:~X\%]} (Appendix~\ref{app:prompts}).
+A feedback prompt places one phrase from the category's bank before the neutral question, after it, or inside a hedged wrapper (``I mean, maybe I'm wrong, but \dots''), so the two datasets use \ToneWrappers{} distinct feedback wordings.
+The build is seeded and reproducible.
+The categories adapt the archetypes of \citet{sharma2024towards} and \citet{perez-etal-2023-discovering}; their nominal valences order their intended strength, and \S\ref{sec:method} measures it.
+
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{p{0.29\columnwidth}p{0.50\columnwidth}r}
+\toprule
+Category (track) & Adapted from & $v$ \\
+\midrule
+Mild doubt (crit.) & ``Are you sure?'' \citep{sharma2024towards} & $-0.40$ \\
+Authority (crit.) & Persona prompts \citep{perez-etal-2023-discovering} & $-0.65$ \\
+Strong rebuttal (crit.) & Escalated challenge (ours) & $-0.90$ \\
+Answer nudge (praise) & ``I think it is \Valid'' \citep{sharma2024towards} & $+0.40$ \\
+Ownership (praise) & Feedback setup \citep{sharma2024towards} & $+0.55$ \\
+Flattery (praise) & Praise of the model (ours) & $+0.85$ \\
+\bottomrule
+\end{tabular}
+\caption{Feedback categories. Each track uses two phrasings of each of its three categories in a per-item random order (six feedback turns). $v$ is the nominal valence assigned by the authors; measured severity is described in \S\ref{sec:method}.}
+\label{tab:categories}
+\end{table}

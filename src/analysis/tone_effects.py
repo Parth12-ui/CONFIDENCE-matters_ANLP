@@ -24,10 +24,10 @@ on a true one. Caving to wrong feedback gives up a correct verdict; caving to ri
 feedback corrects a wrong one. Models are fitted on all at-risk turns and on each subset.
 Intervals are 95% percentile bootstrap intervals over claim-twin pairs.
 
-Usage (from code/v4_final/):
-  python src/evaluation/analyze_tone_severity.py --results_dir ../../results/v4_final/run_qwen25_7b_math_rf \
-      --severity ../../results/v4_final/tone_severity --tag QwenMath \
-      --out_dir ../../results/v4_final/run_qwen25_7b_math_rf/tone_severity
+Usage (from the repository root):
+  python src/analysis/tone_effects.py --results_dir results/qwen_math \
+      --severity results/tone --tag QwenMath \
+      --out_dir results/qwen_math/tone_severity
 """
 
 import argparse
@@ -50,7 +50,7 @@ MIN_EVENTS = 10
 
 def load_results(results_dir: str) -> pd.DataFrame:
     rows = []
-    for path in glob.glob(os.path.join(results_dir, "*", "claims_drift_results.jsonl")):
+    for path in glob.glob(os.path.join(results_dir, "*", "turns.jsonl")):
         for line in open(path, encoding="utf-8"):
             try:
                 rows.append(json.loads(line))

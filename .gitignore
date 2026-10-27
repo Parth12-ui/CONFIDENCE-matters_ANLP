@@ -1,68 +1,34 @@
-# Prerequisites
-*.d
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.venv_tone/
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+# Downloaded tone resources (NRC-VAD is research-use only; fetched by scripts/setup_tone.sh)
+resources/
 
-# Precompiled Headers
-*.gch
-*.pch
-
-# Linker files
-*.ilk
-
-# Debugger Files
-*.pdb
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-*.so.*
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
-
-# Build directories
-build/
-Build/
-build-*/
-
-# CMake generated files
-CMakeFiles/
-CMakeCache.txt
-cmake_install.cmake
-Makefile
-install_manifest.txt
-compile_commands.json
-
-# Temporary files
-*.tmp
-*.log
-*.bak
-*.swp
-
-# vcpkg
-vcpkg_installed/
-
-# debug information files
-*.dwo
-
-# test output & cache
-Testing/
+# Model weights and caches
+*.safetensors
+*.bin
+*.pt
+hf_cache/
 .cache/
+
+# Logs and run state
+*.log
+logs/
+wandb/
+results/**/.done
+results/**/turns.csv
+results/**/run.log
+
+# LaTeX build files
+report/*.aux
+report/*.bbl
+report/*.blg
+report/*.out
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/

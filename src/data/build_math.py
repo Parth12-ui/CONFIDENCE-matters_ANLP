@@ -14,16 +14,16 @@ Selection: integer final answer, no [asy] figure (the models only see text), the
     doubled, halved). The twin is false because MATH's reference answer is a, so no
     proof checking is needed.
 
-Output (same schema as data/claims/claims_paired.json; ids 1001+ for claims and 2001+
+Output (same schema as data/real_analysis/claims.json; ids 1001+ for claims and 2001+
 for twins, so they never clash with the real-analysis set):
-  data/claims_math/claims_paired.json
+  data/math/claims.json
 
 Usage:
   curl -sL -o math500/test.jsonl \
       https://huggingface.co/datasets/HuggingFaceH4/MATH-500/resolve/main/test.jsonl
-  python src/data_pipeline/build_math_claims.py --math500 math500/test.jsonl
-  python src/data_pipeline/build_claims_prompts.py --claims_path data/claims_math/claims_paired.json \
-      --output_path data/claims_math/claims_prompts.jsonl --subject mathematics
+  python src/data/build_math.py --math500 math500/test.jsonl
+  python src/data/build_prompts.py --claims_path data/math/claims.json \
+      --output_path data/math/prompts.jsonl --subject mathematics
 """
 
 import argparse
@@ -34,7 +34,7 @@ import re
 from collections import defaultdict
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-DEFAULT_OUT = os.path.join(REPO_ROOT, "data", "claims_math", "claims_paired.json")
+DEFAULT_OUT = os.path.join(REPO_ROOT, "data", "math", "claims.json")
 ORIGINAL_ID_BASE = 1000
 TWIN_ID_BASE = 2000
 INTEGER = re.compile(r"-?\d+")

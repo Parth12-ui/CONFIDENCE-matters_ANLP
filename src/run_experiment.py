@@ -370,10 +370,10 @@ def truth_confidence(prob_valid: float, ground_truth_verdict: str) -> float:
 
 def load_claims_metadata(claims_path: Optional[str] = None) -> Dict[int, Dict[str, Any]]:
     """Loads claims.json or claims_paired.json metadata (ground_truth_verdict, difficulty, topic, subtopic)."""
-    repo_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     if claims_path is None or not os.path.exists(claims_path):
-        paired_path = os.path.join(repo_root, "data", "claims", "claims_paired.json")
-        single_path = os.path.join(repo_root, "data", "claims", "claims.json")
+        paired_path = os.path.join(repo_root, "data", "real_analysis", "claims.json")
+        single_path = os.path.join(repo_root, "data", "real_analysis", "claims.json")
         claims_path = paired_path if os.path.exists(paired_path) else single_path
 
     if not os.path.exists(claims_path):
@@ -453,7 +453,7 @@ def run_experiment(
     def styled(text: str) -> str:
         """Swaps the answer-format instruction for the reasoning-first variant."""
         return text.replace(VERDICT_FIRST_INSTRUCTION, REASONING_FIRST_INSTRUCTION) if reasoning_first else text
-    results_path = os.path.join(output_dir, "claims_drift_results.jsonl")
+    results_path = os.path.join(output_dir, "turns.jsonl")
 
     claims_metadata = load_claims_metadata(claims_json_path)
 
@@ -541,7 +541,7 @@ def run_experiment(
     if missing_meta:
         raise ValueError(
             f"{len(missing_meta)} prompt claim ids have no ground truth in the claims file "
-            f"(e.g. {missing_meta[:5]}). Pass --claims_json_path data/claims/claims_paired.json."
+            f"(e.g. {missing_meta[:5]}). Pass --claims_json_path data/real_analysis/claims.json."
         )
 
     print(f"\n[3/3] Running multi-turn drift evaluation (O1 Trajectory) across {len(claim_ids)} claims...")
@@ -779,7 +779,7 @@ def run_experiment(
                         break
 
     df = pd.DataFrame(records)
-    csv_path = os.path.join(output_dir, "claims_drift_summary.csv")
+    csv_path = os.path.join(output_dir, "turns.csv")
     df.to_csv(csv_path, index=False)
     print(f"\nExecution finished successfully!")
     print(f"Raw turn-level JSONL -> {results_path}")
@@ -788,10 +788,10 @@ def run_experiment(
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Multi-Turn Sycophancy & Confidence Drift Evaluation")
-    parser.add_argument("--prompts_path", type=str, default="data/claims/claims_prompts.jsonl")
+    parser.add_argument("--prompts_path", type=str, default="data/real_analysis/prompts.jsonl")
     parser.add_argument("--model_name", type=str, default="meta-llama/Meta-Llama-3.1-8B-Instruct")
-    parser.add_argument("--output_dir", type=str, default="../../results/v4_final/claims_experiment",
-                        help="Relative paths resolve against code/v4_final/, so the default lands in results/v4_final/")
+    parser.add_argument("--output_dir", type=str, default="results/run",
+                        help="Relative paths resolve against the repository root")
     parser.add_argument("--limit_claims", type=int, default=None)
     parser.add_argument("--load_in_4bit", action="store_true")
     parser.add_argument("--random_seed", type=int, default=42)
@@ -826,7 +826,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--claims_json_path",
         type=str,
-        default="data/claims/claims_paired.json",
+        default="data/real_analysis/claims.json",
         help="Claims file with ground-truth verdicts (claims_paired.json includes the false twins)",
     )
     parser.add_argument(
@@ -860,7 +860,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    repo_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     if not os.path.isabs(args.prompts_path):
         args.prompts_path = os.path.join(repo_root, args.prompts_path)
     if not os.path.isabs(args.output_dir):

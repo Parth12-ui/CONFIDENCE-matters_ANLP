@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Local CPU setup for the tone-severity scoring (src/tone/): a venv with the scoring
 # packages, the NRC-VAD lexicon and the GoEmotions classifier. The ConvoKit politeness
-# corpus downloads on first use. Run from code/v4_final/.
-#   bash scripts/fetch_tone_resources.sh
+# corpus downloads on first use. Run from the repository root.
+#   bash scripts/setup_tone.sh
 # Both downloads can be slow from some networks; fetching them on a faster machine (e.g. the
 # Ada login node) and copying the files into resources/ works the same.
 set -euo pipefail

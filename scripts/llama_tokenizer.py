@@ -10,7 +10,7 @@ keys and restoring tokenizer_class gives a file whose git blob hash equals Meta'
 anything else.
 
 Usage (then copy the output over the NousResearch download and run verify_model.py):
-  python3 scripts/make_llama_tokenizer_config.py OUTPUT_PATH
+  python3 scripts/llama_tokenizer.py OUTPUT_PATH
 """
 
 import hashlib

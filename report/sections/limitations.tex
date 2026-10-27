@@ -1,0 +1,16 @@
+\section*{Limitations}
+\begin{itemize}
+\setlength\itemsep{0pt}
+\item Two open 7--8B models, 4-bit, greedy decoding, English feedback from fixed templates. Larger or reasoning-tuned models may resist criticism better.
+\item \emph{Forced verdicts.} \LlamaMathForcedCtrl--\LlamaMathForcedCrit\% of Llama's MATH turns and \LlamaRAForcedCrit--\LlamaRAForcedCtrl\% of its real-analysis turns end in a verdict completed by the fallback after a repetition loop or the token limit. A forced verdict is the model's next-token continuation, not a conclusion it wrote; on control turns most forced verdicts are correct, so treating them as missing lowers Llama's control accuracy and shrinks its real-analysis criticism effect from \LlamaRAUnwDiff{} to \LlamaRANFUnwDiff{} points. The direction of every Llama result holds either way.
+\item The models do not run under identical settings: Qwen generates up to 768 tokens without the fallback (\QwenMathMissing\% of MATH turns missing), Llama up to 1{,}024 with it.
+\item Llama barely separates true from false real-analysis claims at turn 0 ($D = \LlamaRADiscZero$), and some subsets are small (Qwen real analysis: \QwenRAWarN{} warranted items; praise-right cells: 12--54 items).
+\item The criticism phrases assert that the claim is false and the answer nudge names a verdict, so these categories carry content as well as tone. Stance-free tracks separate the two, but only on MATH, for Qwen (dispute, affirm, filler) and for Llama (dispute only).
+\item The tone measures are established resources applied to short, templated messages; they have not yet been checked against human ratings of these messages (a Best--Worst Scaling study \citep{kiritchenko-mohammad-2017-best} is prepared), and they capture praise poorly. Dropping the dominance measure was decided after looking at the scores.
+\item The derived answer is parsed from free text and has not been hand-checked at scale; both probes are next-token readouts and cannot show what is represented in the hidden states.
+\item H4--H6, the tone analysis and the turn-0 subsets were chosen after seeing the interim data and are exploratory.
+\end{itemize}
+
+\section*{Ethics Statement}
+The work studies how language models respond to user pressure and uses only public mathematics and synthetic feedback text; no human participants or personal data are involved.
+Findings about sycophancy could in principle be used to manipulate models, but they are mainly useful for building assistants that hold correct answers under pressure.

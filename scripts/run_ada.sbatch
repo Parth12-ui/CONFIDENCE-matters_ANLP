@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 # O1 tracks for one model and one dataset on Ada, one GPU (the 'low' QoS allows one per
 # user), then the pushback analysis. Each track is skipped if it already finished, so a
-# resubmitted job resumes. Results go to <repo>/results/v4_final/run_${TAG}/.
+# resubmitted job resumes. Results go to results/run_${TAG}/.
 #
-# Submit from code/v4_final/:
-#   MODEL=Qwen/Qwen2.5-7B-Instruct TAG=qwen25_7b_math DATA=data/claims_math sbatch scripts/ada_run.sbatch
-#   MODEL=meta-llama/Meta-Llama-3.1-8B-Instruct TAG=llama31_8b sbatch scripts/ada_run.sbatch
+# Submit from the repository root:
+#   MODEL=Qwen/Qwen2.5-7B-Instruct TAG=qwen25_7b_math DATA=data/math sbatch scripts/run_ada.sbatch
+#   MODEL=meta-llama/Meta-Llama-3.1-8B-Instruct TAG=llama31_8b sbatch scripts/run_ada.sbatch
 #     (Llama is gated: save a Hugging Face token in ~/.cache/huggingface/token on Ada first)
 # Weights: compute nodes download very slowly, so fetch them on the login node first with
-# scripts/fetch_model.sh, either into a home directory (pass that folder as MODEL) or into
+# scripts/get_model.sh, either into a home directory (pass that folder as MODEL) or into
 # /share1, which compute nodes cannot see: then set MODEL_ON_LOGIN=/share1/$USER/models/NAME
 # and the job copies it to the node's /ssd_scratch over the internal network.
 # /share1 has a 25 GB per-user quota (27 GB hard), so it holds one 7-8B model at a time.
@@ -28,7 +28,7 @@
 #SBATCH --output=logs/o1_%x_%j.out
 
 set -euo pipefail
-cd "${SLURM_SUBMIT_DIR:-$HOME/anlp_project/code/v4_final}"
+cd "${SLURM_SUBMIT_DIR:-$HOME/CONFIDENCE-matters_ANLP}"
 PY="${PY:-$HOME/anlp_venv/bin/python}"
 MODEL_ON_LOGIN="${MODEL_ON_LOGIN:-}"
 if [ -n "$MODEL_ON_LOGIN" ]; then
@@ -36,7 +36,7 @@ if [ -n "$MODEL_ON_LOGIN" ]; then
 fi
 MODEL="${MODEL:?set MODEL or MODEL_ON_LOGIN}"
 TAG="${TAG:?set TAG}"
-DATA="${DATA:-data/claims}"
+DATA="${DATA:-data/real_analysis}"
 TRACKS="${TRACKS:-control negative}"
 BY="${BY:-}"
 PROMPT_STYLE="${PROMPT_STYLE:-verdict_first}"
@@ -44,7 +44,7 @@ MAX_NEW_TOKENS="${MAX_NEW_TOKENS:-128}"
 MAX_TURNS="${MAX_TURNS:-}"
 FORCE_VERDICT="${FORCE_VERDICT:-}"
 LIMIT_CLAIMS="${LIMIT_CLAIMS:-}"
-OUT="../../results/v4_final/run_${TAG}"
+OUT="results/run_${TAG}"
 # Model weights go to node-local /ssd_scratch (home quota is too small for 8B checkpoints)
 export HF_HOME="${HF_HOME:-/ssd_scratch/$USER/hf}"
 export PYTHONUNBUFFERED=1
@@ -85,8 +85,8 @@ for TRACK in $TRACKS; do
     D="$OUT/$TRACK"
     if [ -f "$D/.done" ]; then echo ">>> $TRACK already done"; continue; fi
     echo ">>> $TRACK ($(date))"
-    $PY src/evaluation/run_claims_experiment.py --model_name "$MODEL" --output_dir "$D" \
-        --claims_json_path "$DATA/claims_paired.json" --prompts_path "$DATA/claims_prompts.jsonl" \
+    $PY src/run_experiment.py --model_name "$MODEL" --output_dir "$D" \
+        --claims_json_path "$DATA/claims.json" --prompts_path "$DATA/prompts.jsonl" \
         --track "$TRACK" --max_new_tokens "$MAX_NEW_TOKENS" --prompt_style "$PROMPT_STYLE" \
         ${MAX_TURNS:+--max_turns "$MAX_TURNS"} ${FORCE_VERDICT:+--force_verdict} \
         ${LIMIT_CLAIMS:+--limit_claims "$LIMIT_CLAIMS"} --confidence_floor 50.0 --load_in_4bit
@@ -94,7 +94,7 @@ for TRACK in $TRACKS; do
 done
 
 if [[ "${MAX_TURNS:-6}" != 0 && " $TRACKS " == *" control "* && " $TRACKS " == *" negative "* ]]; then
-    $PY src/evaluation/analyze_pushback.py --results_dir "$OUT" --max_turn 6 --tag Push \
-        --out_dir "$OUT/pushback_t6" ${BY:+--by "$BY"} | tee "$OUT/pushback_t6.txt"
+    $PY src/analysis/pushback.py --results_dir "$OUT" --max_turn 6 --tag Push \
+        --out_dir "$OUT/pushback" ${BY:+--by "$BY"} | tee "$OUT/pushback.txt"
 fi
 echo ">>> FINISHED: $OUT ($(date))"

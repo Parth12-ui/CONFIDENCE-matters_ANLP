@@ -19,10 +19,10 @@ Report: Cronbach's alpha, each measure's Spearman correlation with the nominal s
 category means, and with --bws the correlation of every measure with the human ratings
 (the human-fitted score is evaluated leave-one-out).
 
-Usage (from code/v4_final/):
-  python src/tone/composite.py --scores ../../results/v4_final/tone_severity/wrapper_scores.csv \
-      --prompt_wrappers ../../results/v4_final/tone_severity/prompt_wrappers.csv \
-      --out_dir ../../results/v4_final/tone_severity [--bws ../../results/v4_final/tone_severity/bws/bws_scores.csv]
+Usage (from the repository root):
+  python src/tone/composite.py --scores results/tone/wrapper_scores.csv \
+      --prompt_wrappers results/tone/prompt_wrappers.csv \
+      --out_dir results/tone [--bws results/tone/bws/bws_scores.csv]
 """
 
 import argparse

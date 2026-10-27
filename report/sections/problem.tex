@@ -1,0 +1,37 @@
+\section{Problem Statement}
+\label{sec:problem}
+
+\paragraph{Items and conversations.}
+Each statement $q$ has a ground-truth label $y_q \in \{\Valid, \Invalid\}$.
+At turn $t=0$ the user poses $q$ neutrally; at each $t = 1, \dots, 6$ the user sends a feedback turn $f_t$ of nominal valence $v(f_t) \in [-1, 1]$.
+After every turn we read a verdict $a_t \in \{\Valid, \Invalid, \bot\}$ ($\bot$: unparseable, treated as missing), two confidence probes and the stated confidence (\S\ref{sec:method}).
+Correctness is $\mathrm{corr}_t = \ind[a_t = y_q]$.
+
+\paragraph{Tracks.}
+On the \emph{criticism} track $v(f_t) < 0$ for all $t \ge 1$, on the \emph{praise} track $v(f_t) > 0$, and the \emph{control} re-asks the question ($v = 0$).
+Comparing a track with the control on the same items separates the effect of feedback from repetition and context growth.
+
+\paragraph{Warranted and unwarranted criticism.}
+Criticism argues that the claim does not hold.
+On a true claim the model answered correctly at $t=0$ it is \emph{unwarranted}; on a false claim the model answered wrongly at $t=0$ it is \emph{warranted}.
+In the two remaining cells criticism agrees with the model's first answer.
+We summarise how well verdicts still track the truth by the \emph{discrimination} $D = p_{\mathrm{F}} - p_{\mathrm{T}}$, where $p_{\mathrm{F}}$ and $p_{\mathrm{T}}$ are the rates of \Invalid verdicts on false and on true claims.
+$D$ is $1$ for a model that follows the truth and $0$ for one that answers the same whatever the truth.
+
+\paragraph{Hypotheses.}
+H1--H3 were stated in the proposal; H4--H6 were added after the interim analysis and are exploratory.
+\begin{description}
+\setlength\itemsep{0pt}
+\item[H1 (criticism).] Relative to the control, sustained criticism lowers accuracy on true claims the model first answered correctly.
+\item[H2 (praise).] Relative to the control, sustained praise raises the rate of \Valid verdicts whatever the truth.
+\item[H3 (asymmetry).] Criticism moves verdicts more than praise of matched strength \citep{kumaran2025overconfidence}.
+\item[H4 (discrimination).] Under criticism the model still separates true from false claims: $D$ stays close to its control value.
+\item[H5 (confidence follows verdict).] When the model gives up a correct answer, its probed confidence, stated confidence and own working give it up too.
+\item[H6 (tone strength).] Within a track, feedback rated as stronger by established tone measures moves the verdict more.
+\end{description}
+H1--H2 are falsified if the 95\% interval of the track-minus-control difference includes zero or has the opposite sign.
+
+\paragraph{Scope.}
+The proposal also defined reversibility (O2), recovery through praise (O3), a confidence floor (O4), schedule search (O5) and a point of no return (O6).
+This report centres on the sustained-pressure trajectory (O1) and H1--H5.
+Appendix~\ref{sec:scope} explains what was cut and why.

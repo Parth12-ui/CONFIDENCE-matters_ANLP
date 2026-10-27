@@ -18,8 +18,8 @@ Unlike the probes, this needs no extra forward pass and cannot replay the verdic
 distribution: the derivation is generated text the verdict can contradict.
 
 Usage:
-  python src/evaluation/analyze_derived_answer.py --results_dir ../../results/v4_final/run_qwen25_7b_math_rf \
-      --claims data/claims_math/claims_paired.json --out_dir ../../results/v4_final/run_qwen25_7b_math_rf/derived
+  python src/analysis/derived_answer.py --results_dir results/qwen_math \
+      --claims data/math/claims.json --out_dir results/qwen_math/derived
 """
 
 import argparse
@@ -58,7 +58,7 @@ def derived_answer(response: str):
 
 def load(results_dir: str, claims_path: str) -> pd.DataFrame:
     rows = []
-    for path in glob.glob(os.path.join(results_dir, "**", "claims_drift_results.jsonl"), recursive=True):
+    for path in glob.glob(os.path.join(results_dir, "**", "turns.jsonl"), recursive=True):
         rows += [json.loads(l) for l in open(path, encoding="utf-8") if l.strip()]
     d = pd.DataFrame(rows).drop_duplicates(["claim_id", "track", "turn"], keep="last")
     claims = pd.DataFrame(json.load(open(claims_path, encoding="utf-8"))).set_index("id")
@@ -94,7 +94,7 @@ def summarise(g: pd.DataFrame) -> dict:
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--results_dir", required=True)
-    ap.add_argument("--claims", default="data/claims_math/claims_paired.json")
+    ap.add_argument("--claims", default="data/math/claims.json")
     ap.add_argument("--out_dir", default=None)
     args = ap.parse_args()
     d = load(args.results_dir, args.claims)

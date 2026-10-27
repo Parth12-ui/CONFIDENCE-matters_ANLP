@@ -5,9 +5,9 @@ wrongly at turn 0), criticism track vs neutral re-ask control, one panel per mod
 Reads the accuracy_by_turn.csv files written by analyze_pushback.py.
 
 Usage:
-  python src/evaluation/plot_pushback.py --out fig_pushback.pdf \
-      --panel "Llama-3.1-8B" ../../results/v3_interim/o1_paired_v3_llama31_8b/pushback_t2/accuracy_by_turn.csv \
-      --panel "Qwen2.5-7B" ../../results/v4_final/o1_qwen25_7b_v4_partial/pushback_t6/accuracy_by_turn.csv
+  python src/analysis/plot.py --out fig_pushback.pdf \
+      --panel "Llama-3.1-8B" results/llama_math/pushback_t2/accuracy_by_turn.csv \
+      --panel "Qwen2.5-7B" results/o1_qwen25_7b_v4_partial/pushback/accuracy_by_turn.csv
 """
 
 import argparse

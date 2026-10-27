@@ -1,0 +1,33 @@
+\section{Introduction}
+\label{sec:intro}
+
+Instruction-tuned language models tend to tell users what they want to hear.
+\citet{sharma2024towards} showed that production assistants consistently exhibit this \emph{sycophancy}, and traced it in part to human preference data that rewards agreement with the user.
+Most measurements use a single push: one rebuttal \citep{kim-khashabi-2025-challenging}, one ``Are you sure?'' \citep{laban2023flipflop}, or one piece of contrary advice \citep{kumaran2025overconfidence}.
+Real conversations rarely stop after one turn, and a user who disagrees once usually disagrees again.
+
+We ask how sustained feedback of a given tone changes a model's \emph{verdict} and its \emph{confidence} on claims whose truth is known.
+A model judges a mathematical claim as \Valid or \Invalid, reasoning first, then receives six turns of criticism, six turns of praise, or a control that re-asks the question.
+After every turn we read the stated verdict, two next-token probes of its confidence \citep{kadavath2022language} and its stated confidence, and on MATH the answer its own working reaches.
+
+Three questions organise the results.
+\begin{enumerate}
+\setlength\itemsep{0pt}
+\item \emph{Does the model follow the critic or the truth?}
+Criticism of a claim the model got right is unwarranted; criticism of a claim it got wrong is warranted.
+A model that weighs the criticism against the mathematics should resist the first and accept the second.
+\item \emph{Does harsher feedback move it more?}
+We grade the tone of every feedback message with established politeness, affect and emotion resources and relate it to what the model does on that turn.
+\item \emph{When it gives in, does it still hold the correct answer?}
+We compare the stated verdict with the probes, the stated confidence and the model's own working.
+\end{enumerate}
+
+Our contributions are:
+\begin{itemize}
+\setlength\itemsep{0pt}
+\item a benchmark of 150 real-analysis items and 300 MATH items over five difficulty levels, each true claim paired with a false twin (\S\ref{sec:data});
+\item a protocol with a neutral re-ask control, a fixed six-turn horizon, reasoning before the verdict, and a fallback that recovers verdicts lost to repetition loops (\S\ref{sec:method});
+\item evidence that criticism moves verdicts far more than praise, that the effect grows with difficulty, and that one of the two models follows criticism whether or not it is warranted (\S\ref{sec:res-pushback});
+\item evidence that harsher criticism moves both models more only when it asserts the answer: stance-free disagreement of graded harshness does not, and for praise the content matters more than the warmth (\S\ref{sec:res-tone}, \S\ref{sec:res-stancefree});
+\item evidence that the two models give in differently: Qwen often changes only its stated verdict, Llama changes everything we measure (\S\ref{sec:res-probes}).
+\end{itemize}

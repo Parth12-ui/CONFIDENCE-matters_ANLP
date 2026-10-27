@@ -15,10 +15,10 @@ Annotators fill the `best` and `worst` columns with a letter A-D. Criticism tupl
 which message pushes back most / least harshly; praise tuples ask which pushes most / least
 strongly towards agreeing.
 
-Usage (from code/v4_final/):
-  python src/tone/bws.py make --wrappers ../../results/v4_final/tone_severity/wrappers.csv \
-      --out_dir ../../results/v4_final/tone_severity/bws --annotators A1 A2 A3
-  python src/tone/bws.py score --out_dir ../../results/v4_final/tone_severity/bws
+Usage (from the repository root):
+  python src/tone/bws.py make --wrappers results/tone/wrappers.csv \
+      --out_dir results/tone/bws --annotators A1 A2 A3
+  python src/tone/bws.py score --out_dir results/tone/bws
 """
 
 import argparse

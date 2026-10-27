@@ -1,0 +1,17 @@
+\begin{table*}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{l ccc cc ccc}
+\toprule
+ & \multicolumn{3}{c}{Accuracy difference vs control (points)} & \multicolumn{2}{c}{Switch from a correct verdict (\%)} & \multicolumn{3}{c}{$D$ at turn 6} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-6}\cmidrule(lr){7-9}
+Model & Criticism & Dispute & Affirm (wrong at $t_0$) & Dispute mild / harsh & Control & Crit. & Dispute & Ctrl. \\
+\midrule
+Qwen2.5-7B & $-$17.6 & $-$3.8 & $-$13.2 & 4.3 / 1.6 & 0.5 & 0.67 & 0.80 & 0.72 \\
+Llama-3.1-8B & $-$53.9 & $-$21.6 & -- & 74.9 / 62.0 & 9.8 & 0.11 & 0.01 & 0.46 \\
+\bottomrule
+\end{tabular}
+\caption{Stance-free feedback on MATH. \emph{Criticism} says the claim is false; \emph{dispute} only disagrees with the model's previous verdict (``I don't agree with your verdict'' \dots\ ``Bad work, \dots\ I wouldn't go with your answer''); \emph{affirm} only agrees with it. Criticism and dispute: true claims answered correctly at turn 0. Affirm: items answered wrongly at turn 0, against the length-matched filler track. Switch: share of turns on which the model abandons a correct previous verdict, for the mildest and harshest dispute phrase. Llama ran the dispute track only; forced verdicts kept (\LlamaMathSFForcedDisp\% of its dispute verdicts).}
+\label{tab:stancefree}
+\end{table*}

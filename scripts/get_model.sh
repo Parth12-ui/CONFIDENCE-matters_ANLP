@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Download every file of a Hugging Face model repo with curl (resumable), on the login node.
-# Usage: bash scripts/fetch_model.sh ORG/NAME DEST_DIR [TOKEN_FILE]
+# Usage: bash scripts/get_model.sh ORG/NAME DEST_DIR [TOKEN_FILE]
 # Run on the Ada login node: compute nodes download very slowly. Pass DEST_DIR to the
 # run scripts as MODEL (e.g. MODEL=$HOME/models/Qwen2.5-7B-Instruct), or keep it in /share1
 # and pass MODEL_ON_LOGIN. /share1 allows 25 GB per user: one 7-8B model at a time; a full

@@ -23,8 +23,8 @@ Intervals are 95% percentile bootstrap intervals that resample claim-twin pairs
 (a claim and its twin share a problem, so they are not independent).
 
 Usage:
-  python src/evaluation/analyze_pushback.py --results_dir ../../results/v3_interim/o1_paired_v3_llama31_8b --max_turn 2 \
-      --tag LlamaMain --out_dir ../../results/v3_interim/o1_paired_v3_llama31_8b/pushback_t2 --tex_out <dir>/pushback_LlamaMain.tex
+  python src/analysis/pushback.py --results_dir results/llama_math --max_turn 2 \
+      --tag LlamaMain --out_dir results/llama_math/pushback_t2 --tex_out <dir>/pushback_LlamaMain.tex
 """
 
 import argparse
@@ -47,9 +47,9 @@ GROUPS = {
 
 
 def load(results_dir: str, max_turn: int, drop_forced: bool = False) -> pd.DataFrame:
-    paths = sorted(glob.glob(os.path.join(results_dir, "**", "claims_drift_results.jsonl"), recursive=True))
+    paths = sorted(glob.glob(os.path.join(results_dir, "**", "turns.jsonl"), recursive=True))
     if not paths:
-        raise FileNotFoundError(f"No claims_drift_results.jsonl under {results_dir}")
+        raise FileNotFoundError(f"No turns.jsonl under {results_dir}")
     rows = [json.loads(l) for p in paths for l in open(p, encoding="utf-8") if l.strip()]
     d = pd.DataFrame(rows).drop_duplicates(["claim_id", "track", "turn"], keep="last")
     d = d[d["track"].isin([PRESSURE, CONTROL]) & (d["turn"] <= max_turn)].copy()

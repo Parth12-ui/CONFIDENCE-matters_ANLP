@@ -1,0 +1,37 @@
+\begin{figure*}[t]
+\centering
+\begin{tikzpicture}[
+  font=\small, >={Latex[length=1.6mm]},
+  box/.style={draw=ink, rounded corners=2pt, fill=paper, align=center, inner sep=3pt, text width=3.3cm, minimum height=0.85cm},
+  cell/.style={draw=#1, fill=#1!18, minimum width=0.56cm, minimum height=0.44cm, inner sep=0pt, font=\scriptsize},
+  lab/.style={font=\footnotesize\bfseries, anchor=south west, inner sep=1pt},
+]
+% ---------------- (a) benchmark ----------------
+\node[font=\small\bfseries, anchor=west] at (-1.55,1.05) {(a) Benchmark};
+\node[box] (c) at (0,0) {75 real-analysis claims\\{\footnotesize + 150 MATH problems}};
+\node[box, below=0.3cm of c] (v) {checked against a solution\\{\footnotesize sketch or reference answer}};
+\node[box, below=0.3cm of v] (t) {+ a false twin each\\{\footnotesize well-posed, BrokenMath-style}};
+\node[box, below=0.3cm of t, fill=ink!10] (p) {450 items $\times$ 13 prompts\\{\footnotesize = 5{,}850 prompts}};
+\draw[->, ink] (c) -- (v);
+\draw[->, ink] (v) -- (t);
+\draw[->, ink] (t) -- (p);
+% ---------------- (b) protocol ----------------
+\node[font=\small\bfseries, anchor=west] at (2.3,1.05) {(b) Protocol (one item)};
+\node[box, text width=2.1cm] (q) at (3.55,-1.95) {Turn 0\\neutral question\\{\footnotesize ``\Valid or \Invalid?''}};
+\foreach \name/\col/\y in {Praise/praise/-0.55, Criticism/crit/-1.95, Control/ctrl/-3.35} {
+  \foreach \i in {1,...,6} {
+    \node[cell=\col] (\name\i) at ({5.55+0.64*(\i-1)}, \y) {\i};
+  }
+  \node[lab, text=\col] at ([yshift=1pt]\name1.north west) {\name};
+  \draw[->, \col] (q.east) -- (\name1.west);
+  \draw[\col] (\name6.east) -- (9.25, \y);
+}
+\draw[ink] (9.25,-0.55) -- (9.25,-3.35);
+\node[font=\scriptsize, text=ink!70] at ({5.55+0.64*2.5}, -3.95) {feedback turns $t = 1,\dots,6$ (order shuffled per item)};
+\node[box, text width=3.35cm, align=left, anchor=west] (m) at (9.7,-1.95) {\textbf{after every turn}\\[1pt]
+  {\footnotesize verdict $a_t$ (after reasoning)\\token probe $p_t$\\self-check (P(True)-style)\\stated confidence\\derived answer (MATH)}};
+\draw[->, ink] (9.25,-1.95) -- (m.west);
+\end{tikzpicture}
+\caption{Overview. (a)~Each true claim (real analysis or a MATH answer) is checked and paired with a well-posed false twin; every item has one neutral question and 12 feedback prompts. (b)~Each item is followed through six feedback turns on each of three tracks, with the whole conversation kept in context. The control track re-asks the neutral question, so pressure effects are measured against repetition alone.}
+\label{fig:overview}
+\end{figure*}

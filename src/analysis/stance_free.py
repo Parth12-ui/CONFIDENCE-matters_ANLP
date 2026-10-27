@@ -20,9 +20,9 @@ For each --run TAG DIR, at turn 6 against the control (and against filler when p
                         and {TAG}SFSwitchCtrl the same share for the neutral tracks
 Also writes a table (--table_out) with one row per run.
 
-Usage (from code/v4_final/):
-  python src/evaluation/analyze_stance_free.py --run QwenMath ../../results/v4_final/run_qwen25_7b_math_rf \
-      --run LlamaMath ../../results/v4_final/run_llama31_8b_math_rf_fv --tex_out <dir>/stance_free.tex \
+Usage (from the repository root):
+  python src/analysis/stance_free.py --run QwenMath results/qwen_math \
+      --run LlamaMath results/run_llama31_8b_math_rf_fv --tex_out <dir>/stance_free.tex \
       --table_out <dir>/tab_stancefree.tex
 """
 
@@ -47,7 +47,7 @@ def fmt(x, signed=False, nd=1):
 def load(run_dir):
     rows = []
     for t in TRACKS:
-        p = os.path.join(run_dir, t, "claims_drift_results.jsonl")
+        p = os.path.join(run_dir, t, "turns.jsonl")
         if os.path.exists(p):
             rows += [json.loads(l) for l in open(p, encoding="utf-8") if l.strip()]
     d = pd.DataFrame(rows).drop_duplicates(["claim_id", "track", "turn"], keep="last")

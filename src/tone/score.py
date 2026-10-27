@@ -18,9 +18,9 @@ Measures (all computed on the wrapper text with the claim removed):
 Each measure is optional (--skip vad politeness emotions) so the scorer runs with
 whatever resources are installed; composite.py uses the columns that are present.
 
-Usage (from code/v4_final/, with the tone venv):
-  .venv_tone/bin/python src/tone/score_severity.py --wrappers ../../results/v4_final/tone_severity/wrappers.csv \
-      --vad_path resources/NRC-VAD-Lexicon.txt --out ../../results/v4_final/tone_severity/wrapper_scores.csv
+Usage (from the repository root, with the tone venv):
+  .venv_tone/bin/python src/tone/score.py --wrappers results/tone/wrappers.csv \
+      --vad_path resources/NRC-VAD-Lexicon.txt --out results/tone/wrapper_scores.csv
 """
 
 import argparse

@@ -5,7 +5,7 @@ many verdicts the runner's --force_verdict fallback completed. Also writes the p
 MATH table.
 
 For each --run TAG DIR (DIR holds the track folders; the tone-severity and derived-answer
-outputs are read from DIR/tone_severity/ and DIR/derived/ when present):
+outputs are read from DIR/tone/ and DIR/derived/ when present):
   {TAG}PraWrong*, {TAG}PraRight*  accuracy at turn 6, praise vs control, on false claims the
                                   model got right at turn 0 (praise is wrong) and true claims
                                   it got wrong (praise is right); N, Pra, Ctrl, Diff, DiffLo, DiffHi
@@ -20,9 +20,9 @@ outputs are read from DIR/tone_severity/ and DIR/derived/ when present):
 A run with forced verdicts also gets {TAG}NF* praise macros with those verdicts treated as
 missing. Tone validity macros (Tone*) come from the tone_severity folder.
 
-Usage (from code/v4_final/):
-  python src/evaluation/final_macros.py --tone ../../results/v4_final/tone_severity --out <dir>/final_numbers.tex \
-      --levels_out <dir>/tab_levels.tex --run QwenMath ../../results/v4_final/run_qwen25_7b_math_rf ...
+Usage (from the repository root):
+  python src/analysis/report_numbers.py --tone results/tone --out <dir>/final_numbers.tex \
+      --levels_out <dir>/tab_levels.tex --run QwenMath results/qwen_math ...
 """
 
 import argparse
@@ -51,7 +51,7 @@ def fmt(x, signed=False, nd=1):
 def load_tracks(run_dir, tracks):
     rows = []
     for t in tracks:
-        path = os.path.join(run_dir, t, "claims_drift_results.jsonl")
+        path = os.path.join(run_dir, t, "turns.jsonl")
         if os.path.exists(path):
             rows += [json.loads(l) for l in open(path, encoding="utf-8") if l.strip()]
     return pd.DataFrame(rows).drop_duplicates(["claim_id", "track", "turn"], keep="last")
@@ -81,8 +81,8 @@ def praise_vs_control(d, rng):
 
 def tone_macros(run_dir):
     out = {}
-    files = glob.glob(os.path.join(run_dir, "tone_severity", "tone_severity_*.csv"))
-    turns = glob.glob(os.path.join(run_dir, "tone_severity", "tone_turns_*.csv"))
+    files = glob.glob(os.path.join(run_dir, "tone", "tone_severity_*.csv"))
+    turns = glob.glob(os.path.join(run_dir, "tone", "tone_turns_*.csv"))
     if not files or not turns:
         return out
     est = pd.read_csv(files[0])
@@ -106,7 +106,7 @@ def tone_macros(run_dir):
 
 
 def working_macros(run_dir):
-    turns = glob.glob(os.path.join(run_dir, "tone_severity", "tone_turns_*.csv"))
+    turns = glob.glob(os.path.join(run_dir, "tone", "tone_turns_*.csv"))
     rows = os.path.join(run_dir, "derived", "rows.csv")
     if not turns or not os.path.exists(rows):
         return {}

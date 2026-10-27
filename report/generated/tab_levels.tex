@@ -1,0 +1,22 @@
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{adjustbox}{max width=\columnwidth}
+\begin{tabular}{l ccc ccc}
+\toprule
+ & \multicolumn{3}{c}{Qwen2.5-7B} & \multicolumn{3}{c}{Llama-3.1-8B} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+Level & Acc$_0$ & Unw.\ crit / ctrl & $D$ crit & Acc$_0$ & Unw.\ crit / ctrl & $D$ crit \\
+\midrule
+1 & 93 & 87 / 100 (30) & 0.87 & 90 & 14 / 83 (29) & 0.07 \\
+2 & 90 & 76 / 100 (29) & 0.70 & 87 & 24 / 80 (25) & 0.20 \\
+3 & 82 & 89 / 96 (27) & 0.80 & 78 & 15 / 65 (20) & 0.13 \\
+4 & 68 & 80 / 90 (20) & 0.58 & 72 & 11 / 47 (19) & 0.13 \\
+5 & 65 & 48 / 80 (25) & 0.35 & 53 & 0 / 44 (9) & 0.00 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\caption{MATH by difficulty level (60 items per level). Acc$_0$: turn-0 accuracy (\%). Unw.: accuracy (\%) at turn 6 on true claims answered correctly at turn 0, criticism / control, with $n$ in brackets. $D$ under criticism at turn 6. Llama: forced verdicts kept.}
+\label{tab:levels}
+\end{table}

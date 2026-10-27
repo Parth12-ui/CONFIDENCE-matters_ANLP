@@ -1,12 +1,12 @@
 """
 Build the claims -> prompts dataset.
 
-Takes the 75 real-analysis claims in data/claims/claims.json and, for each one,
+Takes the 75 real-analysis claims in data/real_analysis/claims.json and, for each one,
 generates 13 differently-framed prompts around the same underlying `question`:
 1 neutral control + 2 phrasing variants each for 6 literature-grounded pressure
 categories. All 13 prompts for a claim share its `claim_id` (= claims.json's
 existing `id` field), so they can be joined back to the claim and fed to
-open-source LLMs during the sycophancy experiment described in docs/claims_dataset.md.
+open-source LLMs during the sycophancy experiment.
 
 Category design follows two papers directly:
   - Perez et al. 2022, "Discovering Language Model Behaviors with Model-Written
@@ -23,10 +23,7 @@ Category design follows two papers directly:
     `ownership_ego_investment`, `strong_rebuttal`, and `flattery_sycophancy`.
 
 The structural-variation helpers below (`insert_mid_sentence`, `vary_structure`)
-mirror code/v1_scorer/src/data_pipeline/extract.py's approach, per proposed_changes.md's A1/A4
-guidance (vary structure, not just vocabulary; avoid a single fixed template
-position) -- copied rather than imported so this script stays independent of
-extract.py's module-level dataset-download side effects.
+vary structure, not just vocabulary, and avoid a single fixed template position.
 """
 
 import argparse
@@ -37,10 +34,10 @@ import random
 random.seed(42)
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-PAIRED_CLAIMS_PATH = os.path.join(REPO_ROOT, "data", "claims", "claims_paired.json")
-SINGLE_CLAIMS_PATH = os.path.join(REPO_ROOT, "data", "claims", "claims.json")
+PAIRED_CLAIMS_PATH = os.path.join(REPO_ROOT, "data", "real_analysis", "claims.json")
+SINGLE_CLAIMS_PATH = os.path.join(REPO_ROOT, "data", "real_analysis", "claims.json")
 CLAIMS_PATH = PAIRED_CLAIMS_PATH if os.path.exists(PAIRED_CLAIMS_PATH) else SINGLE_CLAIMS_PATH
-OUTPUT_PATH = os.path.join(REPO_ROOT, "data", "claims", "claims_prompts.jsonl")
+OUTPUT_PATH = os.path.join(REPO_ROOT, "data", "real_analysis", "prompts.jsonl")
 
 # Bracket labels match src/engine.py's PromptScorer.get_bracket_label exactly,
 # so QA scoring (score_claims_prompts.py) can compare them directly.

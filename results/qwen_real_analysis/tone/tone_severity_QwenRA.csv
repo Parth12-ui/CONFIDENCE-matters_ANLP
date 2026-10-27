@@ -1,0 +1,76 @@
+polarity,measure,subset,spec,outcome,n,events,est,lo,hi
+criticism,severity_eq,all,controls,cave (OR/SD),323,83.0,2.6083336754704916,1.8852541527457642,4.074722560896608
+criticism,severity_eq,feedback wrong,controls,cave (OR/SD),244,57.0,3.670574938999904,2.581274132447839,7.336358783894521
+criticism,severity_eq,feedback right,controls,cave (OR/SD),79,26.0,1.470922267265132,0.6810850570453425,3.6259440805154504
+criticism,severity_eq,all turns,controls,d_pre (pts/SD),900,,5.553521427963812,3.367011791831518,8.115157508230556
+criticism,severity_eq,all turns,controls,d_self (pts/SD),900,,6.691186371064479,3.9384324365000296,9.706081440623434
+criticism,severity_eq,all,+category FE,cave (OR/SD),323,83.0,2.3809935595124974,0.9088089815225404,6.267788378693137
+criticism,severity_eq,feedback wrong,+category FE,cave (OR/SD),244,57.0,2.2058685508959743,0.47503861458723007,8.77276821386484
+criticism,severity_eq,feedback right,+category FE,cave (OR/SD),79,26.0,5.857166452957845,0.7651892970541022,5527.637378252053
+criticism,severity_eq,all turns,+category FE,d_pre (pts/SD),900,,-2.5127008367155934,-7.17744630528506,2.278273065262169
+criticism,severity_eq,all turns,+category FE,d_self (pts/SD),900,,-1.223982073691214,-7.888483392110762,5.456048619673675
+criticism,severity_pc1,all,controls,cave (OR/SD),323,83.0,2.1710594730831243,1.647720791881151,3.087706916447916
+criticism,severity_pc1,feedback wrong,controls,cave (OR/SD),244,57.0,2.833920578118967,2.091933696275738,5.028780802137931
+criticism,severity_pc1,feedback right,controls,cave (OR/SD),79,26.0,1.3814234589142744,0.7371746652626816,3.0096757946450095
+criticism,severity_pc1,all turns,controls,d_pre (pts/SD),900,,4.481352032928211,2.518846365477238,6.388626227384958
+criticism,severity_pc1,all turns,controls,d_self (pts/SD),900,,5.40103647133389,3.18266762230562,7.749973708754672
+criticism,z_emo_negative,all,controls,cave (OR/SD),323,83.0,2.043216894239927,1.4836496275692217,3.5143659935191
+criticism,z_emo_negative,feedback wrong,controls,cave (OR/SD),244,57.0,3.2063620468633167,2.1589007980155,6.673315029814672
+criticism,z_emo_negative,feedback right,controls,cave (OR/SD),79,26.0,1.0532846595504637,0.5073549957004077,2.960892846546738
+criticism,z_emo_negative,all turns,controls,d_pre (pts/SD),900,,5.557809284614872,3.5853675865951264,7.6724912719427305
+criticism,z_emo_negative,all turns,controls,d_self (pts/SD),900,,6.0976151123712645,3.990119623330269,8.28618910484942
+criticism,z_politeness,all,controls,cave (OR/SD),323,83.0,2.0652461784770115,1.590176820044106,3.1335125127221235
+criticism,z_politeness,feedback wrong,controls,cave (OR/SD),244,57.0,2.6825250686862874,1.9076389642098033,4.704061216284893
+criticism,z_politeness,feedback right,controls,cave (OR/SD),79,26.0,1.3260364029318499,0.6938287445624687,3.426682270456475
+criticism,z_politeness,all turns,controls,d_pre (pts/SD),900,,2.923487601895409,1.2247136336954632,4.757956715138731
+criticism,z_politeness,all turns,controls,d_self (pts/SD),900,,4.741367303822991,2.599386926019117,6.599842261952042
+criticism,z_vad_arousal,all,controls,cave (OR/SD),323,83.0,1.5554897214789571,1.2302739379282561,2.071788431194062
+criticism,z_vad_arousal,feedback wrong,controls,cave (OR/SD),244,57.0,1.7796014848270851,1.3169581846876723,2.678153440639994
+criticism,z_vad_arousal,feedback right,controls,cave (OR/SD),79,26.0,1.1155122232643289,0.639441204803961,2.068936047917976
+criticism,z_vad_arousal,all turns,controls,d_pre (pts/SD),900,,3.1365701934385704,1.4203995402436704,5.082268033637087
+criticism,z_vad_arousal,all turns,controls,d_self (pts/SD),900,,2.655307875586605,0.5102725854689424,4.630735757603043
+criticism,z_vad_dominance,all,controls,cave (OR/SD),323,83.0,0.5458892152465764,0.41784829222422337,0.6889997228285526
+criticism,z_vad_dominance,feedback wrong,controls,cave (OR/SD),244,57.0,0.501428194508466,0.35991814259159305,0.6346398903186469
+criticism,z_vad_dominance,feedback right,controls,cave (OR/SD),79,26.0,0.6148100110618544,0.2408790162352144,1.210116254052858
+criticism,z_vad_dominance,all turns,controls,d_pre (pts/SD),900,,-2.7403181264523417,-4.3781482059864,-1.205770830835848
+criticism,z_vad_dominance,all turns,controls,d_self (pts/SD),900,,-4.724735263496298,-7.06953933265563,-2.6674351307594693
+criticism,z_vad_valence,all,controls,cave (OR/SD),323,83.0,1.909503262296942,1.5058606528519052,2.58743908732015
+criticism,z_vad_valence,feedback wrong,controls,cave (OR/SD),244,57.0,2.050109966608768,1.5741291359958145,3.0273654432525516
+criticism,z_vad_valence,feedback right,controls,cave (OR/SD),79,26.0,1.7667527365828886,0.8944785776658719,4.411677359174386
+criticism,z_vad_valence,all turns,controls,d_pre (pts/SD),900,,3.6477495125241175,2.1282014947583385,5.436351273152703
+criticism,z_vad_valence,all turns,controls,d_self (pts/SD),900,,4.8966319095639586,2.515781122548911,7.1599214819805495
+praise,severity_eq,all,controls,cave (OR/SD),347,10.0,0.45794537346322806,0.07394740660090895,2.1334284534847425
+praise,severity_eq,feedback wrong,controls,cave (OR/SD),300,7.0,,,
+praise,severity_eq,feedback right,controls,cave (OR/SD),47,3.0,,,
+praise,severity_eq,all turns,controls,d_pre (pts/SD),900,,-2.5400655095893696,-5.452082707160795,0.09737444272827254
+praise,severity_eq,all turns,controls,d_self (pts/SD),900,,0.0012994556701942384,-1.509209179301449,1.4761840375543953
+praise,severity_eq,all,+category FE,cave (OR/SD),347,10.0,2.761223640656523,0.17455631794653956,1740.1160606915837
+praise,severity_eq,feedback wrong,+category FE,cave (OR/SD),300,7.0,,,
+praise,severity_eq,feedback right,+category FE,cave (OR/SD),47,3.0,,,
+praise,severity_eq,all turns,+category FE,d_pre (pts/SD),900,,3.712355051903054,0.3012647364105763,7.5570093266692675
+praise,severity_eq,all turns,+category FE,d_self (pts/SD),900,,1.5523137477901827,-0.8052415951024072,4.487946065180743
+praise,severity_pc1,all,controls,cave (OR/SD),347,10.0,0.7651933592679048,0.3290964543329566,1.3529645637207384
+praise,severity_pc1,feedback wrong,controls,cave (OR/SD),300,7.0,,,
+praise,severity_pc1,feedback right,controls,cave (OR/SD),47,3.0,,,
+praise,severity_pc1,all turns,controls,d_pre (pts/SD),900,,0.6809956403622693,-0.8623475571514004,2.4274416601845807
+praise,severity_pc1,all turns,controls,d_self (pts/SD),900,,0.2135076500075467,-1.0385903750604513,1.3004214381403916
+praise,z_emo_positive,all,controls,cave (OR/SD),347,10.0,0.7132409196955992,0.32281387047692833,1.388271509798595
+praise,z_emo_positive,feedback wrong,controls,cave (OR/SD),300,7.0,,,
+praise,z_emo_positive,feedback right,controls,cave (OR/SD),47,3.0,,,
+praise,z_emo_positive,all turns,controls,d_pre (pts/SD),900,,-1.0490367561334812,-2.727586229063568,0.5113858311839603
+praise,z_emo_positive,all turns,controls,d_self (pts/SD),900,,-0.1977054534192945,-0.8786928842214917,0.523678416791342
+praise,z_vad_arousal,all,controls,cave (OR/SD),347,10.0,0.9325573466326073,0.42201172744691007,1.8219568302777736
+praise,z_vad_arousal,feedback wrong,controls,cave (OR/SD),300,7.0,,,
+praise,z_vad_arousal,feedback right,controls,cave (OR/SD),47,3.0,,,
+praise,z_vad_arousal,all turns,controls,d_pre (pts/SD),900,,-1.600528071017807,-3.857379661593009,0.2695131087782431
+praise,z_vad_arousal,all turns,controls,d_self (pts/SD),900,,-0.08152172901476952,-0.7810406923020082,0.6502301463846474
+praise,z_vad_dominance,all,controls,cave (OR/SD),347,10.0,0.7253330169174778,0.3876181813234757,1.5761607087685228
+praise,z_vad_dominance,feedback wrong,controls,cave (OR/SD),300,7.0,,,
+praise,z_vad_dominance,feedback right,controls,cave (OR/SD),47,3.0,,,
+praise,z_vad_dominance,all turns,controls,d_pre (pts/SD),900,,-0.9122809444784001,-2.6548663063225497,0.762967031288452
+praise,z_vad_dominance,all turns,controls,d_self (pts/SD),900,,0.4735935571747906,-0.3869785778772895,1.4318148240123885
+praise,z_vad_valence,all,controls,cave (OR/SD),347,10.0,0.683816515586256,0.2489622876120173,1.5402219022904609
+praise,z_vad_valence,feedback wrong,controls,cave (OR/SD),300,7.0,,,
+praise,z_vad_valence,feedback right,controls,cave (OR/SD),47,3.0,,,
+praise,z_vad_valence,all turns,controls,d_pre (pts/SD),900,,0.15989415689789657,-1.2262776092495584,1.6876868358366919
+praise,z_vad_valence,all turns,controls,d_self (pts/SD),900,,0.40895810241458824,-1.1716122882340363,1.8673308527035415

@@ -1,0 +1,7 @@
+\section*{Compute}
+All runs used the IIIT Ada cluster, one NVIDIA RTX 2080 Ti (11\,GB) per job with 4-bit models; peak GPU memory per turn stayed below 8\,GB.
+The final runs took about 294 GPU-hours between 20 and 26 October 2026: 212 for the results reported here (Qwen: 39 on MATH, 22 on real analysis, 38 for the stance-free tracks; Llama with the verdict fallback: 61, 29 and 21), 50 for a superseded Llama MATH run without the fallback, and the rest for pilots and memory tests.
+A six-turn track over 300 MATH items takes 11--15 GPU-hours for Qwen and about 20 for Llama.
+% TODO(authors): the course asks for a section justifying any use of the Jarvislabs credit
+% (INR 5,880). None of these runs used it; confirm that nobody else did, or list each run, GPU type, hours and cost.
+The Jarvislabs credit was not used for these runs.

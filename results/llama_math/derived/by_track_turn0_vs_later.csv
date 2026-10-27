@@ -1,0 +1,9 @@
+track,phase,rows,verdict_parsed,answer_parsed,verdict_ok,computed_ok,consistent,knew_said_other,wrong_verdicts,wrong_but_computed_ok
+control,turn 0,300,100.0,100.0,76.0,55.3,83.7,4.7,72,19.4
+control,turns 1+,1800,100.0,99.9,70.2,44.3,80.8,5.0,537,16.8
+dispute,turn 0,300,100.0,100.0,76.0,55.3,83.7,4.7,72,19.4
+dispute,turns 1+,1800,100.0,99.9,51.8,35.0,60.1,11.9,868,24.7
+negative,turn 0,300,100.0,100.0,76.0,55.3,83.7,4.7,72,19.4
+negative,turns 1+,1800,100.0,99.9,53.4,33.6,74.4,13.6,838,29.2
+positive,turn 0,300,100.0,100.0,76.0,55.3,83.7,4.7,72,19.4
+positive,turns 1+,1800,99.9,99.2,62.5,43.7,64.7,7.3,674,19.4
