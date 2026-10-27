@@ -19,13 +19,14 @@ On the criticism track, at turns 1-6:
   - same-verdict test: caved turns against turns on FALSE claims where the model also says
            Invalid. Both groups state the same verdict, so a probe that only reads the
            verdict cannot tell them apart (AUROC 0.5); a probe that separates them carries
-           the truth beyond the stated verdict.
+           the truth beyond the stated verdict. Both probes are scored on the same bootstrap
+           resamples, so the truth-minus-verdict AUROC difference gets a paired interval.
 Intervals are 95% percentile bootstrap intervals over claim-twin pairs, as in pushback.py.
 
 Usage:
   python3 src/analysis/hidden_probe.py --results_dir results/qwen_math --tag QwenMath \
       [--hidden_dir results/qwen_math/hidden] [--out_dir results/qwen_math/hidden_probe] \
-      [--tex_out report/generated/hidden_QwenMath.tex] [--drop_forced]
+      [--tex_out report/generated/hidden_QwenMath.tex] [--drop_forced] [--reuse_curve]
 """
 
 import argparse
@@ -103,6 +104,8 @@ def main():
     ap.add_argument("--tag", required=True)
     ap.add_argument("--tex_out", default=None)
     ap.add_argument("--drop_forced", action="store_true", help="forced verdicts count as missing")
+    ap.add_argument("--reuse_curve", action="store_true",
+                    help="take the layer choice from an existing <out_dir>/layer_curve.csv")
     args = ap.parse_args()
     hidden = args.hidden_dir or os.path.join(args.results_dir, "hidden")
     out_dir = args.out_dir or os.path.join(args.results_dir, "hidden_probe")
@@ -123,8 +126,9 @@ def main():
         return S[f["i"].to_numpy(), f["turn"].to_numpy(), p, li].astype(np.float32)
 
     # 1. Layer curve on the control track (held-out accuracy), both positions
+    curve_csv = os.path.join(out_dir, "layer_curve.csv")
     curve = []
-    for p, pname in enumerate(POSITIONS):
+    for p, pname in enumerate(POSITIONS if not args.reuse_curve else ()):
         for li, layer in enumerate(layers):
             pc, _ = fit_score(X(Sc, fc, p, li), yc_truth, gc, X(Sn, fn, p, li)[:0], gn[:0])
             pv, _ = fit_score(X(Sc, fc, p, li), yc_verdict, gc, X(Sn, fn, p, li)[:0], gn[:0], parsed_c)
@@ -133,8 +137,11 @@ def main():
                           "verdict_acc": float(((pv > 0.5) == yc_verdict)[parsed_c].mean())})
             print(f"  {pname} layer {layer:2d}: control truth acc {curve[-1]['truth_acc']:.3f}, "
                   f"verdict acc {curve[-1]['verdict_acc']:.3f}", flush=True)
-    curve = pd.DataFrame(curve)
-    curve.to_csv(os.path.join(out_dir, "layer_curve.csv"), index=False)
+    if args.reuse_curve:
+        curve = pd.read_csv(curve_csv)
+    else:
+        curve = pd.DataFrame(curve)
+        curve.to_csv(curve_csv, index=False)
 
     # 2. Criticism track at the chosen layer, per position
     out = {"items": int(d["claim_id"].nunique()), "C": C, "folds": FOLDS}
@@ -164,6 +171,7 @@ def main():
         if len(caved) and (~same["true"]).any():
             r["same_auc_truth"] = cluster_boot(same, lambda q: auc(q, "p_truth"), rng)
             r["same_auc_verdict"] = cluster_boot(same, lambda q: auc(q, "p_verdict"), rng)
+            r["same_auc_diff"] = cluster_boot(same, lambda q: auc(q, "p_truth") - auc(q, "p_verdict"), rng)
         out[pname] = r
         print(f"{pname}: layer {r['layer']}, caved {r['caved_turns']} turns; "
               + ", ".join(f"{k} {v[0]:.3f} [{v[1]:.3f}, {v[2]:.3f}]" for k, v in r.items() if isinstance(v, tuple)))
@@ -184,7 +192,8 @@ def main():
             for key, name, fmt in [("caved_truth_ok", "CavedTruth", pct), ("caved_verdict_ok", "CavedVerdict", pct),
                                    ("held_truth_ok", "HeldTruth", pct),
                                    ("same_auc_truth", "AucTruth", lambda v: f"{v:.2f}"),
-                                   ("same_auc_verdict", "AucVerdict", lambda v: f"{v:.2f}")]:
+                                   ("same_auc_verdict", "AucVerdict", lambda v: f"{v:.2f}"),
+                                   ("same_auc_diff", "AucDiff", lambda v: f"{v:.2f}")]:
                 if key in r:
                     for suf, v in zip(("", "Lo", "Hi"), r[key]):
                         lines.append(f"\\newcommand{{\\{T}Hid{P}{name}{suf}}}{{{fmt(v)}}}")
