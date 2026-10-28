@@ -10,7 +10,9 @@
 \item Llama's real-analysis results start from weak turn-0 knowledge, and some subsets are small (Tables~\ref{tab:pushback} and~\ref{tab:praise}).
 \item The criticism phrases assert that the claim is false and the answer nudge names a verdict, so these categories carry content as well as tone. Stance-free tracks separate the two, but only on MATH, for Qwen (dispute, affirm, filler) and for Llama (dispute only).
 \item The tone measures are established resources applied to short, templated messages; they have not been checked against human ratings of these messages, and they capture praise poorly. Dropping the dominance measure was decided after looking at the scores.
-\item The derived answer is parsed from free text and has not been hand-checked at scale; both probes are next-token readouts and cannot show what is represented in the hidden states.
+\item The real-analysis twins were drafted with an LLM and not checked by a human, so a few may in fact be true.
+\item The derived answer is parsed from free text and has not been hand-checked at scale.
+\item The hidden-state probes are linear and cover MATH only. Under criticism their threshold no longer fits, so only their ranking is used, and states after the answer may reflect the model's written working.
 \item H4--H6, the tone analysis and the turn-0 subsets were chosen after a pilot run and are exploratory.
 \end{itemize}
 
@@ -18,7 +20,7 @@
 \begin{itemize}
 \setlength\itemsep{0pt}
 \item \emph{Recovery.} Whether praise or a neutral re-check restores a correct answer after criticism, and whether there is a turn after which it no longer does.
-\item \emph{Hidden states.} Linear probes on the residual stream would test whether the correct answer stays represented when a model gives in.
+\item \emph{Hidden states.} Probes on real analysis, and steering along the truth direction to test whether the trace Llama keeps can restore a correct answer.
 \item \emph{Human validation of tone.} A Best--Worst Scaling study \citep{kiritchenko-mohammad-2017-best} of the feedback wordings, for which the sheets are prepared.
 \item \emph{Wider coverage.} Stance-free tracks on real analysis and for all of Llama's tracks, larger and reasoning-tuned models, and sampled rather than greedy decoding.
 \end{itemize}

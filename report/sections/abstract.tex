@@ -1,8 +1,7 @@
 \begin{abstract}
 Language models often abandon correct answers when users push back, but most evidence comes from a single turn of feedback.
 We follow Qwen2.5-7B and Llama-3.1-8B through six turns of sustained criticism, sustained praise or a no-feedback control on claims with a known truth value: 300 MATH answer claims over five difficulty levels and 150 real-analysis statements, each true claim paired with a well-posed false twin.
-The model reasons before it answers, and after every turn we record its verdict, two confidence probes and, on MATH, the answer its own working reaches.
-Criticism dominates.
+After every turn we record the verdict, two confidence probes and, on MATH, the answer the model's own working reaches.
 On true MATH claims the model first answered correctly, six turns of criticism leave Qwen correct on \QwenMathUnwCrit\% against \QwenMathUnwCtrl\% in the control and Llama on \LlamaMathUnwCrit\% against \LlamaMathUnwCtrl\%; the drop grows with difficulty and is larger on real analysis.
 Llama follows the critic whatever the truth: its ability to separate true from false claims falls from \LlamaMathDiscZero{} to \LlamaMathDiscCrit.
 Praise moves Qwen little but sways Llama.

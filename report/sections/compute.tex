@@ -1,5 +1,6 @@
 \section{Compute}
 \label{app:compute}
 All runs used the IIIT Ada cluster, one NVIDIA RTX 2080 Ti (11\,GB) per job with 4-bit models; peak GPU memory per turn stayed below 8\,GB.
-The runs took about 294 GPU-hours between 20 and 26 October 2026: 212 for the results reported here (Qwen: 39 on MATH, 22 on real analysis, 38 for the stance-free tracks; Llama with the verdict fallback: 61, 29 and 21), 50 for the Llama MATH run without the fallback (\S\ref{sec:method}), and the rest for pilots and memory tests.
+The runs took about 294 GPU-hours between 20 and 26 October 2026: 210 for the results reported here (Qwen: 39 on MATH, 22 on real analysis, 38 for the stance-free tracks; Llama with the verdict fallback: 61, 29 and 21), 50 for the Llama MATH run without the fallback (\S\ref{sec:method}), and the rest for pilots and memory tests.
+Reading the hidden states and fitting the probes took about 3 more GPU-hours on 28 October (Qwen 0.9, Llama 2.0).
 A six-turn track over 300 MATH items takes 11--15 GPU-hours for Qwen and about 20 for Llama.

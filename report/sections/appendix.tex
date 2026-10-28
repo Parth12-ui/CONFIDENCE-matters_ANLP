@@ -67,6 +67,43 @@ You're incredible at real analysis, truly the best, I trust whatever you conclud
 \label{tab:tone-examples}
 \end{table}
 
+\section{Results by Difficulty Level}
+\label{app:levels}
+\input{generated/tab_levels}
+
+\section{Hidden-State Probes}
+\label{app:hidden}
+We rebuild every logged MATH conversation in the control and criticism tracks and run it once through the model (4-bit, as in the runs).
+For each turn we keep the residual stream after every second layer at two positions: the last token before the model's turn-$t$ response (\emph{before}) and the last token of that response (\emph{after}).
+Two standardised logistic regressions with L2 penalty ($C=0.01$) are fitted on the control track: a \emph{truth probe} (is the claim true?) and a \emph{verdict probe} (does the model say \Valid?).
+The folds are claim--twin pairs (five folds), and each criticism-track state is scored by the fold model that never saw its pair.
+The layer is chosen by the truth probe's held-out accuracy on the control track, without looking at the criticism track.
+We then compare the turns on which the model gives up a correct answer under unwarranted criticism (turns 1--6) with turns on false claims that it also calls \Invalid.
+The difference between the two probes' AUROC on this comparison, with a paired bootstrap interval over pairs, measures what the states carry about the truth beyond the stated verdict.
+Under criticism the truth probe's threshold no longer fits: for Llama it favours the correct answer on fewer than half of the turns on which the model keeps it (Table~\ref{tab:hidden}), so we use only the AUROC comparison, which does not depend on the threshold.
+
+\begin{table}[h]
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{adjustbox}{max width=\columnwidth}
+\begin{tabular}{l l c c c c c c}
+\toprule
+ & & Ctrl & Gave in & Held & AUC$_T$ & AUC$_V$ & Difference \\
+\midrule
+Qwen & before & \QwenMathHidPreCtrlAcc & \QwenMathHidPreCavedTruth & \QwenMathHidPreHeldTruth & \QwenMathHidPreAucTruth & \QwenMathHidPreAucVerdict & \QwenMathHidPreAucDiff{} [\QwenMathHidPreAucDiffLo, \QwenMathHidPreAucDiffHi] \\
+ & after & \QwenMathHidPostCtrlAcc & \QwenMathHidPostCavedTruth & \QwenMathHidPostHeldTruth & \QwenMathHidPostAucTruth & \QwenMathHidPostAucVerdict & \QwenMathHidPostAucDiff{} [\QwenMathHidPostAucDiffLo, \QwenMathHidPostAucDiffHi] \\
+Llama & before & \LlamaMathHidPreCtrlAcc & \LlamaMathHidPreCavedTruth & \LlamaMathHidPreHeldTruth & \LlamaMathHidPreAucTruth & \LlamaMathHidPreAucVerdict & \LlamaMathHidPreAucDiff{} [\LlamaMathHidPreAucDiffLo, \LlamaMathHidPreAucDiffHi] \\
+ & after & \LlamaMathHidPostCtrlAcc & \LlamaMathHidPostCavedTruth & \LlamaMathHidPostHeldTruth & \LlamaMathHidPostAucTruth & \LlamaMathHidPostAucVerdict & \LlamaMathHidPostAucDiff{} [\LlamaMathHidPostAucDiffLo, \LlamaMathHidPostAucDiffHi] \\
+Llama$^{*}$ & before & \LlamaMathNFHidPreCtrlAcc & \LlamaMathNFHidPreCavedTruth & \LlamaMathNFHidPreHeldTruth & \LlamaMathNFHidPreAucTruth & \LlamaMathNFHidPreAucVerdict & \LlamaMathNFHidPreAucDiff{} [\LlamaMathNFHidPreAucDiffLo, \LlamaMathNFHidPreAucDiffHi] \\
+ & after & \LlamaMathNFHidPostCtrlAcc & \LlamaMathNFHidPostCavedTruth & \LlamaMathNFHidPostHeldTruth & \LlamaMathNFHidPostAucTruth & \LlamaMathNFHidPostAucVerdict & \LlamaMathNFHidPostAucDiff{} [\LlamaMathNFHidPostAucDiffLo, \LlamaMathNFHidPostAucDiffHi] \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\caption{Hidden-state probes on MATH. Ctrl: truth-probe accuracy on the control track (\%). Gave in / Held: share of criticism turns on which the truth probe favours the correct answer when the model gives it up / keeps it (\%). AUC$_T$, AUC$_V$: truth and verdict probes separating gave-in turns from false claims also called \Invalid; Difference: AUC$_T-$AUC$_V$ with 95\% interval. Layers: Qwen \QwenMathHidPreLayer{} before, \QwenMathHidPostLayer{} after; Llama \LlamaMathHidPreLayer{} and \LlamaMathHidPostLayer. $^{*}$Forced verdicts dropped (\LlamaMathNFHidPreCavedN{} gave-in turns, against \LlamaMathHidPreCavedN; Qwen \QwenMathHidPreCavedN).}
+\label{tab:hidden}
+\end{table}
+
 \section{Why Not a Learned Tone Scorer}
 \label{app:scorer}
 

@@ -51,8 +51,7 @@ Llama calls \LlamaMathSayInvalidCrit\% of all MATH claims false under criticism,
 H4 holds for Qwen on MATH and fails for Qwen on real analysis and for Llama.
 
 \paragraph{Difficulty.}
-\input{generated/tab_levels}
-Table~\ref{tab:levels} splits MATH by level.
+Table~\ref{tab:levels} in Appendix~\ref{app:levels} splits MATH by level.
 For Qwen the unwarranted gap is 7--24 points on levels 1--4 and 32 at level 5, where criticism leaves it correct on half of the claims it first got right, and discrimination under criticism falls from 0.87 at level 1 to 0.35 at level 5.
 Llama gives in at every level.
 Together with the larger effect on real analysis, this suggests Qwen holds an answer to the extent that it can verify it.
@@ -154,10 +153,7 @@ Approval works the other way: affirming a wrong verdict leaves Qwen \QwenMathSFA
 Llama abandons a correct verdict on \LlamaMathSFSwitchDisp\% of dispute turns, against \LlamaMathSFSwitchCtrl\% in the control, and its discrimination falls to \LlamaMathSFDDisp{} (control \LlamaMathSFDCtrl): it flips whenever it is contradicted, whatever the truth.
 Flipping back and forth, it ends \LlamaMathSFDispRight{} [\LlamaMathSFDispRightLo, \LlamaMathSFDispRightHi] points below the control on true claims it first got right (criticism: \LlamaMathSFCritRight).
 Harshness again adds nothing (\LlamaMathSFSwitchMild\% after the mildest phrase, \LlamaMathSFSwitchHarsh\% after the harshest).
-
-\paragraph{Summary for H6.}
-Harsher criticism categories move both models more, but graded harshness without a claim about the answer does not, for either model.
-The tone effect in \S\ref{sec:res-tone} is mostly how forcefully the critic asserts the wrong answer; bare disagreement makes Qwen re-check and Llama flip.
+So H6 holds only when the harsher wording also asserts the wrong answer.
 
 \subsection{When the model gives in}
 \label{sec:res-probes}
@@ -172,7 +168,9 @@ The self-check differs between the models: it still favours the correct answer o
 On MATH we can also check the model's own working.
 Of the \QwenMathWorkN{} turns on which Qwen switches to the critic's verdict on a true claim, its working still reaches the correct answer on \QwenMathWorkOk\%, and on \QwenMathWorkLowConf\% it states a confidence of 10\% or less, which it almost never does otherwise.
 For Llama the working still reaches the correct answer on \LlamaMathWorkOk\% of its \LlamaMathWorkN{} such turns, the self-check never sides with it, and only \LlamaMathWorkLowConf\% state low confidence.
+H5 thus holds for Llama and fails for Qwen on MATH.
 
-\paragraph{Summary.}
-When Qwen gives in on MATH it often changes only its stated verdict, while its working and often its stated confidence keep the correct answer; when Llama gives in, everything we measure moves together.
-H5 holds for Llama and fails for Qwen on MATH.
+\paragraph{Hidden states.}
+Linear probes on the residual stream (Appendix~\ref{app:hidden}) compare these turns with turns on false claims the model also calls \Invalid; both state the same verdict, so a probe that reads only the verdict cannot tell them apart.
+For Qwen a truth probe separates them no better than a verdict probe (AUROC difference \QwenMathHidPreAucDiff{} [\QwenMathHidPreAucDiffLo, \QwenMathHidPreAucDiffHi] before the answer).
+For Llama it does better, \LlamaMathHidPreAucDiff{} [\LlamaMathHidPreAucDiffLo, \LlamaMathHidPreAucDiffHi] before the answer and \LlamaMathHidPostAucDiff{} [\LlamaMathHidPostAucDiffLo, \LlamaMathHidPostAucDiffHi] after it, also without forced verdicts: its states keep a weak trace of the correct answer beyond its verdict.

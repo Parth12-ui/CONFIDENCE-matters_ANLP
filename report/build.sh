@@ -43,6 +43,9 @@ python3 $AN/plot.py --out $GEN/fig_pushback.pdf \
     --panel "Qwen2.5-7B, real analysis" $RES/qwen_real_analysis/pushback/accuracy_by_turn.csv \
     --panel "Llama-3.1-8B, MATH" $RES/llama_math/pushback/accuracy_by_turn.csv \
     --panel "Llama-3.1-8B, real analysis" $RES/llama_real_analysis/pushback/accuracy_by_turn.csv
+# Hidden-state probes: fitted on Ada from the saved states (scripts/run_hidden_ada.sbatch)
+cp $RES/qwen_math/hidden_probe/hidden_QwenMath.tex $RES/llama_math/hidden_probe/hidden_LlamaMath.tex \
+    $RES/llama_math/hidden_probe_no_forced/hidden_LlamaMathNF.tex $GEN/
 
 cd report
 tectonic -Z search-path=. report.tex

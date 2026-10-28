@@ -1,0 +1,8 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+Over six turns, criticism moves both models far more than praise: on true MATH claims first answered correctly it leaves Qwen correct on \QwenMathUnwCrit\% and Llama on \LlamaMathUnwCrit\% (control \QwenMathUnwCtrl\% and \LlamaMathUnwCtrl\%), and the loss grows with difficulty.
+Qwen still separates true from false MATH claims under criticism; Llama follows the critic whatever the truth.
+Harsher wording makes the models give in more only when it comes with a claim about the answer.
+Qwen often gives in only in its stated verdict, while its working keeps the correct answer; Llama's working and confidence give in too, yet its hidden states keep a weak trace of the correct answer that Qwen's lack.
+Single-turn tests therefore understate sustained criticism, and a stated verdict alone does not show what a model still holds.

@@ -155,7 +155,7 @@ def tone_validity(tone_dir):
 
 def level_table(level_runs, path):
     """Per-level MATH table from analyze_pushback.py --by difficulty outputs."""
-    lines = [r"\begin{table}[t]", r"\centering", r"\small", r"\setlength{\tabcolsep}{3pt}",
+    lines = [r"\begin{table}[H]", r"\centering", r"\small", r"\setlength{\tabcolsep}{3pt}",
              r"\begin{adjustbox}{max width=\columnwidth}", r"\begin{tabular}{l ccc ccc}", r"\toprule",
              r" & \multicolumn{3}{c}{Qwen2.5-7B} & \multicolumn{3}{c}{Llama-3.1-8B} \\",
              r"\cmidrule(lr){2-4}\cmidrule(lr){5-7}",

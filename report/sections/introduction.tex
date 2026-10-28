@@ -11,16 +11,9 @@ A model judges a mathematical claim as \Valid or \Invalid, reasoning first, then
 After every turn we read the stated verdict, two next-token probes of its confidence \citep{kadavath2022language} and its stated confidence, and on MATH the answer its own working reaches.
 
 Three questions organise the results.
-\begin{enumerate}
-\setlength\itemsep{0pt}
-\item \emph{Does the model follow the critic or the truth?}
-Criticism of a claim the model got right is unwarranted; criticism of a claim it got wrong is warranted.
-A model that weighs the criticism against the mathematics should resist the first and accept the second.
-\item \emph{Does harsher feedback move it more?}
-We grade the tone of every feedback message with established politeness, affect and emotion resources and relate it to what the model does on that turn.
-\item \emph{When it gives in, does it still hold the correct answer?}
-We compare the stated verdict with the probes, the stated confidence and the model's own working.
-\end{enumerate}
+Does the model follow the critic or the truth, resisting criticism of a claim it got right and accepting criticism of one it got wrong?
+Does harsher feedback, graded with established politeness, affect and emotion resources, move it more?
+And when it gives in, do its probes, stated confidence, working and hidden states still hold the correct answer?
 
 Our contributions are:
 \begin{itemize}
@@ -29,5 +22,5 @@ Our contributions are:
 \item a protocol with a neutral re-ask control, a fixed six-turn horizon, reasoning before the verdict, and a fallback that recovers verdicts lost to repetition loops (\S\ref{sec:method});
 \item evidence that criticism moves verdicts far more than praise, that the effect grows with difficulty, and that one of the two models follows criticism whether or not it is warranted (\S\ref{sec:res-pushback});
 \item evidence that harsher criticism moves both models more only when it asserts the answer: stance-free disagreement of graded harshness does not, and for praise the content matters more than the warmth (\S\ref{sec:res-tone}, \S\ref{sec:res-stancefree});
-\item evidence that the two models give in differently: Qwen often changes only its stated verdict, Llama changes everything we measure (\S\ref{sec:res-probes}).
+\item evidence that the two models give in differently: Qwen often changes only its stated verdict, Llama changes everything it writes, although its hidden states keep a weak trace of the correct answer (\S\ref{sec:res-probes}).
 \end{itemize}
