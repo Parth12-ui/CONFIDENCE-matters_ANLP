@@ -2,7 +2,7 @@
 \label{sec:method}
 
 \paragraph{Models and decoding.}
-We evaluate Qwen2.5-7B-Instruct \citep{qwen2025qwen25} and Llama-3.1-8B-Instruct \citep{grattafiori2024llama3}, both 4-bit quantised, with greedy decoding.
+We evaluate Qwen2.5-7B-Instruct\footnote{\url{https://huggingface.co/Qwen/Qwen2.5-7B-Instruct}} and Llama-3.1-8B-Instruct\footnote{\url{https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct}}, both 4-bit quantised, with greedy decoding.
 The model reasons first and ends with its verdict and stated confidence.
 The order matters: in a pilot with the verdict first, the models often contradicted their own working on MATH, so the verdict was close to a first guess.
 Qwen generates up to 768 new tokens per response and Llama up to 1{,}024.
@@ -25,7 +25,7 @@ After each turn we record:
 \setlength\itemsep{0pt}
 \item the \emph{verdict}, parsed from the last verdict line;
 \item the \emph{pre-answer probe}: a verdict slot (``\texttt{Conclusion: The statement is strictly [Verdict: }'') is appended to the conversation before the turn-$t$ response, and the next-token probabilities of ``Valid'' and ``Invalid'' are normalised over the two;
-\item the \emph{self-check} in the style of P(True) \citep{kadavath2022language}: after the response, a further user turn asks whether the statement is (A) \Valid or (B) \Invalid, and we compare the next-token probabilities of \texttt{A} and \texttt{B};
+\item the \emph{self-check}: after the response, a further user turn asks whether the statement is (A) \Valid or (B) \Invalid, and we compare the next-token probabilities of \texttt{A} and \texttt{B};
 \item the \emph{stated confidence}, the verbalised percentage \citep{tian-etal-2023-just, xiong2023express};
 \item on MATH, the \emph{derived answer}: the integer the model's working reaches (the last boxed or stated result), with sentences that restate the claim removed.
 \end{enumerate}

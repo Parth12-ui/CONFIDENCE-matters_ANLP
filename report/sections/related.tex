@@ -4,8 +4,6 @@
 \paragraph{Sycophancy: definitions and single-turn elicitation.}
 \citet{perez-etal-2023-discovering} generated 154 evaluation datasets with language models and found that larger models more often repeat back a dialogue user's preferred answer, which they called sycophancy.
 They also reported cases where more reinforcement learning from human feedback (RLHF) made behaviour worse.
-\citet{wei2023simple} extended the measurement to objectively wrong statements.
-On simple addition claims that are false, models agreed with the claim when the user did, even though they knew it was wrong; a lightweight synthetic-data fine-tuning step reduced the effect.
 \citet{sharma2024towards} showed sycophancy in five production assistants across four free-form tasks.
 They also found that human preference data favours responses matching the user's view.
 Their prompt archetypes are the basis of our feedback categories:
@@ -19,37 +17,21 @@ Their prompt archetypes are the basis of our feedback categories:
 They measured both on mathematics and medical questions, and found citation-based rebuttals the most regressive.
 \citet{kim-khashabi-2025-challenging} found that models endorse a counterargument more readily when a user raises it as a follow-up than when both answers are shown side by side.
 Casual phrasing persuaded them more than formal critique.
-\citet{vennemeyer2025notonething} show that sycophantic agreement and sycophantic praise are encoded along distinct directions in activation space, which supports measuring the praise and criticism directions separately.
-\citet{malmqvist2024sycophancy} surveys causes and mitigations.
 
 \paragraph{Multi-turn and sustained pressure.}
-In the FlipFlop experiment, \citet{laban2023flipflop} challenged ten models with ``Are you sure?'' after a classification answer.
-Models flipped 46\% of the time on average and lost 17\% accuracy between the first and final prediction.
-SYCON-Bench \citep{hong-etal-2025-measuring} extends this to multi-turn free-form dialogue.
+SYCON-Bench \citep{hong-etal-2025-measuring} measures sycophancy in multi-turn free-form dialogue.
 It introduces \emph{Turn of Flip} (how quickly a model conforms) and \emph{Number of Flips} (how often its stance changes under sustained pressure).
 Across 17 models, they found that alignment tuning amplifies sycophancy, while scale and reasoning optimisation help resist it.
-TRUTH DECAY \citep{liu2025truthdecay} evaluates sycophancy over extended dialogues with iterative feedback, and finds that accuracy keeps falling as feedback continues.
-\citet{kumaran2025overconfidence} bear directly on the asymmetry hypothesis H3: models are overconfident in their initial choice yet overweight contradicting advice relative to consistent advice, departing from normative Bayesian updating.
-These studies either use a single direction of pressure, unrelated items per turn, or non-mathematical scenarios.
+These studies and the single-turn ones above either use a single direction of pressure, unrelated items per turn, or non-mathematical scenarios.
 We add a condition that re-asks the question without feedback, so the effect of pushback can be separated from the effect of repetition itself.
 None of them tracks a single checkable claim through sustained criticism, sustained praise and a matched control, with confidence measured at every turn.
-
-\paragraph{Mathematics, theorem proving and false statements.}
-BrokenMath \citep{petrov2025brokenmath} measures sycophancy in natural-language theorem proving.
-It perturbs 2025 competition problems into false but well-posed statements, with an LLM draft followed by expert review.
-The best model evaluated, GPT-5, still produced sycophantic answers 29\% of the time.
-The authors note that earlier mathematical sycophancy benchmarks often create ill-posed rather than demonstrably false questions.
-We follow their approach for our false claims (\S\ref{sec:data}) and, like them, require every false variant to be well-posed.
 
 \paragraph{Confidence estimation and calibration.}
 \citet{guo2017calibration} established that modern neural networks can be poorly calibrated.
 They quantified the miscalibration with Expected Calibration Error (ECE).
-\citet{kadavath2022language} showed that large models are well calibrated on multiple-choice and true/false questions in the right format.
-They propose \emph{P(True)}: the model proposes an answer, then evaluates the probability that it is correct.
 For RLHF-tuned models, \citet{tian-etal-2023-just} found verbalized confidences often better calibrated than conditional token probabilities.
 \citet{xiong2023express} found that verbalized confidence tends to be overconfident.
-\citet{pedapati2024confidence} estimate confidence from black-box access by training a logistic regression on engineered features.
-Since we have white-box access, we read token probabilities directly and add a P(True)-style self-evaluation following \citet{kadavath2022language}.
+Since we have white-box access, we also read token probabilities directly, both before the model answers and in a self-check after it answers.
 These studies measure confidence for a single answer; we read it at every turn of a conversation, alongside the stated verdict.
 
 \paragraph{Measuring tone.}
@@ -58,5 +40,5 @@ Established resources grade the tone of short texts: a politeness classifier bui
 We use these resources to check our own ordering of feedback strength instead of training a scorer.
 
 \paragraph{Gap.}
-The pieces needed here exist separately: feedback archetypes \citep{sharma2024towards}, multi-turn flip metrics \citep{hong-etal-2025-measuring}, false-statement construction \citep{petrov2025brokenmath}, confidence probes \citep{kadavath2022language}, and evidence that pressure accumulates \citep{laban2023flipflop, liu2025truthdecay} and may be asymmetric \citep{kumaran2025overconfidence}.
+The pieces needed here exist separately: feedback archetypes \citep{sharma2024towards}, multi-turn flip metrics \citep{hong-etal-2025-measuring}, confidence elicitation \citep{tian-etal-2023-just, xiong2023express}, and tone resources \citep{danescu-niculescu-mizil-etal-2013-computational, mohammad-2018-obtaining, demszky-etal-2020-goemotions}.
 What is missing is one protocol on checkable claims that separates warranted from unwarranted criticism against a no-feedback control, grades the tone of each turn, and reads the model's confidence and working at every turn alongside its stated answer.
