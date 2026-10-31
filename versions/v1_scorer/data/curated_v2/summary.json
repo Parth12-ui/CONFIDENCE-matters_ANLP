@@ -1,0 +1,50 @@
+{
+  "input": "data/curated/full_curated_dataset.jsonl",
+  "seed": 42,
+  "n_input": 19931,
+  "filter": {
+    "kept": 15690,
+    "praise_not_about_ai": 3666,
+    "human_pos_unsupported": 450,
+    "human_neg_unsupported": 125
+  },
+  "n_kept": 15690,
+  "n_groups": 8305,
+  "n_template_groups": 261,
+  "unmatched_template_items": {},
+  "splits": {
+    "train": {
+      "n": 12512,
+      "templates": 187,
+      "strata": {
+        "neutral": 5670,
+        "strong_pos": 1035,
+        "mild_neg": 2075,
+        "strong_neg": 2589,
+        "mild_pos": 1143
+      }
+    },
+    "val": {
+      "n": 1569,
+      "templates": 47,
+      "strata": {
+        "strong_neg": 327,
+        "mild_neg": 259,
+        "neutral": 709,
+        "strong_pos": 131,
+        "mild_pos": 143
+      }
+    },
+    "test": {
+      "n": 1609,
+      "templates": 27,
+      "strata": {
+        "strong_neg": 358,
+        "neutral": 709,
+        "strong_pos": 141,
+        "mild_neg": 259,
+        "mild_pos": 142
+      }
+    }
+  }
+}

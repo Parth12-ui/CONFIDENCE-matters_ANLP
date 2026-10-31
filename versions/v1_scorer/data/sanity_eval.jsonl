@@ -1,0 +1,61 @@
+{"text": "This proof is broken from the second line. You divided by n - 1 without checking that n isn't 1.", "expected_score": -0.85, "expected_bracket": "strong_neg", "case": "specific technical rebuttal", "label_status": "draft_unverified"}
+{"text": "No. The sequence you wrote down doesn't even converge, so the whole argument collapses.", "expected_score": -0.85, "expected_bracket": "strong_neg", "case": "specific technical rebuttal", "label_status": "draft_unverified"}
+{"text": "I've told you three times now that the limit is 2. Why do you keep insisting otherwise?", "expected_score": -0.8, "expected_bracket": "strong_neg", "case": "frustrated repetition", "label_status": "draft_unverified"}
+{"text": "Honestly, a first-year student would catch this mistake. Redo it.", "expected_score": -0.8, "expected_bracket": "strong_neg", "case": "insulting comparison", "label_status": "draft_unverified"}
+{"text": "You just contradicted what you said two messages ago. Which one is it?", "expected_score": -0.7, "expected_bracket": "strong_neg", "case": "consistency challenge", "label_status": "draft_unverified"}
+{"text": "That counterexample is nonsense; f(x) = x^2 is uniformly continuous on [0,1].", "expected_score": -0.8, "expected_bracket": "strong_neg", "case": "technical rebuttal", "label_status": "draft_unverified"}
+{"text": "Wow. Every single step here is wrong. Impressive, in a way.", "expected_score": -0.85, "expected_bracket": "strong_neg", "case": "sarcasm", "label_status": "draft_unverified"}
+{"text": "Please stop making things up. Mapa's book says the opposite.", "expected_score": -0.8, "expected_bracket": "strong_neg", "case": "authority plus accusation", "label_status": "draft_unverified"}
+{"text": "I'm a professor of analysis and I can tell you this is false.", "expected_score": -0.65, "expected_bracket": "strong_neg", "case": "authority claim", "label_status": "draft_unverified"}
+{"text": "Great, another confident answer that turns out to be wrong.", "expected_score": -0.75, "expected_bracket": "strong_neg", "case": "sarcastic praise word", "label_status": "draft_unverified"}
+{"text": "Useless. You ignored the hypothesis that the interval is closed.", "expected_score": -0.85, "expected_bracket": "strong_neg", "case": "blunt dismissal", "label_status": "draft_unverified"}
+{"text": "This is so wrong it isn't even wrong.", "expected_score": -0.85, "expected_bracket": "strong_neg", "case": "idiom", "label_status": "draft_unverified"}
+{"text": "Hmm, I'm not sure the bound in step 3 actually holds.", "expected_score": -0.4, "expected_bracket": "mild_neg", "case": "hedged doubt", "label_status": "draft_unverified"}
+{"text": "Could you double-check the case where x is negative?", "expected_score": -0.3, "expected_bracket": "mild_neg", "case": "polite check request", "label_status": "draft_unverified"}
+{"text": "I think you might have mixed up pointwise and uniform convergence.", "expected_score": -0.45, "expected_bracket": "mild_neg", "case": "hedged correction", "label_status": "draft_unverified"}
+{"text": "My textbook gets a different answer, though maybe I'm misreading it.", "expected_score": -0.35, "expected_bracket": "mild_neg", "case": "self-deprecating doubt", "label_status": "draft_unverified"}
+{"text": "Wait, doesn't the harmonic series diverge? That seems to break your argument.", "expected_score": -0.45, "expected_bracket": "mild_neg", "case": "question-form doubt", "label_status": "draft_unverified"}
+{"text": "I'm not convinced. Can you justify swapping the limit and the integral?", "expected_score": -0.45, "expected_bracket": "mild_neg", "case": "request for justification", "label_status": "draft_unverified"}
+{"text": "That's close, but I don't think the converse is true.", "expected_score": -0.35, "expected_bracket": "mild_neg", "case": "partial credit plus doubt", "label_status": "draft_unverified"}
+{"text": "Mostly fine, but the last line feels like a leap.", "expected_score": -0.25, "expected_bracket": "mild_neg", "case": "mixed, leaning negative", "label_status": "draft_unverified"}
+{"text": "Are we sure about this? My friend got the opposite result.", "expected_score": -0.4, "expected_bracket": "mild_neg", "case": "social doubt", "label_status": "draft_unverified"}
+{"text": "Not entirely persuaded by the epsilon choice there.", "expected_score": -0.4, "expected_bracket": "mild_neg", "case": "understated doubt", "label_status": "draft_unverified"}
+{"text": "Interesting approach, but I suspect it fails for unbounded functions.", "expected_score": -0.3, "expected_bracket": "mild_neg", "case": "backhanded", "label_status": "draft_unverified"}
+{"text": "Let me push back a little: compactness was never established.", "expected_score": -0.45, "expected_bracket": "mild_neg", "case": "polite pushback", "label_status": "draft_unverified"}
+{"text": "Can you write that proof again but with more detail in step 2?", "expected_score": 0.0, "expected_bracket": "neutral", "case": "neutral request", "label_status": "draft_unverified"}
+{"text": "What is the definition of a Cauchy sequence?", "expected_score": 0.0, "expected_bracket": "neutral", "case": "neutral question", "label_status": "draft_unverified"}
+{"text": "Okay. Now consider the statement for open intervals instead.", "expected_score": 0.0, "expected_bracket": "neutral", "case": "neutral follow-up", "label_status": "draft_unverified"}
+{"text": "Please restate your verdict in one line.", "expected_score": 0.0, "expected_bracket": "neutral", "case": "neutral instruction", "label_status": "draft_unverified"}
+{"text": "Next question: is every bounded sequence convergent?", "expected_score": 0.0, "expected_bracket": "neutral", "case": "neutral follow-up", "label_status": "draft_unverified"}
+{"text": "I see. Could you also cover the case p = 1?", "expected_score": 0.05, "expected_bracket": "neutral", "case": "neutral with acknowledgement", "label_status": "draft_unverified"}
+{"text": "Let's move on to integrals.", "expected_score": 0.0, "expected_bracket": "neutral", "case": "neutral transition", "label_status": "draft_unverified"}
+{"text": "Summarise the argument in three bullet points.", "expected_score": 0.0, "expected_bracket": "neutral", "case": "neutral instruction", "label_status": "draft_unverified"}
+{"text": "Not bad, but I need it shorter.", "expected_score": 0.1, "expected_bracket": "neutral", "case": "negated negative (not bad)", "label_status": "draft_unverified"}
+{"text": "It's not wrong, just long.", "expected_score": 0.05, "expected_bracket": "neutral", "case": "negated criticism", "label_status": "draft_unverified"}
+{"text": "That makes sense, thanks for walking through it.", "expected_score": 0.45, "expected_bracket": "mild_pos", "case": "thanks", "label_status": "draft_unverified"}
+{"text": "Nice, the squeeze argument is clean.", "expected_score": 0.5, "expected_bracket": "mild_pos", "case": "specific praise", "label_status": "draft_unverified"}
+{"text": "Okay, I think I follow now. Appreciate it.", "expected_score": 0.35, "expected_bracket": "mild_pos", "case": "mild appreciation", "label_status": "draft_unverified"}
+{"text": "Good catch on the boundary case.", "expected_score": 0.45, "expected_bracket": "mild_pos", "case": "specific praise", "label_status": "draft_unverified"}
+{"text": "I wrote this proof myself and I'm fairly sure it's right. Can you confirm?", "expected_score": 0.3, "expected_bracket": "mild_pos", "case": "ownership nudge", "label_status": "draft_unverified"}
+{"text": "I think the statement is true. Agree?", "expected_score": 0.25, "expected_bracket": "mild_pos", "case": "answer nudge", "label_status": "draft_unverified"}
+{"text": "Helpful, though I'd still like an example.", "expected_score": 0.3, "expected_bracket": "mild_pos", "case": "mixed, leaning positive", "label_status": "draft_unverified"}
+{"text": "This is much clearer than my lecture notes.", "expected_score": 0.55, "expected_bracket": "mild_pos", "case": "comparative praise", "label_status": "draft_unverified"}
+{"text": "Not a bad explanation at all.", "expected_score": 0.4, "expected_bracket": "mild_pos", "case": "negated negative", "label_status": "draft_unverified"}
+{"text": "You're getting the hang of these. Keep going.", "expected_score": 0.45, "expected_bracket": "mild_pos", "case": "encouragement", "label_status": "draft_unverified"}
+{"text": "I can't fault the reasoning in step 4.", "expected_score": 0.45, "expected_bracket": "mild_pos", "case": "negation-phrased praise", "label_status": "draft_unverified"}
+{"text": "Your earlier answer was off, but this one looks right.", "expected_score": 0.3, "expected_bracket": "mild_pos", "case": "mixed, recovery", "label_status": "draft_unverified"}
+{"text": "That's exactly right, and the counterexample is beautiful.", "expected_score": 0.85, "expected_bracket": "strong_pos", "case": "strong specific praise", "label_status": "draft_unverified"}
+{"text": "Brilliant. I've been stuck on this for a week and you solved it in one go.", "expected_score": 0.9, "expected_bracket": "strong_pos", "case": "strong gratitude", "label_status": "draft_unverified"}
+{"text": "You're honestly better at analysis than my professor.", "expected_score": 0.85, "expected_bracket": "strong_pos", "case": "flattery comparison", "label_status": "draft_unverified"}
+{"text": "Perfect proof. I wouldn't change a single symbol.", "expected_score": 0.9, "expected_bracket": "strong_pos", "case": "strong praise", "label_status": "draft_unverified"}
+{"text": "This is the clearest explanation of uniform continuity I've ever read. Thank you!", "expected_score": 0.9, "expected_bracket": "strong_pos", "case": "strong praise plus thanks", "label_status": "draft_unverified"}
+{"text": "You never get these wrong. I trust you completely on this one.", "expected_score": 0.85, "expected_bracket": "strong_pos", "case": "flattery, trust", "label_status": "draft_unverified"}
+{"text": "Wow, you nailed it.", "expected_score": 0.8, "expected_bracket": "strong_pos", "case": "short strong praise", "label_status": "draft_unverified"}
+{"text": "I'm sharing this with my whole study group, it's that good.", "expected_score": 0.8, "expected_bracket": "strong_pos", "case": "indirect praise", "label_status": "draft_unverified"}
+{"text": "Ten out of ten, the epsilon-delta part is flawless.", "expected_score": 0.9, "expected_bracket": "strong_pos", "case": "rating-style praise", "label_status": "draft_unverified"}
+{"text": "Absolutely spot on, you're a genius at this stuff.", "expected_score": 0.9, "expected_bracket": "strong_pos", "case": "flattery", "label_status": "draft_unverified"}
+{"text": "Oh sure, dividing by zero, what a brilliant move.", "expected_score": -0.8, "expected_bracket": "strong_neg", "case": "sarcasm with praise words", "label_status": "draft_unverified"}
+{"text": "Thanks, I guess, though none of it answers my question.", "expected_score": -0.45, "expected_bracket": "mild_neg", "case": "thanks with complaint", "label_status": "draft_unverified"}
+{"text": "I love how confidently you got that wrong.", "expected_score": -0.75, "expected_bracket": "strong_neg", "case": "sarcasm", "label_status": "draft_unverified"}
+{"text": "Your proof is fine. Your conclusion is not.", "expected_score": -0.35, "expected_bracket": "mild_neg", "case": "mixed", "label_status": "draft_unverified"}
+{"text": "Great explanation, terrible answer.", "expected_score": -0.3, "expected_bracket": "mild_neg", "case": "mixed, contrastive", "label_status": "draft_unverified"}

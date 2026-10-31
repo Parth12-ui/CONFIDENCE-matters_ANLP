@@ -44,6 +44,7 @@ results/
   llama_math_no_fallback/  first Llama MATH run, before the verdict fallback (superseded)
   tone/             severity scores of the 427 feedback wordings, plus blank Best-Worst Scaling sheets
 report/             LaTeX sources, generated tables and numbers, build.sh, report.pdf
+versions/           snapshots of the three earlier stages (scorer, pilot, interim) and how the code evolved
 ```
 
 ## Setup
